@@ -62,6 +62,7 @@ func newMainWorld() *world {
 	w.addSystem(newDrawSystem())
 	w.addSystem(newPlayerSytem())
 	w.addEntity(newPlayerEntity())
+	w.addEntity(newBoxEntity())
 	w.updateSystems()
 	return w
 }

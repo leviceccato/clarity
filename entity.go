@@ -33,3 +33,13 @@ func newPlayerEntity() *entity {
 	e.controls = newControlsComponent()
 	return e
 }
+
+func newBoxEntity() *entity {
+	e := newEntity()
+	e.appearance = newAppearanceComponent()
+	e.appearance.texture = r.LoadTexture("sprites/box.png")
+	e.position = newPositionComponent()
+	e.position.x = 40
+	e.position.y = 40
+	return e
+}
