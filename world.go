@@ -22,36 +22,37 @@ func (w *world) addSystem(s runner) {
 
 // Update all systems with the entities they will be run on
 func (w *world) updateSystems() {
-	hasAllComponents := true
-	hasComponent := false
+	hasComponents := true
 	for _, system := range w.systems {
 		for _, entity := range w.entities {
 			for _, component := range system.getComponents() {
 				switch component {
 				case "appearance":
-					if entity.appearance != nil {
-						hasComponent = true
+					if entity.appearance == nil {
+						hasComponents = false
 					}
 				case "collision":
-					if entity.collision != nil {
-						hasComponent = true
+					if entity.collision == nil {
+						hasComponents = false
+					}
+				case "controls":
+					if entity.controls == nil {
+						hasComponents = false
 					}
 				case "physics":
-					if entity.physics != nil {
-						hasComponent = true
+					if entity.physics == nil {
+						hasComponents = false
 					}
 				case "position":
-					if entity.position != nil {
-						hasComponent = true
+					if entity.position == nil {
+						hasComponents = false
 					}
 				}
 			}
-			hasAllComponents = hasComponent
-			if hasAllComponents {
+			if hasComponents {
 				system.addEntity(entity)
 			}
-			hasComponent = false
-			hasAllComponents = true
+			hasComponents = true
 		}
 	}
 }
