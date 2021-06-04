@@ -31,6 +31,10 @@ func (w *world) updateSystems() {
 					if entity.appearance == nil {
 						hasComponents = false
 					}
+				case "camera":
+					if entity.camera == nil {
+						hasComponents = false
+					}
 				case "collision":
 					if entity.collision == nil {
 						hasComponents = false
@@ -39,8 +43,12 @@ func (w *world) updateSystems() {
 					if entity.controls == nil {
 						hasComponents = false
 					}
-				case "physics":
-					if entity.physics == nil {
+				case "velocity":
+					if entity.velocity == nil {
+						hasComponents = false
+					}
+				case "gravity":
+					if entity.gravity == nil {
 						hasComponents = false
 					}
 				case "position":

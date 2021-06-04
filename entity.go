@@ -10,9 +10,12 @@ type entity struct {
 	id         int32
 	appearance *appearanceComponent
 	collision  *collisionComponent
-	physics    *physicsComponent
+	velocity   *velocityComponent
+	gravity    *gravityComponent
 	position   *positionComponent
 	controls   *controlsComponent
+	camera     *cameraComponent
+	zIndex     *zIndexComponent
 }
 
 func newEntity() *entity {
@@ -28,9 +31,10 @@ func newPlayerEntity() *entity {
 	e.appearance = newAppearanceComponent()
 	e.appearance.texture = r.LoadTexture("sprites/player.png")
 	e.position = newPositionComponent()
-	e.position.x = 20
-	e.position.y = 20
+	e.position.value.X = 20
+	e.position.value.Y = 20
 	e.controls = newControlsComponent()
+	e.camera = newCameraComponent()
 	return e
 }
 
@@ -39,7 +43,8 @@ func newBoxEntity() *entity {
 	e.appearance = newAppearanceComponent()
 	e.appearance.texture = r.LoadTexture("sprites/box.png")
 	e.position = newPositionComponent()
-	e.position.x = 40
-	e.position.y = 40
+	e.position.value.X = 40
+	e.position.value.Y = 40
+	e.camera = newCameraComponent()
 	return e
 }

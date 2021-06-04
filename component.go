@@ -4,59 +4,61 @@ import (
 	r "github.com/gen2brain/raylib-go/raylib"
 )
 
-type component struct {
-	name string
+type cameraComponent struct{}
+
+func newCameraComponent() *cameraComponent {
+	return &cameraComponent{}
+}
+
+type zIndexComponent struct {
+	value int32
+}
+
+func newZIndexComponent() *zIndexComponent {
+	return &zIndexComponent{value: 0}
 }
 
 type appearanceComponent struct {
-	component
 	texture r.Texture2D
 }
 
 func newAppearanceComponent() *appearanceComponent {
-	c := &appearanceComponent{}
-	c.name = "appearance"
-	return c
+	return &appearanceComponent{}
 }
 
 type collisionComponent struct {
-	component
-	min r.Vector2
-	max r.Vector2
+	min, max r.Vector2
 }
 
 func newCollisionComponent() *collisionComponent {
-	c := &collisionComponent{}
-	c.name = "collision"
-	return c
+	return &collisionComponent{}
 }
 
-type physicsComponent struct {
-	component
-	velocty r.Vector2
-	gravity r.Vector2
+type velocityComponent struct {
+	value r.Vector2
 }
 
-func newPhysicsComponent() *physicsComponent {
-	c := &physicsComponent{}
-	c.name = "physics"
-	return c
+func newVelocityComponent() *velocityComponent {
+	return &velocityComponent{}
+}
+
+type gravityComponent struct {
+	value r.Vector2
+}
+
+func newGravityComponent() *gravityComponent {
+	return &gravityComponent{}
 }
 
 type positionComponent struct {
-	component
-	x, y float32
+	value r.Vector2
 }
 
 func newPositionComponent() *positionComponent {
-	c := &positionComponent{}
-	c.name = "position"
-	return c
+	return &positionComponent{}
 }
 
-type controlsComponent struct {
-	component
-}
+type controlsComponent struct{}
 
 func newControlsComponent() *controlsComponent {
 	return &controlsComponent{}

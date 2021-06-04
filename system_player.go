@@ -14,29 +14,31 @@ func newPlayerSytem() runner {
 	return s
 }
 
-func (s playerSystem) run() error {
+func (s *playerSystem) run() error {
 	for _, e := range s.entities {
 		if r.IsKeyDown(r.KeyW) {
-			e.position.y -= 2
+			e.position.value.Y -= 2
 		}
 		if r.IsKeyDown(r.KeyS) {
-			e.position.y += 2
+			e.position.value.Y += 2
 		}
 		if r.IsKeyDown(r.KeyA) {
-			e.position.x -= 2
+			e.position.value.X -= 2
 		}
 		if r.IsKeyDown(r.KeyD) {
-			e.position.x += 2
+			e.position.value.X += 2
 		}
 	}
 	return nil
 }
 
-func (s playerSystem) getComponents() []string {
+func (s *playerSystem) getComponents() []string {
 	return s.components
 }
 
-func (s playerSystem) getEntities() []*entity {
+func (s *playerSystem) sortEntities() {}
+
+func (s *playerSystem) getEntities() []*entity {
 	return s.entities
 }
 
