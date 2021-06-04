@@ -16,6 +16,8 @@ func main() {
 	state.activateWorld("main")
 
 	for !r.WindowShouldClose() {
+		r.BeginDrawing()
 		state.run()
+		r.EndDrawing()
 	}
 }
