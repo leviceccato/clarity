@@ -20,6 +20,12 @@ func (w *world) addSystem(s runner) {
 	w.systems = append(w.systems, s)
 }
 
+func (w *world) sortEntities() {
+	for _, system := range w.systems {
+		system.sortEntities()
+	}
+}
+
 // Update all systems with the entities they will be run on
 func (w *world) updateSystems() {
 	hasComponents := true
@@ -72,5 +78,6 @@ func newMainWorld() *world {
 	w.addEntity(newPlayerEntity())
 	w.addEntity(newBoxEntity())
 	w.updateSystems()
+	w.sortEntities()
 	return w
 }

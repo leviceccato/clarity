@@ -5,6 +5,7 @@ type runner interface {
 	getComponents() []string
 	addEntity(*entity)
 	getEntities() []*entity
+	sortEntities()
 }
 
 type system struct {

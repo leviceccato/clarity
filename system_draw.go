@@ -33,7 +33,18 @@ func (s drawSystem) getComponents() []string {
 	return s.components
 }
 
-func (s drawSystem) getEntities() []*entity {
+func (s *drawSystem) sortEntities() {
+	sort.Slice(s.entities, func(a, b int) bool {
+		aZIndex := s.entities[a].zIndex
+		bZIndex := s.entities[b].zIndex
+		if aZIndex == nil || bZIndex == nil {
+			return false
+		}
+		return aZIndex.value > bZIndex.value
+	})
+}
+
+func (s *drawSystem) getEntities() []*entity {
 	return s.entities
 }
 
