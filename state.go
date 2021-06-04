@@ -15,7 +15,7 @@ func (sm *stateManager) addWorld(w *world) {
 	sm.worlds[w.name] = w
 }
 
-func (sm *stateManager) setActive(name string) {
+func (sm *stateManager) activateWorld(name string) {
 	sm.activeWorld = sm.worlds[name]
 }
 

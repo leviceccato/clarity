@@ -13,7 +13,7 @@ func main() {
 	state := newStateManager()
 	mainWorld := newMainWorld()
 	state.addWorld(mainWorld)
-	state.setActive("main")
+	state.activateWorld("main")
 
 	for !r.WindowShouldClose() {
 		state.run()
