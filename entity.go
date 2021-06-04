@@ -16,6 +16,7 @@ type entity struct {
 	controls   *controlsComponent
 	camera     *cameraComponent
 	zIndex     *zIndexComponent
+	ui         *uiComponent
 }
 
 func newEntity() *entity {

@@ -37,6 +37,10 @@ func (w *world) updateSystems() {
 					if entity.appearance == nil {
 						hasComponents = false
 					}
+				case "ui":
+					if entity.ui == nil {
+						hasComponents = false
+					}
 				case "camera":
 					if entity.camera == nil {
 						hasComponents = false
@@ -79,6 +83,7 @@ func newMainWorld() *world {
 	draw.cameraTarget = player
 	w.addSystem(draw)
 	w.addSystem(newPlayerSytem())
+	w.addSystem(newUISystem())
 	w.addEntity(player)
 	w.addEntity(newBoxEntity())
 

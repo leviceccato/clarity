@@ -10,6 +10,12 @@ func newCameraComponent() *cameraComponent {
 	return &cameraComponent{}
 }
 
+type uiComponent struct{}
+
+func newUIComponent() *uiComponent {
+	return &uiComponent{}
+}
+
 type zIndexComponent struct {
 	value int32
 }
