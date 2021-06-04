@@ -73,10 +73,15 @@ func (w *world) updateSystems() {
 
 func newMainWorld() *world {
 	w := &world{name: "main"}
-	w.addSystem(newDrawSystem())
+
+	player := newPlayerEntity()
+	draw := newDrawSystem().(*drawSystem)
+	draw.cameraTarget = player
+	w.addSystem(draw)
 	w.addSystem(newPlayerSytem())
-	w.addEntity(newPlayerEntity())
+	w.addEntity(player)
 	w.addEntity(newBoxEntity())
+
 	w.updateSystems()
 	w.sortEntities()
 	return w
