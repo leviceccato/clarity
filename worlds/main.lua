@@ -21,7 +21,7 @@ return function()
     w.addEntity(playerEntity())
 
     for index = 1, 5000 do
-        w.addEntity(jonEntity(index * 3 + jonX, index * 3 + jonY))
+        w.addEntity(jonEntity(index + jonX, index + jonY))
     end
 
     w.updateSystems()
