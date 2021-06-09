@@ -1,14 +1,14 @@
 # Clarity
 
-A game written in [Go](https://golang.org) using [Raylib](https://www.raylib.com) with an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture.
+💕 A game written with LÖVE.
 
 ## Requirements
 
-- Go 1.15
+- LÖVE 11.3
 
 ## Development
 
 From the root directory run:
 ```
-go run .
+love . --console
 ```
