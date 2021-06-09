@@ -4,13 +4,6 @@ return function()
     local s = system()
     s.components = { 'appearance', 'position' }
 
-    s.update = function()
-        local e
-        for index = 1, #s.entities do
-            e = s.entities[index]
-        end
-    end
-
     s.draw = function()
         local e
         for index = 1, #s.entities do
