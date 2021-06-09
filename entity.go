@@ -30,7 +30,7 @@ func newEntity() *entity {
 func newPlayerEntity() *entity {
 	e := newEntity()
 	e.appearance = newAppearanceComponent()
-	e.appearance.texture = r.LoadTexture("sprites/player.png")
+	e.appearance.texture = r.LoadTexture("sprites/player_test.png")
 	e.position = newPositionComponent()
 	e.position.value.X = 20
 	e.position.value.Y = 20

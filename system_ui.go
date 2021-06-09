@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	r "github.com/gen2brain/raylib-go/raylib"
 )
 
@@ -15,7 +17,8 @@ func newUISystem() runner {
 }
 
 func (s *uiSystem) run() error {
-	r.DrawText("Controls:", 20, 20, 10, r.Black)
+	r.DrawRectangle(10, 10, 100, 50, r.Color{R: 0, G: 0, B: 0, A: 50})
+	r.DrawText(fmt.Sprintf("FPS: %d", int32(r.GetFPS())), 20, 20, 10, r.White)
 	for _, e := range s.entities {
 		r.DrawTexture(
 			e.appearance.texture,
