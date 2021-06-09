@@ -7,6 +7,7 @@ return function()
     e.components = {}
 
     e.addComponent = function(component)
+        e.components[#e.components + 1] = component.type
         e[component.type] = component.data
     end
 

@@ -23,7 +23,7 @@ return function(name)
     end
 
     w.addEntity = function(entity)
-        w.entities[entity.id] = entity 
+        w.entities[entity.id] = entity
     end
 
     w.addSystem = function(system)
@@ -50,7 +50,7 @@ return function(name)
                     requiredComponent = system.components[requiredComponentIndex]
                     for componentIndex = 1, #entity.components do
                         component = entity.components[componentIndex]
-                        if component.name == requiredComponent then
+                        if component == requiredComponent then
                             hasComponent = true
                         end
                     end

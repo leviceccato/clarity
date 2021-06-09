@@ -14,7 +14,7 @@ return function()
     s.load = function()
         s.activateWorld.load()
     end
-    
+
     s.update = function()
         s.activateWorld.update()
     end
