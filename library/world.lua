@@ -24,6 +24,7 @@ return function(name)
         local requiredComponent
         local component
         local hasComponent = false
+        local hasAllComponents = false
         for systemIndex = 1, #w.systems do
             system = w.systems[systemIndex]
             for entityIndex = 1, #w.entities do
@@ -36,11 +37,13 @@ return function(name)
                             hasComponent = true
                         end
                     end
-                end
-                if hasComponent then
-                    system.addEntity(entity)
+                    hasAllComponents = hasComponent
                     hasComponent = false
                 end
+                if hasAllComponents then
+                    system.addEntity(entity)
+                end
+                hasAllComponents = false
             end
         end
     end
