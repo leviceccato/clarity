@@ -4,26 +4,8 @@ return function(name)
     w.systems = {}
     w.entities = {}
 
-    w.load = function()
-        for index = 1, #w.systems do
-            w.systems[index].load()
-        end
-    end
-
-    w.update = function()
-        for index = 1, #w.systems do
-            w.systems[index].update()
-        end
-    end
-
-    w.draw = function()
-        for index = 1, #w.systems do
-            w.systems[index].draw()
-        end
-    end
-
     w.addEntity = function(entity)
-        w.entities[entity.id] = entity
+        w.entities[#w.entities + 1] = entity
     end
 
     w.addSystem = function(system)
@@ -60,6 +42,36 @@ return function(name)
                     hasComponent = false
                 end
             end
+        end
+    end
+
+    w.load = function(arg)
+        for index = 1, #w.systems do
+            w.systems[index].load(arg)
+        end
+    end
+
+    w.update = function(dt)
+        for index = 1, #w.systems do
+            w.systems[index].update(dt)
+        end
+    end
+
+    w.draw = function()
+        for index = 1, #w.systems do
+            w.systems[index].draw()
+        end
+    end
+
+    w.keyreleased = function(...)
+        for index = 1, #w.systems do
+            w.systems[index].keyreleased(...)
+        end
+    end
+
+    w.resize = function(...)
+        for index = 1, #w.systems do
+            w.systems[index].resize(...)
         end
     end
 

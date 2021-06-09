@@ -11,16 +11,24 @@ return function()
         s.activateWorld = s.worlds[worldName]
     end
 
-    s.load = function()
-        s.activateWorld.load()
+    s.load = function(arg)
+        s.activateWorld.load(arg)
     end
 
-    s.update = function()
-        s.activateWorld.update()
+    s.update = function(dt)
+        s.activateWorld.update(dt)
     end
 
     s.draw = function()
         s.activateWorld.draw()
+    end
+
+    s.keyreleased = function(...)
+        s.activateWorld.keyreleased(...)
+    end
+
+    s.resize = function(...)
+        s.activateWorld.resize(...)
     end
 
     return s
