@@ -42,8 +42,8 @@ return function(name)
                 end
                 if hasAllComponents then
                     system.addEntity(entity)
-                    hasAllComponents = false
                 end
+                hasAllComponents = false
             end
         end
     end
