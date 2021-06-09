@@ -1,6 +1,6 @@
 # Clarity
 
-💕 A game written with LÖVE.
+💕 A game written in [Lua](http://www.lua.org) using [LÖVE](https://love2d.org) with an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture.
 
 ## Requirements
 
