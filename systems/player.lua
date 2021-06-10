@@ -1,7 +1,7 @@
 local system = require('library.system')
 
 return function()
-    local s = system({ 'position', 'controls' })
+    local s = system({'position', 'controls'})
 
     s.update = function()
         local e
