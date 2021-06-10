@@ -1,8 +1,7 @@
 local system = require('library.system')
 
 return function()
-    local s = system()
-    s.components = { 'position', 'shuffle' }
+    local s = system({ 'position', 'shuffle' })
 
     s.update = function()
         local e

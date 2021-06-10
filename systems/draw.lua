@@ -1,8 +1,7 @@
 local system = require('library.system')
 
 return function()
-    local s = system()
-    s.components = { 'appearance', 'position' }
+    local s = system({ 'appearance', 'position' })
 
     s.draw = function()
         local e

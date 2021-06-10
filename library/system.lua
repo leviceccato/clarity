@@ -1,7 +1,7 @@
-return function()
+return function(components)
     local s = {}
     s.entities = {}
-    s.components = {}
+    s.components = components or {}
 
     s.addEntity = function(entity)
         s.entities[#s.entities + 1] = entity
