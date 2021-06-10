@@ -5,12 +5,7 @@ return function()
     s.components = { 'appearance', 'position', 'ui' }
 
     s.draw = function()
-        love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 10, 10)
-        -- local e
-        -- for index = 1, #s.entities do
-        --     e = s.entities[index]
-        --     ...
-        -- end
+        love.graphics.print('FPS: ' .. love.timer.getFPS(), 10, 10)
     end
 
     return s
