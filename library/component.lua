@@ -1,6 +1,6 @@
 return function(type, data)
     return {
         type = type,
-        data = data
+        data = data || {}
     }
 end
