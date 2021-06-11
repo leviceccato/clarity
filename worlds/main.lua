@@ -12,20 +12,22 @@ return function()
     local jonY = 200
     local w = world('main')
 
-    w.addSystem(drawSystem())
-    w.addSystem(playerSystem())
-    w.addSystem(uiSystem())
-    w.addSystem(shuffleSystem())
+    w.load = function(arg)
+        w.addSystem(drawSystem())
+        w.addSystem(playerSystem())
+        w.addSystem(uiSystem())
+        w.addSystem(shuffleSystem())
 
-    w.addEntity(bgEntity())
-    w.addEntity(playerEntity())
+        w.addEntity(bgEntity())
+        w.addEntity(playerEntity())
 
-    for index = 1, 5000 do
-        w.addEntity(jonEntity(index + jonX, index + jonY))
+        for index = 1, 5000 do
+            w.addEntity(jonEntity(index + jonX, index + jonY))
+        end
+
+        w.updateSystems()
+        w.sortEntities()
     end
-
-    w.updateSystems()
-    w.sortEntities()
 
     return w
 end
