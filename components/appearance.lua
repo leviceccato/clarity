@@ -1,3 +1,4 @@
+local json = require('vendor.json')
 local component = require('library.component')
 
 return function(image, sheet)
@@ -25,12 +26,10 @@ return function(image, sheet)
         }
     }
 
-    local c = component('appearance', {
+    return component('appearance', {
         image = image,
-        sheet = sheet
+        sheet = sheet,
         frame = 1,
         time = 0
     })
-
-    return c
 end
