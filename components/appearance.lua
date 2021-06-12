@@ -1,7 +1,7 @@
 local component = require('library.component')
 
 return function(image, sheet)
-    -- Assume sheet has 1 frame and tag if no sheet is supplied
+    -- Assume sheet has 1 frame and 1 tag if no sheet is supplied
     local imageWidth = image:getWidth()
     local imageHeight = image:getHeight()
     sheet = sheet or {
