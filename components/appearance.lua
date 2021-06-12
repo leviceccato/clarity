@@ -1,43 +1,36 @@
 local component = require('library.component')
 
-return function(image, quadWidth, quadHeight, sequenceData)
+return function(image, sheet)
+    -- Assume sheet has 1 frame and tag if no sheet is supplied
     local imageWidth = image:getWidth()
     local imageHeight = image:getHeight()
-    quadWidth = quadWidth or imageWidth
-    quadHeight = quadHeight or imageHeight
-    sequenceData = sequenceData or {
-        default = {
-            quadCount = 1,
-            shouldLoop = false,
-            duration = 0
+    sheet = sheet or {
+        meta = {
+            slices = {},
+            size = {w = imageWidth, h = imageHeight},
+            frameTags = {
+                {name = 'default', from = 0, to = 0, direction = 'forwards'}
+            }
+        },
+        frames = {
+            {
+                filename = '0',
+                frame = {x = 0, y = 0, w = imageWidth, h = imageHeight},
+                rotated: false,
+                trimmed: false,
+                spriteSourceSize: {x = 0, y = 0, w = imageWidth, h = imageHeight},
+                sourceSize: {w = imageWidth, h = imageHeight},
+                duration = 100
+            }
         }
     }
 
     local c = component('appearance', {
         image = image,
-        quad = 1,
-        sequence = 1,
-        sequences = {}
+        sheet = sheet
+        frame = 1,
+        time = 0
     })
-
-    c.data.getImage = function()
-        return c.data.sequences[c.data.quad][c.data.sequence]
-    end
-
-    local sequence
-    for sequenceIndex = 1, #sequenceData do
-        sequence = sequenceData[sequenceIndex]
-        for frameIndex = 1, sequence.frameCount do
-            c.data.sequences[sequenceIndex][frameIndex] = love.graphics.newQuad(
-                (frameIndex - 1) * frameWidth,
-                (sequenceIndex - 1) * frameHeight,
-                frameWidth,
-                frameHeight,
-                imageWidth,
-                imageHeight
-            )
-        end
-    end
 
     return c
 end
