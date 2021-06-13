@@ -1,6 +1,5 @@
-return function(type, data)
+return function(type)
     return {
-        type = type,
-        data = data || {}
+        type = type
     }
 end

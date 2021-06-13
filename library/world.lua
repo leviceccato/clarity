@@ -31,11 +31,8 @@ return function(name)
                 entity = w.entities[entityIndex]
                 for requiredComponentIndex = 1, #system.components do
                     requiredComponent = system.components[requiredComponentIndex]
-                    for componentIndex = 1, #entity.components do
-                        component = entity.components[componentIndex]
-                        if component == requiredComponent then
-                            hasComponent = true
-                        end
+                    if entity[requiredComponent] then
+                        hasComponent = true
                     end
                     hasAllComponents = hasComponent
                     hasComponent = false

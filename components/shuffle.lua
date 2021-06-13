@@ -1,5 +1,5 @@
 local component = require('library.component')
 
 return function()
-    return component('shuffle', true)
+    return component('shuffle')
 end

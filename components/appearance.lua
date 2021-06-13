@@ -1,7 +1,7 @@
 local component = require('library.component')
 
 return function(image)
-    return component('appearance', {
-        image = image
-    })
+    local c = component('appearance')
+    c.image = image
+    return c
 end
