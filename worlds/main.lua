@@ -1,5 +1,6 @@
 local world = require('library.world')
 local drawSystem = require('systems.draw')
+local animationSystem = require('systems.animation')
 local playerSystem = require('systems.player')
 local uiSystem = require('systems.ui')
 local playerEntity = require('entities.player')
@@ -10,6 +11,7 @@ return function()
 
     w.load = function(arg)
         w.addSystem(drawSystem())
+        w.addSystem(animationSystem())
         w.addSystem(playerSystem())
         w.addSystem(uiSystem())
 
