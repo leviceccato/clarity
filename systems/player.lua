@@ -1,5 +1,7 @@
 local system = require('library.system')
 
+local keyboard = love.keyboard
+
 return function()
     local s = system({'position', 'controls'})
 
@@ -7,16 +9,16 @@ return function()
         local e
         for index = 1, #s.entities do
             e = s.entities[index]
-            if love.keyboard.isDown('w') then
+            if keyboard.isDown('w') then
                 e.position.y = e.position.y - 2
             end
-            if love.keyboard.isDown('a') then
+            if keyboard.isDown('a') then
                 e.position.x = e.position.x - 2
             end
-            if love.keyboard.isDown('s') then
+            if keyboard.isDown('s') then
                 e.position.y = e.position.y + 2
             end
-            if love.keyboard.isDown('d') then
+            if keyboard.isDown('d') then
                 e.position.x = e.position.x + 2
             end
         end
