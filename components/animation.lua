@@ -1,39 +1,45 @@
 local component = require('library.component')
 
-return function(image, sheet)
+return function(sheet)
+    local c = component('animation')
+    c.frame = 1
+    c.time = 0
+    c.frames = {}
+    c.sequences = {}
 
-    local frames = {}
     for index = 1, #sheet.frames do
         local f = sheet.frames[index]
-        frames[#frames + 1] = {
+        c.frames[#c.frames + 1] = {
             duration = f.duration,
             quad = love.graphics.newQuad(
                 f.frame.x, f.frame.y,
                 f.frame.w, f.frame.h,
-                imageWidth, imageHeight
+                sheet.meta.size.w, sheet.meta.size.h
             )
         }
     end
 
-    local sequences = {}
     for index = 1, #sheet.meta.frameTags do
         local t = sheet.meta.frameTags[index]
-        -- Treat pingpong direction as meaning the animation should loop
+        -- Treat tag name ending in '_loop' as meaning it should loop
         -- There's no native way to do this in Aseprite
-        local shouldLoop = t.direction == 'pingpong'
-        sequences[#sequences + 1] = {
+        local matches = {}
+        for match in string.gmatch(t.name, '([^_]+)') do
+            matches[#matches + 1] = match
+        end
+        local shouldLoop = matches[#matches] == 'loop'
+        c.sequences[#c.sequences + 1] = {
             name = t.name,
             from = t.from,
             to = t.to,
             shouldLoop = shouldLoop,
-            direction = shouldLoop and 'forwards' or t.direction
+            direction = t.direction
         }
     end
 
-    return component('animation', {
-        frames = frames,
-        sequences = sequences,
-        frame = 1,
-        time = 0
-    })
+    c.getQuad = function()
+        return c.frames[c.frame].duration
+    end
+
+    return c
 end
