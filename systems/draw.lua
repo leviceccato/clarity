@@ -11,9 +11,11 @@ return function()
             if e.animation then
                 graphics.draw(
                     e.appearance.image,
-                    e.animation.getQuad,
+                    e.animation.getQuad(),
                     e.position.x,
-                    e.position.y
+                    e.position.y,
+                    0, -- rotation
+                    2, 2
                 )
             else
                 graphics.draw(
