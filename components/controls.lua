@@ -1,5 +1,5 @@
 local component = require('library.component')
 
-return function(image)
+return function()
     return component('controls')
 end
