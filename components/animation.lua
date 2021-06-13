@@ -10,15 +10,12 @@ return function(sheet)
 
     for index = 1, #sheet.frames do
         local f = sheet.frames[index]
-        c.frames[#c.frames + 1] = {
-            duration = f.duration,
-            quad = love.graphics.newQuad(
-                f.frame.x, f.frame.y,
-                f.frame.w, f.frame.h,
-                sheet.meta.size.w, sheet.meta.size.h
-            )
-        }
         c.duration = c.duration + f.duration
+        c.frames[#c.frames + 1] = love.graphics.newQuad(
+            f.frame.x, f.frame.y,
+            f.frame.w, f.frame.h,
+            sheet.meta.size.w, sheet.meta.size.h
+        )
     end
 
     for index = 1, #sheet.meta.frameTags do
@@ -41,10 +38,6 @@ return function(sheet)
 
     c.getFrame = function()
         return c.frames[c.frame]
-    end
-
-    c.getQuad = function()
-        return c.frames[c.frame].quad
     end
 
     return c
