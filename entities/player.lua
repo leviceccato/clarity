@@ -7,8 +7,8 @@ local controls = require('components.controls')
 
 return function()
     local e = entity()
-    local image = love.graphics.newImage('sprites/player.png')
-    local sheet = json('sprites/player.json')
+    local image = love.graphics.newImage('assets/sprites/player.png')
+    local sheet = json('assets/sprites/player.json')
 
     e.addComponent(appearance(image))
     e.addComponent(animation(sheet))
