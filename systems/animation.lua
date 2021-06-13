@@ -1,15 +1,18 @@
 local system = require('library.system')
 
+local floor = math.floor
+
 return function()
-    local s = system({'appearance', 'animation'})
+    local s = system({'animation'})
 
     s.update = function(dt)
         for index = 1, #s.entities do
             local e = s.entities[index]
-            e.appearance.time = e.appearance.time + dt
-            if e.appearance.time >= e.appearance.duration then
-                e.appearance.time = e.appearance.time - e.appearance.duration
+            e.animation.time = e.animation.time + (dt * 1000)
+            if e.animation.time >= e.animation.duration then
+                e.animation.time = e.animation.time - e.animation.duration
             end
+            e.animation.frame = floor(e.animation.time / e.animation.duration * #e.animation.frames) + 1
         end
     end
 
