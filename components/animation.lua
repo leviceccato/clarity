@@ -4,6 +4,7 @@ return function(sheet)
     local c = component('animation')
     c.frame = 1
     c.time = 0
+    c.duration = 0
     c.frames = {}
     c.sequences = {}
 
@@ -17,6 +18,7 @@ return function(sheet)
                 sheet.meta.size.w, sheet.meta.size.h
             )
         }
+        c.duration = c.duration + f.duration
     end
 
     for index = 1, #sheet.meta.frameTags do
@@ -37,8 +39,12 @@ return function(sheet)
         }
     end
 
+    c.getFrame = function()
+        return c.frames[c.frame]
+    end
+
     c.getQuad = function()
-        return c.frames[c.frame].duration
+        return c.frames[c.frame].quad
     end
 
     return c
