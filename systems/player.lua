@@ -1,7 +1,5 @@
 local system = require('library.system')
 
-local keyboard = love.keyboard
-
 return function(state)
     local s = system({'position', 'controls'})
 
