@@ -12,8 +12,9 @@ return function(components)
     s.load = function(arg) end
     s.update = function(dt) end
     s.draw = function() end
-    s.keyreleased = function(...) end
-    s.resize = function(...) end
+    s.keypressed = function(key) end
+    s.keyreleased = function(key) end
+    s.resize = function(w, h) end
 
     return s
 end

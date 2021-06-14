@@ -63,15 +63,21 @@ return function(name)
         end
     end
 
-    w.keyreleased = function(...)
+    w.keypressed = function(key)
         for index = 1, #w.systems do
-            w.systems[index].keyreleased(...)
+            w.systems[index].keypressed(key)
         end
     end
 
-    w.resize = function(...)
+    w.keyreleased = function(key)
         for index = 1, #w.systems do
-            w.systems[index].resize(...)
+            w.systems[index].keyreleased(key)
+        end
+    end
+
+    w.resize = function(w, h)
+        for index = 1, #w.systems do
+            w.systems[index].resize(w, h)
         end
     end
 
