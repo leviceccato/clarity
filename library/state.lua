@@ -5,20 +5,20 @@ return function()
     s.controls = {}
 
     local controls = {
-        'space' = 'jump',
-        'up' = 'up',
-        'w' = 'up',
-        'left' = 'left'
-        'a' = 'left',
-        'right' = 'right',
-        'd' = 'right'
-        'down' = 'down'
-        's' = 'down',
-        'escape' = 'menu',
-        '`' = 'debug'
+        ['space'] = 'jump',
+        ['up'] = 'up',
+        ['w'] = 'up',
+        ['left'] = 'left',
+        ['a'] = 'left',
+        ['right'] = 'right',
+        ['d'] = 'right',
+        ['down'] = 'down',
+        ['s'] = 'down',
+        ['escape'] = 'menu',
+        ['`'] = 'debug'
     }
     for _, control in pairs(controls) do
-        if ~s.controls[control] then
+        if s.controls[control] == nil then
             s.controls[control] = false
         end
     end
