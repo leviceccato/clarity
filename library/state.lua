@@ -23,11 +23,6 @@ return function()
         end
     end
 
-    s.updateControls = function(key, isActive) do
-        local control = controls[key]
-        s.controls[control] = isActive
-    end
-
     s.addWorld = function(world)
         s.worlds[world.name] = world
     end
@@ -52,17 +47,17 @@ return function()
     end
 
     s.keypressed = function(key)
-        s.updateControls(key, true)
+        s.controls[controls[key]] = true
         s.activateWorld.keypressed(key)
     end
 
     s.keyreleased = function(key)
-        s.updateControls(key, false)
+        s.controls[controls[key]] = false
         s.activateWorld.keyreleased(key)
     end
 
-    s.resize = function(...)
-        s.activateWorld.resize(...)
+    s.resize = function(w, h)
+        s.activateWorld.resize(w, h)
     end
 
     return s
