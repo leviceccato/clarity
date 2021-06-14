@@ -18,9 +18,7 @@ return function()
         ['`'] = 'debug'
     }
     for _, control in pairs(controls) do
-        if s.controls[control] == nil then
-            s.controls[control] = false
-        end
+        s.controls[control] = false
     end
 
     s.addWorld = function(world)
