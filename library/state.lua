@@ -29,9 +29,6 @@ return function()
         s.activateWorld = s.worlds[worldName]
     end
 
-    s.updateControls = function()
-    end
-
     s.load = function(arg)
         s.activateWorld.load(arg)
     end
