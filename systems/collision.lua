@@ -1,6 +1,6 @@
 local system = require('library.system')
 
-return function()
+return function(state)
     local s = system({'appearance', 'position'})
 
     s.draw = function()

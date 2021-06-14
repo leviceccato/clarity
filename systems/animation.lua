@@ -2,7 +2,7 @@ local system = require('library.system')
 
 local floor = math.floor
 
-return function()
+return function(state)
     local s = system({'animation'})
 
     s.update = function(dt)

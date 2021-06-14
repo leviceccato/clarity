@@ -2,7 +2,7 @@ local system = require('library.system')
 
 local graphics = love.graphics
 
-return function()
+return function(state)
     local s = system({'appearance', 'position'})
 
     s.draw = function()

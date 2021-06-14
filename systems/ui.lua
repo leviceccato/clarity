@@ -3,7 +3,7 @@ local system = require('library.system')
 local graphics = love.graphics
 local timer = love.timer
 
-return function()
+return function(state)
     local s = system({})
 
     s.draw = function()
