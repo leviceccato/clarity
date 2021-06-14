@@ -4,7 +4,7 @@ local mainWorld = require('worlds.main')
 local mainState
 
 love.load = function(arg)
-    local font = love.graphics.newFont('assets/dogica.ttf', 15, 'mono')
+    local font = love.graphics.newFont('assets/dogica.ttf', 16, 'mono')
     love.graphics.setFont(font)
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
