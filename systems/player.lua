@@ -9,16 +9,16 @@ return function(state)
         local e
         for index = 1, #s.entities do
             e = s.entities[index]
-            if keyboard.isDown('w') then
+            if state.controls.up then
                 e.position.y = e.position.y - 2
             end
-            if keyboard.isDown('a') then
+            if state.controls.left then
                 e.position.x = e.position.x - 2
             end
-            if keyboard.isDown('s') then
+            if state.controls.down then
                 e.position.y = e.position.y + 2
             end
-            if keyboard.isDown('d') then
+            if state.controls.right then
                 e.position.x = e.position.x + 2
             end
         end
