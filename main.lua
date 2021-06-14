@@ -30,6 +30,6 @@ love.keyreleased = function(key)
     mainState.keyreleased(key)
 end
 
-love.resize = function(...)
-    mainState.resize(...)
+love.resize = function(w, h)
+    mainState.resize(w, h)
 end
