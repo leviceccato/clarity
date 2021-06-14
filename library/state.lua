@@ -4,7 +4,7 @@ return function()
     s.activateWorld = nil
     s.controls = {}
 
-    local controls = {
+    local keyMap = {
         ['space'] = 'jump',
         ['up'] = 'up',
         ['w'] = 'up',
@@ -17,7 +17,7 @@ return function()
         ['escape'] = 'menu',
         ['`'] = 'debug'
     }
-    for _, control in pairs(controls) do
+    for _, control in pairs(keyMap) do
         s.controls[control] = false
     end
 
@@ -42,12 +42,12 @@ return function()
     end
 
     s.keypressed = function(key)
-        s.controls[controls[key]] = true
+        s.controls[keyMap[key]] = true
         s.activateWorld.keypressed(key)
     end
 
     s.keyreleased = function(key)
-        s.controls[controls[key]] = false
+        s.controls[keyMap[key]] = false
         s.activateWorld.keyreleased(key)
     end
 
