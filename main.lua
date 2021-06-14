@@ -22,8 +22,12 @@ love.draw = function()
     mainState.draw()
 end
 
-love.keyreleased = function(...)
-    mainState.keyreleased(...)
+love.keypressed = function(key)
+    mainState.keypressed(key)
+end
+
+love.keyreleased = function(key)
+    mainState.keyreleased(key)
 end
 
 love.resize = function(...)
