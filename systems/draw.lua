@@ -8,22 +8,14 @@ return function(state)
     s.draw = function()
         for index = 1, #s.entities do
             local e = s.entities[index]
-            if e.animation then
-                graphics.draw(
-                    e.appearance.image,
-                    e.animation.getFrame(),
-                    e.position.x,
-                    e.position.y,
-                    0, -- rotation
-                    2, 2
-                )
-            else
-                graphics.draw(
-                    e.appearance.image,
-                    e.position.x,
-                    e.position.y
-                )
-            end
+            graphics.draw(
+                e.appearance.image,
+                e.animation and e.animation.getFrame() or e.appearance.frame,
+                e.position.x,
+                e.position.y,
+                0, -- rotation
+                2, 2 -- scale
+            )
         end
     end
 
