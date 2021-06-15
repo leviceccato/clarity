@@ -21,6 +21,13 @@ return function()
         s.controls[control] = false
     end
 
+    s.updateControls = function(key, isDown)
+        local control = keyMap[key]
+        if control then
+            s.controls[control] = isDown
+        end
+    end
+
     s.addWorld = function(world)
         s.worlds[world.name] = world
     end
@@ -42,18 +49,12 @@ return function()
     end
 
     s.keypressed = function(key)
-        local control = keyMap[key]
-        if control then
-            s.controls[control] = true
-        end
+        s.updateControls(key, true)
         s.activateWorld.keypressed(key)
     end
 
     s.keyreleased = function(key)
-        local control = keyMap[key]
-        if control then
-            s.controls[control] = false
-        end
+        s.updateControls(key, false)
         s.activateWorld.keyreleased(key)
     end
 
