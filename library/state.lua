@@ -42,12 +42,18 @@ return function()
     end
 
     s.keypressed = function(key)
-        s.controls[keyMap[key]] = true
+        local control = keyMap[key]
+        if control then
+            s.controls[control] = true
+        end
         s.activateWorld.keypressed(key)
     end
 
     s.keyreleased = function(key)
-        s.controls[keyMap[key]] = false
+        local control = keyMap[key]
+        if control then
+            s.controls[control] = false
+        end
         s.activateWorld.keyreleased(key)
     end
 
