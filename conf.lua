@@ -48,4 +48,6 @@ love.conf = function(c)
     c.modules.touch = true              -- Enable the touch module (boolean)
     c.modules.video = true              -- Enable the video module (boolean)
     c.modules.window = true             -- Enable the window module (boolean)
+
+    love.c = c
 end
