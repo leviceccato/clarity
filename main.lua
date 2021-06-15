@@ -30,6 +30,6 @@ love.keyreleased = function(key)
     mainState.keyreleased(key)
 end
 
-love.resize = function(w, h)
-    mainState.resize(w, h)
+love.resize = function(width, height)
+    mainState.resize(width, height)
 end

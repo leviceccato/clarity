@@ -14,7 +14,7 @@ return function(components)
     s.draw = function() end
     s.keypressed = function(key) end
     s.keyreleased = function(key) end
-    s.resize = function(w, h) end
+    s.resize = function(width, height) end
 
     return s
 end

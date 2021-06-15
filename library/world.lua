@@ -75,9 +75,9 @@ return function(name)
         end
     end
 
-    w.resize = function(w, h)
+    w.resize = function(width, height)
         for index = 1, #w.systems do
-            w.systems[index].resize(w, h)
+            w.systems[index].resize(width, height)
         end
     end
 
