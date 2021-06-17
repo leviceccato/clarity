@@ -12,8 +12,8 @@ love.conf = function(c)
 
     c.window.title = 'Clarity'          -- The window title (string)
     c.window.icon = nil                 -- Filepath to an image to use as the window's icon (string)
-    c.window.width = 800                -- The window width (number)
-    c.window.height = 600               -- The window height (number)
+    c.window.width = 960                -- The window width (number)
+    c.window.height = 540               -- The window height (number)
     c.window.borderless = false         -- Remove all border visuals from the window (boolean)
     c.window.resizable = true           -- Let the window be user-resizable (boolean)
     c.window.minwidth = 1               -- Minimum window width if the window is resizable (number)
@@ -48,6 +48,10 @@ love.conf = function(c)
     c.modules.touch = true              -- Enable the touch module (boolean)
     c.modules.video = true              -- Enable the video module (boolean)
     c.modules.window = true             -- Enable the window module (boolean)
+
+    -- Custom config
+    c.renderWidth = 480
+    c.renderHeight = 270
 
     love.c = c
 end
