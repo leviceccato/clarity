@@ -1,7 +1,7 @@
 return function(arg)
     local s = {}
     s.worlds = {}
-    s.activateWorld = nil
+    s.activeWorld = nil
     s.controls = {}
 
     local keyMap = {
@@ -33,33 +33,33 @@ return function(arg)
     end
 
     s.activateWorld = function(worldName)
-        if s.activateWorld then
-            s.activateWorld.exit()
+        if s.activeWorld then
+            s.activeWorld.exit()
         end
         s.worlds[worldName].load(arg)
-        s.activateWorld = s.worlds[worldName]
+        s.activeWorld = s.worlds[worldName]
     end
 
     s.update = function(dt)
-        s.activateWorld.update(dt)
+        s.activeWorld.update(dt)
     end
 
     s.draw = function()
-        s.activateWorld.draw()
+        s.activeWorld.draw()
     end
 
     s.keypressed = function(key)
         s.updateControls(key, true)
-        s.activateWorld.keypressed(key)
+        s.activeWorld.keypressed(key)
     end
 
     s.keyreleased = function(key)
         s.updateControls(key, false)
-        s.activateWorld.keyreleased(key)
+        s.activeWorld.keyreleased(key)
     end
 
     s.resize = function(w, h)
-        s.activateWorld.resize(w, h)
+        s.activeWorld.resize(w, h)
     end
 
     return s
