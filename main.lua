@@ -8,10 +8,9 @@ love.load = function(arg)
     love.graphics.setFont(font)
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
-    mainState = state()
+    mainState = state(arg)
     mainState.addWorld(mainWorld(mainState))
     mainState.activateWorld('main')
-    mainState.load(arg)
 end
 
 love.update = function(dt)

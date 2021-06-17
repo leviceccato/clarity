@@ -1,4 +1,4 @@
-return function()
+return function(arg)
     local s = {}
     s.worlds = {}
     s.activateWorld = nil
@@ -33,11 +33,11 @@ return function()
     end
 
     s.activateWorld = function(worldName)
+        if s.activateWorld then
+            s.activateWorld.exit()
+        end
+        s.worlds[worldName].load(arg)
         s.activateWorld = s.worlds[worldName]
-    end
-
-    s.load = function(arg)
-        s.activateWorld.load(arg)
     end
 
     s.update = function(dt)

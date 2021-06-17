@@ -51,6 +51,12 @@ return function(name)
         end
     end
 
+    w.exit = function()
+        for index = 1, #w.systems do
+            w.systems[index].exit()
+        end
+    end
+
     w.update = function(dt)
         for index = 1, #w.systems do
             w.systems[index].update(dt)
