@@ -12,7 +12,9 @@ return function(state)
             if e.animation.time >= e.animation.duration then
                 e.animation.time = e.animation.time - e.animation.duration
             end
-            e.animation.frame = floor(e.animation.time / e.animation.duration * #e.animation.frames) + 1
+            local sequence = e.animation.sequences[e.animation.sequence]
+            local length = sequence.to - sequence.from
+            e.animation.frame = floor(e.animation.time / e.animation.duration * length) + 1 + sequence.from
         end
     end
 

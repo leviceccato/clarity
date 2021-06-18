@@ -3,6 +3,7 @@ local component = require('library.component')
 return function(sheet)
     local c = component('animation')
     c.frame = 1
+    c.sequence = nil
     c.time = 0
     c.duration = 0
     c.frames = {}
@@ -27,13 +28,16 @@ return function(sheet)
             matches[#matches + 1] = match
         end
         local shouldLoop = matches[#matches] == 'loop'
-        c.sequences[#c.sequences + 1] = {
-            name = t.name,
+        c.sequences[t.name] = {
             from = t.from,
             to = t.to,
             shouldLoop = shouldLoop,
             direction = t.direction
         }
+        -- Set first sequence as the default
+        if not c.sequence then
+            c.sequence = t.name
+        end
     end
 
     c.getFrame = function()
