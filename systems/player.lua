@@ -8,6 +8,9 @@ return function(state)
         local e
         for index = 1, #s.entities do
             e = s.entities[index]
+            if state.controls.menu then
+                state.activateWorld('title')
+            end
             if state.controls.up then
                 e.position.y = e.position.y - distance
             end

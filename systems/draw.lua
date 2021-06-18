@@ -3,7 +3,7 @@ local system = require('library.system')
 local graphics = love.graphics
 
 return function(state)
-    local s = system({'appearance', 'position'})
+    local s = system({'appearance', 'position', 'camera'})
 
     s.draw = function()
         for index = 1, #s.entities do

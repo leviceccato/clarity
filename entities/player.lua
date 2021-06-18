@@ -4,6 +4,7 @@ local appearance = require('components.appearance')
 local animation = require('components.animation')
 local position = require('components.position')
 local controls = require('components.controls')
+local camera = require('components.camera')
 
 return function()
     local e = entity()
@@ -14,6 +15,7 @@ return function()
     e.addComponent(animation(sheet))
     e.addComponent(position(50, 50))
     e.addComponent(controls())
+    e.addComponent(camera())
 
     return e
 end

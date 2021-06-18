@@ -1,6 +1,7 @@
 local entity = require('library.entity')
 local appearance = require('components.appearance')
 local position = require('components.position')
+local camera = require('components.camera')
 
 return function()
     local e = entity()
@@ -8,6 +9,7 @@ return function()
 
     e.addComponent(appearance(image))
     e.addComponent(position(0, 0))
+    e.addComponent(camera())
 
     return e
 end
