@@ -4,6 +4,7 @@ return function(sheet)
     local c = component('animation')
     c.frame = 1
     c.sequence = nil
+    c.previousSequence = nil
     c.time = 0
     c.duration = 0
     c.frames = {}
