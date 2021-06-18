@@ -1,5 +1,6 @@
 local state = require('library.state')
 local mainWorld = require('worlds.main')
+local titleWorld = require('worlds.title')
 
 local mainState
 
@@ -10,6 +11,7 @@ love.load = function(arg)
 
     mainState = state(arg)
     mainState.addWorld(mainWorld(mainState))
+    mainState.addWorld(titleWorld(mainState))
     mainState.activateWorld('main')
 end
 
