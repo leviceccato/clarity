@@ -10,6 +10,7 @@ return function(components)
     s.sortEntities = function() end
 
     s.load = function(arg) end
+    s.exit = function() end
     s.update = function(dt) end
     s.draw = function() end
     s.keypressed = function(key) end
