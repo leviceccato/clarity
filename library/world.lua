@@ -21,26 +21,22 @@ return function(name)
     w.updateSystems = function()
         local system
         local entity
-        local requiredComponent
         local component
-        local hasComponent = false
-        local hasAllComponents = false
+        local hasComponents = true
         for systemIndex = 1, #w.systems do
             system = w.systems[systemIndex]
             for entityIndex = 1, #w.entities do
                 entity = w.entities[entityIndex]
-                for requiredComponentIndex = 1, #system.components do
-                    requiredComponent = system.components[requiredComponentIndex]
-                    if entity[requiredComponent] then
-                        hasComponent = true
+                for componentIndex = 1, #system.components do
+                    component = system.components[componentIndex]
+                    if entity[component] == nil then
+                        hasComponents = false
                     end
-                    hasAllComponents = hasComponent
-                    hasComponent = false
                 end
-                if hasAllComponents then
+                if hasComponents then
                     system.addEntity(entity)
                 end
-                hasAllComponents = false
+                hasComponents = true
             end
         end
     end
