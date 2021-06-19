@@ -20,6 +20,10 @@ return function(state)
 
         w.updateSystems()
         w.sortEntities()
+
+        for index = 1, #w.systems do
+            w.systems[index].load(arg)
+        end
     end
 
     return w

@@ -1,4 +1,5 @@
 local system = require('library.system')
+local viewport = require('utilities.viewport')
 
 local mouse = love.mouse
 
@@ -6,7 +7,7 @@ return function(state)
     local s = system({'hover', 'position', 'appearance'})
 
     s.update = function(dt)
-        local mouseX, mouseY = mouse.getPosition()
+        local mouseX, mouseY = viewport.getMousePosition()
         local e
         for index = 1, #s.entities do
             e = s.entities[index]
