@@ -8,7 +8,7 @@ return function()
     local e = entity()
 
     e.addComponent(appearance(nil, 100, 100))
-    e.addComponent(position(0, 0))
+    e.addComponent(position(10, 10))
     e.addComponent(text())
     e.addComponent(debug())
 
