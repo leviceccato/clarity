@@ -20,11 +20,19 @@ return function(state)
             end
             local isWithinX = mouseX >= e.position.x and mouseX <= e.position.x + width
             local isWithinY = mouseY >= e.position.y and mouseY <= e.position.y + height
-            local isHovered = isWithinX and isWithinY
-            if isHovered ~= e.hover.isHovered then
-                print('hover ' .. tostring(isHovered))
+            local hasHoverChanged = isHovered ~= e.hover.isHovered
+            if hasHoverChanged then
+                e.hover.isHovered = isHovered
+                if e.animation and e.animation.sequences['hover'] then
+                    if isHovered then
+                        e.animation.previousSequence = e.animation.sequence
+                        e.animation.sequence = 'hover'
+                    else
+                        e.animation.sequence = e.animation.previousSequence
+                        e.animation.previousSequence = 'hover'
+                    end
+                end
             end
-            e.hover.isHovered = isHovered
         end
     end
 
