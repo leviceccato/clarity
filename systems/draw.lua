@@ -11,7 +11,7 @@ return function(state)
     local cameraCanvas
     local uiCanvas
     local translateX = 0
-    local translateX = 0
+    local translateY = 0
     local scale = 1
 
     local updateTransform = function()
