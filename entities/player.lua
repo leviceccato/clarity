@@ -5,6 +5,7 @@ local animation = require('components.animation')
 local position = require('components.position')
 local controls = require('components.controls')
 local camera = require('components.camera')
+local hover = require('components.hover')
 
 return function()
     local e = entity()
@@ -16,6 +17,7 @@ return function()
     e.addComponent(position(50, 50))
     e.addComponent(controls())
     e.addComponent(camera())
+    e.addComponent(hover())
 
     return e
 end
