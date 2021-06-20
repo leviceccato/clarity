@@ -12,13 +12,16 @@ return function(state)
     local uiCanvas
     local translateX = 0
     local translateY = 0
-    local scale = 1
+    local windowScale = 1
 
     local updateTransform = function()
-        local windowWidth, windowHeight, windowScale = viewport.getWindowData()
-        translateX = (windowWidth - renderWidth * windowScale) * 0.5
-        translateY = (windowHeight - renderHeight * windowScale) * 0.5
-        scale = windowScale
+        local w, h, scale = viewport.getWindowData()
+        -- Floor to even numbers
+        local width = w - (w % 2)
+        local height = h - (h % 2)
+        translateX = (width - renderWidth * scale) * 0.5
+        translateY = (height - renderHeight * scale) * 0.5
+        windowScale = scale
     end
 
     s.load = function(arg)
@@ -70,7 +73,7 @@ return function(state)
         -- Begin rendering
         graphics.push()
         graphics.translate(translateX, translateY)
-        graphics.scale(scale)
+        graphics.scale(windowScale)
 
         -- Avoid incorrect colours https://love2d.org/forums/viewtopic.php?f=4&p=211418#p211418
         graphics.setColor(1, 1, 1, 1)
