@@ -29,7 +29,8 @@ return function(sheet)
             matches[#matches + 1] = match
         end
         local shouldLoop = matches[#matches] == 'loop'
-        c.sequences[t.name] = {
+        local name = matches[1]
+        c.sequences[name] = {
             from = t.from,
             to = t.to,
             shouldLoop = shouldLoop,
@@ -37,7 +38,7 @@ return function(sheet)
         }
         -- Set first sequence as the default
         if not c.sequence then
-            c.sequence = t.name
+            c.sequence = name
         end
     end
 
