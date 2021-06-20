@@ -1,6 +1,7 @@
 local system = require('library.system')
 
 local floor = math.floor
+local min = math.min
 
 return function(state)
     local s = system({'animation'})
@@ -10,7 +11,7 @@ return function(state)
             local e = s.entities[index]
             e.animation.time = e.animation.time + (dt * 1000)
             if e.animation.time >= e.animation.duration then
-                e.animation.time = e.animation.time - e.animation.duration
+                e.animation.time = min(e.animation.duration, e.animation.time - e.animation.duration)
             end
             local sequence = e.animation.sequences[e.animation.sequence]
             local length = sequence.to - sequence.from
