@@ -20,6 +20,7 @@ return function(state)
             end
             local isWithinX = mouseX >= e.position.x and mouseX <= e.position.x + width
             local isWithinY = mouseY >= e.position.y and mouseY <= e.position.y + height
+            local isHovered = isWithinX and isWithinY
             local hasHoverChanged = isHovered ~= e.hover.isHovered
             if hasHoverChanged then
                 e.hover.isHovered = isHovered
