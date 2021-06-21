@@ -60,11 +60,17 @@ return function(state)
                 )
             end
             if e.text then
+                local width = e.appearance.width
+                if e.animation then
+                    local _, _, w, _ = e.animation.getFrame():getViewport()
+                    width = w
+                end
                 graphics.printf(
                     e.text.content,
-                    e.position.x,
-                    e.position.y,
-                    e.appearance.width
+                    e.position.x + e.text.padding,
+                    e.position.y + e.text.padding,
+                    width - (2 * e.text.padding),
+                    e.text.align
                 )
             end
             graphics.setCanvas()
