@@ -1,15 +1,8 @@
 # Clarity
 
-💕 A game written in [Lua](http://www.lua.org) using [LÖVE](https://love2d.org) with an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture. Spritesheets are created with [Aseprite](https://www.aseprite.org).
+👾 A game made with [Godot](https://godotengine.org). Spritesheets are created with [Aseprite](https://www.aseprite.org).
 
 ## Requirements
 
-- LÖVE 11.3
+- Godot 3.2
 - Aseprite 1.2
-
-## Development
-
-From the root directory run:
-```
-love . --console
-```
