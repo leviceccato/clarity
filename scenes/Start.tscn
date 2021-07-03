@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/title_bg.png" type="Texture" id=1]
+
+[node name="Start" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_left = 0.00147311
+anchor_right = 0.00147311
+margin_left = 143.0
+margin_top = 108.958
+margin_right = 325.8
+margin_bottom = 213.958
+__meta__ = {
+"_edit_use_anchors_": false
+}
