@@ -35,7 +35,7 @@ return function(state)
                 state.activateWorld('main')
             end
         }))
-        w.addEntity(buttonEntity(
+        w.addEntity(buttonEntity({
             x = buttonX,
             y = 155,
             content = 'Quit',
@@ -46,7 +46,7 @@ return function(state)
             handler = function()
                 love.event.quit()
             end
-        ))
+        }))
  
         w.updateSystems()
         w.sortEntities()
