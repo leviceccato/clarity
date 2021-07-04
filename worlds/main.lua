@@ -1,9 +1,11 @@
 local world = require('library.world')
+
 local drawSystem = require('systems.draw')
 local animationSystem = require('systems.animation')
 local playerSystem = require('systems.player')
 local hoverSystem = require('systems.hover')
 local debugSystem = require('systems.debug')
+
 local playerEntity = require('entities.player')
 local bgEntity = require('entities.bg')
 local debugEntity = require('entities.debug')
