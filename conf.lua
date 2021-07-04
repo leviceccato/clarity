@@ -52,6 +52,7 @@ love.conf = function(c)
     -- Custom config
     c.renderWidth = 480
     c.renderHeight = 270
+    c.colFg = {215 / 255, 196 / 255, 91 / 255, 1}
 
     love.c = c
 end

@@ -19,20 +19,35 @@ return function(state)
 
         w.addEntity(titleBgEntity())
 
-        -- Buttons
-        local image = love.graphics.newImage('assets/sprites/title-button.png')
-        local sheet = json('assets/sprites/title-button.json')
+        local buttonImage = love.graphics.newImage('assets/sprites/title-button.png')
+        local buttonSheet = json('assets/sprites/title-button.json')
         -- Align to middle
         local buttonX = (love.c.renderWidth / 2) - 50
+        w.addEntity(buttonEntity({
+            x = buttonX,
+            y = 120,
+            content = 'Start',
+            image = buttonImage,
+            sheet = buttonSheet,
+            align = 'center',
+            padding = 9,
+            handler = function()
+                state.activateWorld('main')
+            end
+        }))
         w.addEntity(buttonEntity(
-            buttonX, 120, 'Start', image, sheet,
-            'center', 9, {215 / 255, 196 / 255, 91 / 255, 1}
+            x = buttonX,
+            y = 155,
+            content = 'Quit',
+            image = buttonImage,
+            sheet = buttonSheet,
+            align = 'center',
+            padding = 9,
+            handler = function()
+                love.event.quit()
+            end
         ))
-        w.addEntity(buttonEntity(
-            buttonX, 155, 'Quit', image, sheet,
-            'center', 9, {215 / 255, 196 / 255, 91 / 255, 1}
-        ))
-
+ 
         w.updateSystems()
         w.sortEntities()
 
