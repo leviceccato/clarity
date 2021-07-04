@@ -50,7 +50,7 @@ return function(arg)
     end
 
     s.mousepressed = function(x, y, button, isTouch, pressCount)
-        updateControls('mouse' .. button, {
+        updateInputs('mouse' .. button, {
             x = x,
             y = y,
             isTouch = isTouch,
@@ -60,17 +60,17 @@ return function(arg)
     end
 
     s.mousereleased = function(button)
-        updateControls('mouse' .. button, nil)
+        updateInputs('mouse' .. button, nil)
         s.activateWorld.mousereleased(button)
     end
 
     s.keypressed = function(key, isRepeat)
-        updateControls(key, {isRepeat = isRepeat})
+        updateInputs(key, {isRepeat = isRepeat})
         s.activeWorld.keypressed(key, isRepeat)
     end
 
     s.keyreleased = function(key)
-        updateControls(key, nil)
+        updateInputs(key, nil)
         s.activeWorld.keyreleased(key)
     end
 
