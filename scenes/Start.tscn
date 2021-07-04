@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sprites/title_bg.png" type="Texture" id=1]
+[ext_resource path="res://sprites/title_logo.png" type="Texture" id=2]
+[ext_resource path="res://sprites/title_button_hover.png" type="Texture" id=3]
+[ext_resource path="res://sprites/title_button_normal.png" type="Texture" id=4]
 
 [node name="Start" type="Control"]
 anchor_right = 1.0
@@ -17,13 +20,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Menu" type="VBoxContainer" parent="."]
-anchor_left = 0.00147311
-anchor_right = 0.00147311
-margin_left = 143.0
-margin_top = 108.958
-margin_right = 325.8
-margin_bottom = 213.958
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 175.0
+margin_top = 97.0
+margin_right = 305.0
+margin_bottom = 172.0
+custom_constants/separation = 20
+
+[node name="Logo" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+margin_right = 130.0
+margin_bottom = 29.0
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 49.0
+margin_right = 130.0
+margin_bottom = 75.0
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+margin_left = 15.0
+margin_right = 115.0
+margin_bottom = 26.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/TextureButton"]
+anchor_left = 0.00360535
+anchor_right = 1.00361
+anchor_bottom = 1.0
+text = "Start"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

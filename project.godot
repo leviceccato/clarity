@@ -16,6 +16,8 @@ _global_script_class_icons={
 
 config/name="Clarity"
 run/main_scene="res://scenes/Start.tscn"
+boot_splash/image="res://sprites/splash.png"
+boot_splash/use_filter=false
 
 [display]
 
