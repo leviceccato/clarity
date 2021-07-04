@@ -24,6 +24,10 @@ love.draw = function()
     mainState.draw()
 end
 
+love.exit = function()
+    mainState.exit()
+end
+
 love.mousepressed = function(_, _, button, isTouch, pressCount)
     local x, y = viewport.getMousePosition()
     mainState.mousepressed(x, y, button, isTouch, pressCount)

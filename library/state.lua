@@ -49,6 +49,10 @@ return function(arg)
         s.activeWorld.draw()
     end
 
+    s.exit = function()
+        s.activeWorld.exit()
+    end
+
     s.mousepressed = function(x, y, button, isTouch, pressCount)
         updateInputs('mouse' .. button, {
             x = x,
