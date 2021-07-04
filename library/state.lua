@@ -30,14 +30,11 @@ return function(arg)
     end
 
     s.addWorld = function(world)
+        world.load(arg)
         s.worlds[world.name] = world
     end
 
     s.activateWorld = function(worldName)
-        if s.activeWorld then
-            s.activeWorld.exit()
-        end
-        s.worlds[worldName].load(arg)
         s.activeWorld = s.worlds[worldName]
     end
 
