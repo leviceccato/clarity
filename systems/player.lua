@@ -8,19 +8,19 @@ return function(state)
         local e
         for index = 1, #s.entities do
             e = s.entities[index]
-            if state.controls.menu then
+            if state.inputs.menu then
                 state.activateWorld('title')
             end
-            if state.controls.up then
+            if state.inputs.up then
                 e.position.y = e.position.y - distance
             end
-            if state.controls.left then
+            if state.inputs.left then
                 e.position.x = e.position.x - distance
             end
-            if state.controls.down then
+            if state.inputs.down then
                 e.position.y = e.position.y + distance
             end
-            if state.controls.right then
+            if state.inputs.right then
                 e.position.x = e.position.x + distance
             end
         end

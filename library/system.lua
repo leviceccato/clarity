@@ -13,7 +13,9 @@ return function(components)
     s.exit = function() end
     s.update = function(dt) end
     s.draw = function() end
-    s.keypressed = function(key) end
+    s.mousepressed = function(x, y, button, isTouch, pressCount) end
+    s.mousereleased = function(button) end
+    s.keypressed = function(key, isRepeat) end
     s.keyreleased = function(key) end
     s.resize = function(width, height) end
 

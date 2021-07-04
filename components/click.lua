@@ -1,7 +1,8 @@
 local component = require('library.component')
 
-return function()
+return function(handler)
     local c = component('click')
-    c.isClicked = false
+    c.data = nil
+    c.handler = handler
     return c
 end

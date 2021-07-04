@@ -1,3 +1,4 @@
+local viewport = require('utilities.viewport')
 local state = require('library.state')
 local mainWorld = require('worlds.main')
 local titleWorld = require('worlds.title')
@@ -23,8 +24,17 @@ love.draw = function()
     mainState.draw()
 end
 
-love.keypressed = function(key)
-    mainState.keypressed(key)
+love.mousepressed = function(_, _, button, isTouch, pressCount)
+    local x, y = viewport.getMousePosition()
+    mainState.mousepressed(x, y, button, isTouch, pressCount)
+end
+
+love.mousereleased = function(_, _, button)
+    mainState.mousereleased(button)
+end
+
+love.keypressed = function(key, _, isRepeat)
+    mainState.keypressed(key, isRepeat)
 end
 
 love.keyreleased = function(key)

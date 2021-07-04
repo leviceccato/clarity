@@ -65,7 +65,19 @@ return function(name)
         end
     end
 
-    w.keypressed = function(key)
+    w.mousepressed = function(x, y, button, isTouch, pressCount)
+        for index = 1, #w.systems do
+            w.systems[index].keypressed(x, y, button, isTouch, pressCount)
+        end
+    end
+
+    w.mousereleased = function(button)
+        for index = 1, #w.systems do
+            w.systems[index].mousereleased(button)
+        end
+    end
+
+    w.keypressed = function(key, isRepeat)
         for index = 1, #w.systems do
             w.systems[index].keypressed(key)
         end

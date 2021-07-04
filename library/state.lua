@@ -2,9 +2,10 @@ return function(arg)
     local s = {}
     s.worlds = {}
     s.activeWorld = nil
-    s.controls = {}
+    s.inputs = {}
 
-    local keyMap = {
+    local controls = {
+        ['mouse1'] = 'click',
         ['space'] = 'jump',
         ['up'] = 'up',
         ['w'] = 'up',
@@ -17,14 +18,14 @@ return function(arg)
         ['escape'] = 'menu',
         ['`'] = 'debug'
     }
-    for _, control in pairs(keyMap) do
-        s.controls[control] = false
+    for _, input in pairs(controls) do
+        s.inputs[input] = nil
     end
 
-    s.updateControls = function(key, isDown)
-        local control = keyMap[key]
-        if control then
-            s.controls[control] = isDown
+    local updateInputs = function(inputName, inputData)
+        local input = controls[inputName]
+        if input then
+            s.inputs[input] = inputData
         end
     end
 
@@ -48,13 +49,28 @@ return function(arg)
         s.activeWorld.draw()
     end
 
-    s.keypressed = function(key)
-        s.updateControls(key, true)
-        s.activeWorld.keypressed(key)
+    s.mousepressed = function(x, y, button, isTouch, pressCount)
+        updateControls('mouse' .. button, {
+            x = x,
+            y = y,
+            isTouch = isTouch,
+            pressCount = pressCount
+        })
+        s.activateWorld.mousepressed(x, y, button, isTouch, pressCount)
+    end
+
+    s.mousereleased = function(button)
+        updateControls('mouse' .. button, nil)
+        s.activateWorld.mousereleased(button)
+    end
+
+    s.keypressed = function(key, isRepeat)
+        updateControls(key, {isRepeat = isRepeat})
+        s.activeWorld.keypressed(key, isRepeat)
     end
 
     s.keyreleased = function(key)
-        s.updateControls(key, false)
+        updateControls(key, nil)
         s.activeWorld.keyreleased(key)
     end
 
