@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 231.5
+margin_top = 109.0
+margin_right = 271.5
+margin_bottom = 149.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
