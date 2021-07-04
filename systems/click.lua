@@ -29,7 +29,7 @@ return function(state)
 
             -- No clicks are happening or have happened
             if not clickInput and not clickData then
-                return
+                goto done
             end
             
             -- Mouse was released after click
@@ -39,7 +39,7 @@ return function(state)
                     e.click.handler(clickData)
                 end
                 e.click.data = nil
-                return
+                goto done
             end
             
             -- Otherwise mouse was clicked
@@ -49,6 +49,8 @@ return function(state)
                     e.click.data = clickInput
                 end
             end
+
+            ::done::
         end
     end
 
