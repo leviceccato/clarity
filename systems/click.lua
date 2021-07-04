@@ -35,7 +35,8 @@ return function(state)
             -- Mouse was released after click
             if not clickInput and clickData then
                 -- If it's in the right place run the handler
-                if isWithin(clickData, e) then
+                local x, y = viewport.getMousePosition()
+                if isWithin({x = x, y = y}, e) then
                     e.click.handler(clickData)
                 end
                 e.click.data = nil
