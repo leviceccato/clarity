@@ -56,12 +56,12 @@ return function(arg)
             isTouch = isTouch,
             pressCount = pressCount
         })
-        s.activateWorld.mousepressed(x, y, button, isTouch, pressCount)
+        s.activeWorld.mousepressed(x, y, button, isTouch, pressCount)
     end
 
     s.mousereleased = function(button)
         updateInputs('mouse' .. button, nil)
-        s.activateWorld.mousereleased(button)
+        s.activeWorld.mousereleased(button)
     end
 
     s.keypressed = function(key, isRepeat)
