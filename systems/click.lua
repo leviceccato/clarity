@@ -36,7 +36,7 @@ return function(state)
             
             -- Mouse was released after click
             if not clickInput and clickData then
-                -- If it's in the right place run the handler
+                -- If it's in the right place add the event
                 local x, y = viewport.getMousePosition()
                 if isWithin({x = x, y = y}, e) then
                     state.activeWorld.addEntity(eventEntity(e.click.event), true)
