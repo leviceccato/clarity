@@ -71,7 +71,7 @@ return function(name)
 
     w.mousepressed = function(x, y, button, isTouch, pressCount)
         for index = 1, #w.systems do
-            w.systems[index].keypressed(x, y, button, isTouch, pressCount)
+            w.systems[index].mousepressed(x, y, button, isTouch, pressCount)
         end
     end
 
