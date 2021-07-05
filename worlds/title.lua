@@ -7,6 +7,7 @@ local debugSystem = require('systems.debug')
 local hoverSystem = require('systems.hover')
 local clickSystem = require('systems.click')
 local eventSystem = require('systems.event')
+local inputSystem = require('systems.input')
 
 local titleBgEntity = require('entities.title-bg')
 local buttonEntity = require('entities.button')
@@ -21,6 +22,7 @@ return function(state)
         w.addSystem(hoverSystem(state))
         w.addSystem(clickSystem(state))
         w.addSystem(eventSystem(state))
+        w.addSystem(inputSystem(state))
 
         w.addEntity(titleBgEntity())
 

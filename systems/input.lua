@@ -3,42 +3,15 @@ local system = require('library.system')
 return function(state)
     local s = system({'controls'})
 
-    local controls = {}
-    local inputMap = {
-        ['mouse1'] = 'click',
-        ['space'] = 'jump',
-        ['up'] = 'up',
-        ['w'] = 'up',
-        ['left'] = 'left',
-        ['a'] = 'left',
-        ['right'] = 'right',
-        ['d'] = 'right',
-        ['down'] = 'down',
-        ['s'] = 'down',
-        ['escape'] = 'escape',
-        ['`'] = 'debug'
-    }
-    for _, control in pairs(inputMap) do
-        controls[control] = nil
-    end
-
-    local updateControls = function(inputName, input)
-        local control = inputMap[inputName]
-        if control then
-            controls[control] = input
-        end
-    end
-
-    s.update = function(dt)
-        for index = 1, #s.entities do
-            local e = s.entities[index]
-            if e.controls
-            e.controls = controls
+    local updateInputs = function(inputName, inputData)
+        local input = state.controls[inputName]
+        if input then
+            state.inputs[input] = inputData
         end
     end
 
     s.mousepressed = function(x, y, button, isTouch, pressCount)
-        updateControls('mouse' .. button, {
+        updateInputs('mouse' .. button, {
             x = x,
             y = y,
             isTouch = isTouch,
@@ -46,16 +19,16 @@ return function(state)
         })
     end
 
-    s.mousereleased = function(_, _, button)
-        updateControls('mouse' .. button, nil)
+    s.mousereleased = function(button)
+        updateInputs('mouse' .. button, nil)
     end
 
-    s.keypressed = function(key, _, isRepeat)
-        updateControls(key, {isRepeat = isRepeat})
+    s.keypressed = function(key, isRepeat)
+        updateInputs(key, {isRepeat = isRepeat})
     end
 
     s.keyreleased = function(key)
-        updateControls(key, nil)
+        updateInputs(key, nil)
     end
 
     return s
