@@ -1,4 +1,5 @@
 local entity = require('library.entity')
+
 local appearance = require('components.appearance')
 local position = require('components.position')
 local text = require('components.text')

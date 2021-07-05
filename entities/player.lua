@@ -1,5 +1,6 @@
 local json = require('utilities.json')
 local entity = require('library.entity')
+
 local appearance = require('components.appearance')
 local animation = require('components.animation')
 local position = require('components.position')
