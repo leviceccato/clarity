@@ -6,6 +6,7 @@ local animationSystem = require('systems.animation')
 local debugSystem = require('systems.debug')
 local hoverSystem = require('systems.hover')
 local clickSystem = require('systems.click')
+local eventSystem = require('systems.event')
 
 local titleBgEntity = require('entities.title-bg')
 local buttonEntity = require('entities.button')
@@ -19,6 +20,7 @@ return function(state)
         w.addSystem(debugSystem(state))
         w.addSystem(hoverSystem(state))
         w.addSystem(clickSystem(state))
+        w.addSystem(eventSystem(state))
 
         w.addEntity(titleBgEntity())
 
@@ -34,9 +36,7 @@ return function(state)
             sheet = buttonSheet,
             align = 'center',
             padding = 9,
-            handler = function()
-                state.activateWorld('main')
-            end
+            event = {'activate-world', {name = 'main'}}
         }))
         w.addEntity(buttonEntity({
             x = buttonX,
@@ -46,9 +46,7 @@ return function(state)
             sheet = buttonSheet,
             align = 'center',
             padding = 9,
-            handler = function()
-                love.event.quit()
-            end
+            event = {'quit'}
         }))
  
         w.updateSystems()

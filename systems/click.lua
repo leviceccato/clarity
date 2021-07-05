@@ -1,6 +1,8 @@
 local system = require('library.system')
 local viewport = require('utilities.viewport')
 
+local eventEntity = require('entities.event')
+
 local mouse = love.mouse
 
 return function(state)
@@ -37,7 +39,7 @@ return function(state)
                 -- If it's in the right place run the handler
                 local x, y = viewport.getMousePosition()
                 if isWithin({x = x, y = y}, e) then
-                    e.click.handler(clickData)
+                    state.activeWorld.addEntity(eventEntity(clickData), true)
                 end
                 e.click.data = nil
                 goto done

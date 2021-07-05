@@ -15,7 +15,7 @@ return function(button)
     local align = button.align or 'left'
     local padding = button.padding or 0
     local colour = button.colour or love.c.colFg
-    local handler = button.handler
+    local event = button.event
 
     local e = entity()
 
@@ -27,8 +27,8 @@ return function(button)
         e.addComponent(animation(sheet))
     end
 
-    if handler then
-        e.addComponent(click(handler))
+    if event then
+        e.addComponent(click(event))
     end
 
     e.addComponent(position(x, y))

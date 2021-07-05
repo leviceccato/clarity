@@ -4,8 +4,12 @@ return function(name)
     w.systems = {}
     w.entities = {}
 
-    w.addEntity = function(entity)
+    w.addEntity = function(entity, shouldUpdate)
+        shouldUpdate = shouldUpdate or false
         w.entities[#w.entities + 1] = entity
+        if shouldUpdate then
+            w.updateSystems()
+        end
     end
 
     w.addSystem = function(system)

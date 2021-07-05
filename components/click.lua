@@ -1,8 +1,8 @@
 local component = require('library.component')
 
-return function(handler)
+return function(event)
     local c = component('click')
     c.data = nil
-    c.handler = handler
+    c.event = event
     return c
 end
