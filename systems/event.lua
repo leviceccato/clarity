@@ -13,7 +13,7 @@ return function(state)
         end
     }
 
-    s.draw = function()
+    s.update = function()
         local e
         -- Remove the last entity and run its event until none are left
         while #s.entities > 0 do
