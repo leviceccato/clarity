@@ -18,7 +18,7 @@ return function(state)
         -- Remove the last entity and run its event until none are left
         while #s.entities > 0 do
             e = table.remove(s.entities)
-            actions[e.event.type](e.event.data)
+            actions[e.event.name](e.event.data)
         end
     end
 
