@@ -1,3 +1,4 @@
+log = require('utilities.log')
 local viewport = require('utilities.viewport')
 local state = require('library.state')
 
