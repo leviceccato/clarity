@@ -39,7 +39,7 @@ return function(state)
                 -- If it's in the right place run the handler
                 local x, y = viewport.getMousePosition()
                 if isWithin({x = x, y = y}, e) then
-                    state.activeWorld.addEntity(eventEntity(clickData), true)
+                    state.activeWorld.addEntity(eventEntity(e.click.event), true)
                 end
                 e.click.data = nil
                 goto done
