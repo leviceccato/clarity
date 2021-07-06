@@ -1,6 +1,6 @@
 local json = require('utilities.json')
-
 local world = require('library.world')
+
 local drawSystem = require('systems.draw')
 local animationSystem = require('systems.animation')
 local debugSystem = require('systems.debug')
