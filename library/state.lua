@@ -28,7 +28,52 @@ return function(arg)
     end
 
     s.activateWorlds = function(worldNames)
+
+        -- Build arrays for exiting and entering worlds based on what
+        -- worlds are currently active and those that will be
+        local activeWorld
+        local worldName
+
+        local exitingWorlds = {}
+        local isWorldExiting = true
+        for activeWorldIndex = 1, #s.activeWorlds do
+            activeWorld = s.activeWorlds[activeWorldIndex]
+            for worldNameIndex = 1, #worldNames do
+                worldName = worldNames[worldNameIndex]
+                if activeWorld == worldName then
+                    isWorldExiting = false
+                end
+            end
+            if isWorldExiting then
+                exitingWorlds[#exitingWorlds + 1] = activeWorld
+            end
+            isWorldExiting = true
+        end
+
+        local enteringWorlds = {}
+        local isWorldEntering = true
+        for worldNameIndex = 1, #worldNames do
+            worldName = worldNames[worldNameIndex]
+            for activeWorldIndex = 1, #s.activeWorlds do
+                activeWorld = s.activeWorlds[activeWorldIndex]
+                if worldName == activeWorld then
+                    isWorldEntering = false
+                end
+            end
+            if isWorldEntering then
+                enteringWorlds[#enteringWorlds + 1] = worldName
+            end
+            isWorldEntering = true
+        end
+
+        -- Exit all worlds first, then enter
+        for index = 1, #exitingWorlds do
+            s.worlds[exitingWorlds[index]].exit()
+        end
         s.activeWorlds = worldNames
+        for index = 1, #enteringWorlds do
+            s.worlds[enteringWorlds[index]].enter()
+        end
     end
 
     s.update = function(dt)
@@ -44,8 +89,9 @@ return function(arg)
     end
 
     s.exit = function()
-        for index = 1, #s.activeWorlds do
-            s.worlds[s.activeWorlds[index]].exit()
+        -- Exit ALL worlds
+        for index = 1, #s.worlds do
+            s.worlds[index].exit()
         end
     end
 

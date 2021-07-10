@@ -45,15 +45,27 @@ return function(name)
         end
     end
 
-    w.load = function(arg)
+    w.enter = function()
         for index = 1, #w.systems do
-            w.systems[index].load(arg)
+            w.systems[index].enter()
         end
     end
 
     w.exit = function()
         for index = 1, #w.systems do
             w.systems[index].exit()
+        end
+    end
+
+    w.load = function(arg)
+        for index = 1, #w.systems do
+            w.systems[index].load(arg)
+        end
+    end
+
+    w.quit = function()
+        for index = 1, #w.systems do
+            w.systems[index].quit()
         end
     end
 
