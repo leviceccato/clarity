@@ -25,6 +25,7 @@ run/main_scene="res://scenes/Start.tscn"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://sprites/icon.png"
 config/windows_native_icon="res://sprites/icon_windows.ico"
 
 [display]
