@@ -6,3 +6,5 @@
 
 - Godot 3.2
 - Aseprite 1.2
+- RCEdit (For Windows Icons)
+- GIMP (For generating .ico file)
