@@ -28,29 +28,36 @@ return function(state)
 
         local buttonImage = love.graphics.newImage('assets/sprites/title-button.png')
         local buttonSheet = json('assets/sprites/title-button.json')
+        local currentFont = love.graphics.getFont()
         -- Align to middle
         local buttonX = (love.c.renderWidth / 2) - 50
+
+        local startButtonString = 'START'
+        local startButtonText = love.graphics.newText(currentFont, startButtonString)
         w.addEntity(buttonEntity({
             x = buttonX,
             y = 120,
-            content = 'Start',
+            content = startButtonString,
             image = buttonImage,
             sheet = buttonSheet,
             align = 'center',
             padding = 9,
             event = {'activate-world', {name = 'main'}}
         }))
+
+        local quitButtonString = 'QUIT'
+        local quitButtonText = love.graphics.newText(currentFont, quitButtonString)
         w.addEntity(buttonEntity({
             x = buttonX,
             y = 155,
-            content = 'Quit',
+            content = 'QUIT',
             image = buttonImage,
             sheet = buttonSheet,
             align = 'center',
             padding = 9,
             event = {'quit'}
         }))
- 
+
         w.updateSystems()
         w.sortEntities()
 

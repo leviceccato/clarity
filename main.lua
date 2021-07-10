@@ -1,4 +1,4 @@
-log = require('utilities.log')
+Log = require('utilities.log')
 local viewport = require('utilities.viewport')
 local state = require('library.state')
 
@@ -8,14 +8,14 @@ local titleWorld = require('worlds.title')
 local mainState
 
 love.load = function(arg)
-    local font = love.graphics.newFont('assets/dogica.ttf', 8, 'mono')
+    local font = love.graphics.newFont('assets/lana-pixel.ttf', 8, 'mono')
     love.graphics.setFont(font)
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     mainState = state(arg)
     mainState.addWorld(mainWorld(mainState))
     mainState.addWorld(titleWorld(mainState))
-    mainState.activateWorld('main')
+    mainState.activateWorld('title')
 end
 
 love.update = function(dt)

@@ -1,20 +1,20 @@
 { "frames": [
    {
     "filename": "0",
-    "frame": { "x": 0, "y": 0, "w": 100, "h": 26 },
+    "frame": { "x": 0, "y": 0, "w": 70, "h": 20 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 26 },
-    "sourceSize": { "w": 100, "h": 26 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 70, "h": 20 },
+    "sourceSize": { "w": 70, "h": 20 },
     "duration": 100
    },
    {
     "filename": "1",
-    "frame": { "x": 100, "y": 0, "w": 100, "h": 26 },
+    "frame": { "x": 70, "y": 0, "w": 70, "h": 20 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 26 },
-    "sourceSize": { "w": 100, "h": 26 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 70, "h": 20 },
+    "sourceSize": { "w": 70, "h": 20 },
     "duration": 100
    }
  ],
@@ -23,7 +23,7 @@
   "version": "1.2.27",
   "image": "title-button.png",
   "format": "RGBA8888",
-  "size": { "w": 200, "h": 26 },
+  "size": { "w": 140, "h": 20 },
   "scale": "1",
   "frameTags": [
    { "name": "default", "from": 0, "to": 0, "direction": "forward" },
