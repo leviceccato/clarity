@@ -50,7 +50,7 @@ return function(state)
         w.addEntity(buttonEntity({
             x = buttonX,
             y = 155,
-            content = 'QUIT',
+            content = quitButtonString,
             image = buttonImage,
             sheet = buttonSheet,
             align = 'center',
