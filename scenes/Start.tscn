@@ -2,7 +2,7 @@
 
 [ext_resource path="res://sprites/title_bg.png" type="Texture" id=1]
 [ext_resource path="res://sprites/title_logo.png" type="Texture" id=2]
-[ext_resource path="res://scenes/ButtonStart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ButtonQuit.gd" type="Script" id=4]
 [ext_resource path="res://scenes/ButtonStart.gd" type="Script" id=5]
 
@@ -29,26 +29,26 @@ __meta__ = {
 }
 
 [node name="Column" type="VBoxContainer" parent="Container"]
-margin_left = 175.0
+margin_left = 158.0
 margin_top = 82.0
-margin_right = 305.0
+margin_right = 322.0
 margin_bottom = 188.0
 custom_constants/separation = 20
 
 [node name="Logo" type="TextureRect" parent="Container/Column"]
-margin_right = 130.0
+margin_right = 164.0
 margin_bottom = 29.0
 texture = ExtResource( 2 )
 
 [node name="Buttons" type="VBoxContainer" parent="Container/Column"]
 margin_top = 49.0
-margin_right = 130.0
+margin_right = 164.0
 margin_bottom = 106.0
 custom_constants/separation = 5
 
 [node name="Start" parent="Container/Column/Buttons" instance=ExtResource( 3 )]
-margin_left = 15.0
-margin_right = 115.0
+margin_left = 32.0
+margin_right = 132.0
 size_flags_horizontal = 4
 script = ExtResource( 5 )
 
@@ -56,9 +56,9 @@ script = ExtResource( 5 )
 text = "START"
 
 [node name="Quit" parent="Container/Column/Buttons" instance=ExtResource( 3 )]
-margin_left = 15.0
+margin_left = 32.0
 margin_top = 31.0
-margin_right = 115.0
+margin_right = 132.0
 margin_bottom = 57.0
 size_flags_horizontal = 4
 script = ExtResource( 4 )

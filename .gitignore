@@ -3,6 +3,8 @@
 Icon
 
 # Godot
+*.exe
+*.pck
 .import/
 export.cfg
 export_presets.cfg

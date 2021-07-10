@@ -2,10 +2,10 @@
 
 [ext_resource path="res://sprites/title_button_hover.png" type="Texture" id=1]
 [ext_resource path="res://sprites/title_button_normal.png" type="Texture" id=2]
-[ext_resource path="res://fonts/dogica.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/lana-pixel.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 8
+size = 11
 font_data = ExtResource( 3 )
 
 [node name="TextureButton" type="TextureButton"]
