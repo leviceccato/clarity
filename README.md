@@ -6,6 +6,7 @@
 
 - LÖVE 11.3
 - Aseprite 1.2
+- GIMP (For windows .ico file)
 
 ## Development
 
