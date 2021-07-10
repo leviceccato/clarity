@@ -8,3 +8,4 @@
 - Aseprite 1.2
 - RCEdit (For Windows Icons)
 - GIMP (For generating .ico file)
+- Godot VCS Git Plugin 1.2
