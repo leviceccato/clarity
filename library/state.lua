@@ -22,9 +22,6 @@ return function(arg)
         s.inputs[input] = nil
     end
 
-    s.locale = 'en'
-    s.translations = {}
-
     s.loadWorld = function(world)
         world.load(arg)
         s.worlds[world.name] = world

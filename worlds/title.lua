@@ -1,4 +1,5 @@
 local json = require('utilities.json')
+local i18n = require('vendor.i18n.i18n')
 local world = require('library.world')
 
 local drawSystem = require('systems.draw')
@@ -32,7 +33,7 @@ return function(state)
         -- Align to middle
         local buttonX = (love.c.renderWidth / 2) - 50
 
-        local startButtonString = 'START'
+        local startButtonString = i18n('start')
         local startButtonText = love.graphics.newText(currentFont, startButtonString)
         w.addEntity(buttonEntity({
             x = buttonX,
@@ -45,7 +46,7 @@ return function(state)
             event = {'activate-worlds', {names = {'main'}}}
         }))
 
-        local quitButtonString = 'QUIT'
+        local quitButtonString = i18n('quit')
         local quitButtonText = love.graphics.newText(currentFont, quitButtonString)
         w.addEntity(buttonEntity({
             x = buttonX,

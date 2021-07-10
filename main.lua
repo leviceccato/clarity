@@ -1,5 +1,7 @@
 Log = require('utilities.log')
+local i18n = require('vendor.i18n.i18n')
 local viewport = require('utilities.viewport')
+local json = require('utilities.json')
 local state = require('library.state')
 
 local mainWorld = require('worlds.main')
@@ -8,6 +10,8 @@ local titleWorld = require('worlds.title')
 local mainState
 
 love.load = function(arg)
+    local locale = json('translations/en.json')
+    i18n.load(locale)
     local font = love.graphics.newFont('assets/lana-pixel.ttf', 11, 'mono')
     love.graphics.setFont(font)
     love.graphics.setDefaultFilter('nearest', 'nearest')
