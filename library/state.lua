@@ -22,6 +22,9 @@ return function(arg)
         s.inputs[input] = nil
     end
 
+    s.locale = 'en'
+    s.translations = {}
+
     s.loadWorld = function(world)
         world.load(arg)
         s.worlds[world.name] = world
@@ -90,8 +93,8 @@ return function(arg)
 
     s.exit = function()
         -- Exit ALL worlds
-        for index = 1, #s.worlds do
-            s.worlds[index].exit()
+        for _, world in pairs(s.worlds) do
+            world.exit()
         end
     end
 
