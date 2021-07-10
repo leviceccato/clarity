@@ -5,7 +5,7 @@ local eventEntity = require('entities.event')
 
 local mouse = love.mouse
 
-return function(state)
+return function(state, world)
     local s = system({'click', 'position', 'appearance'})
 
     local isWithin = function(point, e)
@@ -25,7 +25,7 @@ return function(state)
         local e
         for index = 1, #s.entities do
             e = s.entities[index]
-            
+
             local clickData = e.click.data
             local clickInput = state.inputs.click
 
@@ -33,18 +33,18 @@ return function(state)
             if not clickInput and not clickData then
                 goto done
             end
-            
+
             -- Mouse was released after click
             if not clickInput and clickData then
                 -- If it's in the right place add the event
                 local x, y = viewport.getMousePosition()
                 if isWithin({x = x, y = y}, e) then
-                    state.activeWorld.addEntity(eventEntity(e.click.event), true)
+                    world.addEntity(eventEntity(e.click.event), true)
                 end
                 e.click.data = nil
                 goto done
             end
-            
+
             -- Otherwise mouse was clicked
             if clickInput then
                 -- If it's in the right place assign the data to the component

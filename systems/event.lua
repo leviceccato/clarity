@@ -8,8 +8,8 @@ return function(state)
             local status = data.status or 0
             love.event.quit(status)
         end,
-        ['activate-world'] = function(data)
-            state.activateWorld(data.name)
+        ['activate-worlds'] = function(data)
+            state.activateWorlds(data.names)
         end
     }
 

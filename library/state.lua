@@ -1,7 +1,7 @@
 return function(arg)
     local s = {}
     s.worlds = {}
-    s.activeWorld = nil
+    s.activeWorlds = {}
 
     s.inputs = {}
     s.controls = {
@@ -22,45 +22,61 @@ return function(arg)
         s.inputs[input] = nil
     end
 
-    s.addWorld = function(world)
+    s.loadWorld = function(world)
         world.load(arg)
         s.worlds[world.name] = world
     end
 
-    s.activateWorld = function(worldName)
-        s.activeWorld = s.worlds[worldName]
+    s.activateWorlds = function(worldNames)
+        s.activeWorlds = worldNames
     end
 
     s.update = function(dt)
-        s.activeWorld.update(dt)
+        for index = 1, #s.activeWorlds do
+            s.worlds[s.activeWorlds[index]].update(dt)
+        end
     end
 
     s.draw = function()
-        s.activeWorld.draw()
+        for index = 1, #s.activeWorlds do
+            s.worlds[s.activeWorlds[index]].draw()
+        end
     end
 
     s.exit = function()
-        s.activeWorld.exit()
+        for index = 1, #s.activeWorlds do
+            s.worlds[s.activeWorlds[index]].exit()
+        end
     end
 
     s.mousepressed = function(x, y, button, isTouch, pressCount)
-        s.activeWorld.mousepressed(x, y, button, isTouch, pressCount)
+        for index = 1, #s.activeWorlds do
+            s.worlds[s.activeWorlds[index]].mousepressed(x, y, button, isTouch, pressCount)
+        end
     end
 
     s.mousereleased = function(button)
-        s.activeWorld.mousereleased(button)
+        for index = 1, #s.activeWorlds do
+            s.worlds[s.activeWorlds[index]].mousereleased(button)
+        end
     end
 
     s.keypressed = function(key, isRepeat)
-        s.activeWorld.keypressed(key, isRepeat)
+        for index = 1, #s.activeWorlds do
+            s.worlds[s.activeWorlds[index]].keypressed(key, isRepeat)
+        end
     end
 
     s.keyreleased = function(key)
-        s.activeWorld.keyreleased(key)
+        for index = 1, #s.activeWorlds do
+            s.worlds[s.activeWorlds[index]].keyreleased(key)
+        end
     end
 
     s.resize = function(w, h)
-        s.activeWorld.resize(w, h)
+        for index = 1, #s.activeWorlds do
+            s.worlds[s.activeWorlds[index]].resize(w, h)
+        end
     end
 
     return s

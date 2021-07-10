@@ -20,7 +20,7 @@ return function(state)
         w.addSystem(animationSystem(state))
         w.addSystem(debugSystem(state))
         w.addSystem(hoverSystem(state))
-        w.addSystem(clickSystem(state))
+        w.addSystem(clickSystem(state, w))
         w.addSystem(eventSystem(state))
         w.addSystem(inputSystem(state))
 
@@ -42,7 +42,7 @@ return function(state)
             sheet = buttonSheet,
             align = 'center',
             padding = 9,
-            event = {'activate-world', {name = 'main'}}
+            event = {'activate-worlds', {names = {'main'}}}
         }))
 
         local quitButtonString = 'QUIT'

@@ -13,9 +13,9 @@ love.load = function(arg)
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     mainState = state(arg)
-    mainState.addWorld(mainWorld(mainState))
-    mainState.addWorld(titleWorld(mainState))
-    mainState.activateWorld('title')
+    mainState.loadWorld(mainWorld(mainState))
+    mainState.loadWorld(titleWorld(mainState))
+    mainState.activateWorlds({'title'})
 end
 
 love.update = function(dt)

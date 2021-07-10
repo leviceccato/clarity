@@ -9,7 +9,7 @@ return function(state)
         for index = 1, #s.entities do
             e = s.entities[index]
             if state.inputs.menu then
-                state.activateWorld('title')
+                state.activateWorlds({'title'})
             end
             if state.inputs.up then
                 e.position.y = e.position.y - distance
