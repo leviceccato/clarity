@@ -8,7 +8,7 @@ local titleWorld = require('worlds.title')
 local mainState
 
 love.load = function(arg)
-    local font = love.graphics.newFont('assets/lana-pixel.ttf', 8, 'mono')
+    local font = love.graphics.newFont('assets/lana-pixel.ttf', 11, 'mono')
     love.graphics.setFont(font)
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
