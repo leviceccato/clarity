@@ -10,10 +10,8 @@ local titleWorld = require('worlds.title')
 local mainState
 
 love.load = function(arg)
-    local locale = json('translations/en.json')
-    i18n.load(locale)
-    local font = love.graphics.newFont('assets/lana-pixel.ttf', 11, 'mono')
-    love.graphics.setFont(font)
+    i18n.load(json('translations/en.json'))
+    love.graphics.setFont(love.graphics.newFont('assets/lana-pixel.ttf', 11, 'mono'))
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     mainState = state(arg)
