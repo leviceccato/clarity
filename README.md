@@ -8,7 +8,15 @@
 
 ## Development
 
-From the root directory run:
+All commands should be run from the root directory.
+
+Start the game:
 ```
 go run .
 ```
+
+Run tests:
+```
+go test ./...
+```
+
