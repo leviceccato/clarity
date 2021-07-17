@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	"github.com/leviceccato/clarity/world"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -16,22 +18,23 @@ type game struct {
 }
 
 func (g *game) Update() error {
+	g.state.update()
 	return nil
 }
 
 func (g *game) Draw(screen *ebiten.Image) {
-
+	g.state.draw()
 }
 
-func (g *game) Layout(w, h int) (int, int) {
+func (g *game) Layout(_, _ int) (int, int) {
 	return windowWidth, windowHeight
 }
 
 func main() {
 	ebiten.SetWindowSize(windowWidth, windowHeight)
 	ebiten.SetWindowTitle("Clarity")
-	mainState := &state{}
-	mainState.loadWorld()
+	mainState := newState()
+	mainState.loadWorld(world.NewStartWorld())
 	err := ebiten.RunGame(&game{
 		state: &state{},
 	})
