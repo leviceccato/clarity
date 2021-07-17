@@ -33,5 +33,4 @@ func (w *start) Enter() {
 }
 
 func (w *start) Exit() {
-
 }

@@ -38,6 +38,9 @@ func (w *world) GetSystems() []WorldSystem {
 	return w.systems
 }
 
+// Add entities to systems based on their components. This is an
+// expensive function and should be used sparingly. Ideally after
+// multiple system and entity updates.
 func (w *world) updateSystems() {
 	hasComponents := true
 	var entityReflection reflect.Value

@@ -34,6 +34,9 @@ func (s *state) loadWorld(w stateWorld) {
 	s.worlds[w.GetName()] = w
 }
 
+// Build slices for exiting and entering worlds based on what
+// worlds are currently active and those that will be. Then
+// exit and enter all of those worlds.
 func (s *state) activateWorlds(names []string) {
 	var w stateWorld
 	exitingWorlds := utility.SliceStringDifference(s.activeWorlds, names)
