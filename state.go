@@ -45,6 +45,7 @@ func (s *state) activateWorlds(names []string) {
 			system.Exit()
 		}
 	}
+	s.activeWorlds = names
 	for _, world := range enteringWorlds {
 		w = s.worlds[world]
 		w.Enter()

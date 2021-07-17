@@ -5,7 +5,13 @@ type draw struct {
 }
 
 func NewDrawSystem() *draw {
-	return &draw{}
+	s := &draw{}
+	s.components = []string{
+		"appearance",
+		"position",
+		"size",
+	}
+	return s
 }
 
 func (s *draw) Load() {

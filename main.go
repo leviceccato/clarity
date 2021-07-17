@@ -35,8 +35,9 @@ func main() {
 	ebiten.SetWindowTitle("Clarity")
 	mainState := newState()
 	mainState.loadWorld(world.NewStartWorld())
+	mainState.activateWorlds([]string{"start"})
 	err := ebiten.RunGame(&game{
-		state: &state{},
+		state: mainState,
 	})
 	if err != nil {
 		fmt.Println(err)
