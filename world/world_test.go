@@ -23,7 +23,8 @@ func TestUpdateSystem(t *testing.T) {
 	t.Run("adds components", func(t *testing.T) {
 		w := &world{}
 		w.AddSystem(system.NewDrawSystem())
-		w.AddEntity(entity.NewPlayerEntity())
+		player, _ := entity.NewPlayerEntity()
+		w.AddEntity(player)
 		w.updateSystems()
 		drawSystem := w.systems[0]
 		got := drawSystem.GetEntityCount()

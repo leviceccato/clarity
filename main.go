@@ -23,7 +23,7 @@ func (g *game) Update() error {
 }
 
 func (g *game) Draw(screen *ebiten.Image) {
-	g.state.draw()
+	g.state.draw(screen)
 }
 
 func (g *game) Layout(_, _ int) (int, int) {
@@ -34,9 +34,13 @@ func main() {
 	ebiten.SetWindowSize(windowWidth, windowHeight)
 	ebiten.SetWindowTitle("Clarity")
 	mainState := newState()
-	mainState.loadWorld(world.NewStartWorld())
+	startWorld, err := world.NewStartWorld()
+	if err != nil {
+		fmt.Println(err)
+	}
+	mainState.loadWorld(startWorld)
 	mainState.activateWorlds([]string{"start"})
-	err := ebiten.RunGame(&game{
+	err = ebiten.RunGame(&game{
 		state: mainState,
 	})
 	if err != nil {

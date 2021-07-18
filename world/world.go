@@ -4,6 +4,8 @@ import (
 	"reflect"
 
 	"github.com/leviceccato/clarity/entity"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type WorldSystem interface {
@@ -14,7 +16,7 @@ type WorldSystem interface {
 	Exit()
 	Load()
 	Update()
-	Draw()
+	Draw(*ebiten.Image)
 }
 
 type world struct {

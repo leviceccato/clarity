@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/leviceccato/clarity/utility"
 	"github.com/leviceccato/clarity/world"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type stateWorld interface {
@@ -12,7 +14,7 @@ type stateWorld interface {
 	Exit()
 	Enter()
 	Update()
-	Draw()
+	Draw(*ebiten.Image)
 }
 
 type state struct {
@@ -69,13 +71,13 @@ func (s *state) update() {
 	}
 }
 
-func (s *state) draw() {
+func (s *state) draw(screen *ebiten.Image) {
 	var w stateWorld
 	for _, world := range s.activeWorlds {
 		w = s.worlds[world]
-		w.Draw()
+		w.Draw(screen)
 		for _, system := range w.GetSystems() {
-			system.Draw()
+			system.Draw(screen)
 		}
 	}
 }
