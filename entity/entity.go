@@ -8,13 +8,13 @@ var entityId = 0
 
 type Entity struct {
 	id         int
-	position   *component.Position
-	size       *component.Size
-	appearance *component.Appearance
-	animation  *component.Animation
+	Position   *component.Position
+	Size       *component.Size
+	Appearance *component.Appearance
+	Animation  *component.Animation
 }
 
-func newEntity() *Entity {
+func NewEntity() *Entity {
 	e := &Entity{
 		id: entityId,
 	}

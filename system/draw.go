@@ -7,9 +7,9 @@ type draw struct {
 func NewDrawSystem() *draw {
 	s := &draw{}
 	s.components = []string{
-		"appearance",
-		"position",
-		"size",
+		"Appearance",
+		"Position",
+		"Size",
 	}
 	return s
 }

@@ -5,10 +5,10 @@ import (
 )
 
 func NewPlayerEntity() *Entity {
-	e := newEntity()
-	e.position = &component.Position{}
-	e.size = &component.Size{}
-	e.appearance = &component.Appearance{}
-	e.animation = &component.Animation{}
+	e := NewEntity()
+	e.Position = &component.Position{}
+	e.Size = &component.Size{}
+	e.Appearance = &component.Appearance{}
+	e.Animation = &component.Animation{}
 	return e
 }
