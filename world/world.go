@@ -8,6 +8,7 @@ import (
 
 type WorldSystem interface {
 	GetComponents() []string
+	GetEntityCount() int
 	AddEntity(*entity.Entity)
 	Enter()
 	Exit()

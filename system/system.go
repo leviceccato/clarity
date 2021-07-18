@@ -13,6 +13,10 @@ func (s *system) GetComponents() []string {
 	return s.components
 }
 
+func (s *system) GetEntityCount() int {
+	return len(s.entities)
+}
+
 func (s *system) AddEntity(e *entity.Entity) {
 	s.entities = append(s.entities, e)
 }
