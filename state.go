@@ -20,6 +20,8 @@ type stateWorld interface {
 type state struct {
 	worlds       map[string]stateWorld
 	activeWorlds []string
+	windowWidth  int
+	windowHeight int
 }
 
 func newState() *state {
@@ -34,6 +36,14 @@ func (s *state) loadWorld(w stateWorld) {
 		system.Load()
 	}
 	s.worlds[w.GetName()] = w
+}
+
+func (s *state) GetWindowWidth() int {
+	return s.windowWidth
+}
+
+func (s *state) GetWindowHeight() int {
+	return s.windowHeight
 }
 
 // Build slices for exiting and entering worlds based on what

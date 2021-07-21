@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	windowWidth  = 320
-	windowHeight = 240
+	windowWidth  = 1280
+	windowHeight = 720
 )
 
 type game struct {
@@ -34,7 +34,9 @@ func main() {
 	ebiten.SetWindowSize(windowWidth, windowHeight)
 	ebiten.SetWindowTitle("Clarity")
 	mainState := newState()
-	startWorld, err := world.NewStartWorld()
+	mainState.windowWidth = windowWidth
+	mainState.windowHeight = windowHeight
+	startWorld, err := world.NewStartWorld(mainState)
 	if err != nil {
 		fmt.Println(err)
 	}

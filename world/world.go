@@ -19,6 +19,11 @@ type WorldSystem interface {
 	Draw(*ebiten.Image)
 }
 
+type gameState interface {
+	GetWindowWidth() int
+	GetWindowHeight() int
+}
+
 type world struct {
 	name     string
 	systems  []WorldSystem

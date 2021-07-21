@@ -2,6 +2,7 @@ package world
 
 import (
 	"fmt"
+	"math/rand"
 
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/system"
@@ -13,16 +14,26 @@ type start struct {
 	world
 }
 
-func NewStartWorld() (*start, error) {
+func NewStartWorld(state gameState) (*start, error) {
 	w := &start{}
 	w.name = "start"
 
 	w.AddSystem(system.NewDrawSystem())
-	player, err := entity.NewPlayerEntity()
-	if err != nil {
-		return nil, fmt.Errorf("creating player entity: %s", err)
+
+	var randX float64
+	var randY float64
+	for i := 0; i < 500; i++ {
+		randX = rand.Float64() * float64(state.GetWindowWidth())
+		randY = rand.Float64() * float64(state.GetWindowHeight())
+		player, err := entity.NewPlayerEntity()
+		if err != nil {
+			return nil, fmt.Errorf("creating player entity: %s", err)
+		}
+		player.Position.X = randX
+		player.Position.Y = randY
+		w.AddEntity(player)
 	}
-	w.AddEntity(player)
+
 	w.updateSystems()
 
 	return w, nil
