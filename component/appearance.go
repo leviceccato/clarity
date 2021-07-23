@@ -34,6 +34,7 @@ func NewAppearance(imagePath, animationPath string) (*Appearance, error) {
 		return c, fmt.Errorf("loading appearance image: %s", err)
 	}
 	c.Image = img
+
 	anim, err := newAnimationFromFile(animationPath)
 	if err != nil {
 		return c, fmt.Errorf("loading appearance animation: %s", err)
@@ -63,6 +64,7 @@ func NewAppearance(imagePath, animationPath string) (*Appearance, error) {
 			c.Sequence = name
 		}
 	}
+
 	return c, nil
 }
 
