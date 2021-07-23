@@ -38,9 +38,9 @@ func TestSliceStringDifference(t *testing.T) {
 		},
 	}
 	for _, test := range tests {
-		result := SliceStringDifference(test.a, test.b)
-		if !reflect.DeepEqual(result, test.want) {
-			t.Errorf("Difference of %s & %s was incorrect, got: %s, wanted: %s", test.a, test.b, result, test.want)
+		got := SliceStringDifference(test.a, test.b)
+		if !reflect.DeepEqual(got, test.want) {
+			t.Errorf("Difference of %s & %s was incorrect, got: %s, wanted: %s", test.a, test.b, got, test.want)
 		}
 	}
 }
