@@ -24,6 +24,5 @@ func NewPlayerEntity() (*Entity, error) {
 		}
 	}
 	e.Appearance = &component.Appearance{Image: image}
-	e.Animation = &component.Animation{}
 	return e, nil
 }
