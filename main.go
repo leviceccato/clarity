@@ -30,7 +30,7 @@ func (g *game) Layout(_, _ int) (int, int) {
 	return windowWidth, windowHeight
 }
 
-func main() error {
+func main() {
 	ebiten.SetWindowSize(windowWidth, windowHeight)
 	ebiten.SetWindowTitle("Clarity")
 
@@ -39,7 +39,7 @@ func main() error {
 	mainState.windowHeight = windowHeight
 	startWorld, err := world.NewStartWorld(mainState)
 	if err != nil {
-		return fmt.Errorf("creating start world: %s", err)
+		fmt.Printf("creating start world: %s", err)
 	}
 	mainState.loadWorld(startWorld)
 	mainState.activateWorlds([]string{"start"})
@@ -48,7 +48,6 @@ func main() error {
 		state: mainState,
 	})
 	if err != nil {
-		return fmt.Errorf("running game: %s", err)
+		fmt.Printf("running game: %s", err)
 	}
-	return nil
 }
