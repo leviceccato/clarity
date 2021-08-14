@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"image"
+	_ "image/png"
 	"io/ioutil"
 	"strings"
 
@@ -28,7 +29,9 @@ type AppearanceSequence struct {
 
 // Load files, format the data and then create an Appearance component
 func NewAppearance(imagePath, animationPath string) (*Appearance, error) {
-	c := &Appearance{}
+	c := &Appearance{
+		Sequences: map[string]*AppearanceSequence{},
+	}
 	img, _, err := ebitenutil.NewImageFromFile(imagePath)
 	if err != nil {
 		return c, fmt.Errorf("loading appearance image: %s", err)
