@@ -2,6 +2,7 @@ package system
 
 import (
 	"fmt"
+	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -26,6 +27,7 @@ func (s *draw) Load() {}
 func (s *draw) Update() {}
 
 func (s *draw) Draw(screen *ebiten.Image) {
+	screen.Fill(color.NRGBA{0x00, 0x40, 0x80, 0xff})
 	for _, e := range s.entities {
 		options := &ebiten.DrawImageOptions{}
 		options.GeoM.Translate(e.Position.X, e.Position.Y)

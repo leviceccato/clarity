@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"image/color"
 
 	"github.com/leviceccato/clarity/utility"
 	"github.com/leviceccato/clarity/world"
@@ -25,7 +24,6 @@ func (g *game) Update() error {
 }
 
 func (g *game) Draw(screen *ebiten.Image) {
-	screen.Fill(color.NRGBA{0x00, 0x40, 0x80, 0xff})
 	g.state.draw(screen)
 }
 
