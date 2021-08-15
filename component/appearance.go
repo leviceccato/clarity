@@ -46,7 +46,7 @@ func NewAppearance(imagePath, animationPath string) (*Appearance, error) {
 		c.Duration += f.Duration
 		rect := image.Rect(
 			f.Frame.X, f.Frame.Y,
-			f.Frame.W, f.Frame.H,
+			f.Frame.X+f.Frame.W, f.Frame.Y+f.Frame.H,
 		)
 		c.Frames = append(c.Frames, &rect)
 	}
