@@ -19,10 +19,11 @@ func NewStartWorld(state gameState) (*start, error) {
 	w.name = "start"
 
 	w.AddSystem(system.NewDrawSystem())
+	w.AddSystem(system.NewAnimationSystem())
 
 	var randX float64
 	var randY float64
-	for i := 0; i < 500; i++ {
+	for i := 0; i < 1; i++ {
 		randX = rand.Float64() * float64(state.GetWindowWidth())
 		randY = rand.Float64() * float64(state.GetWindowHeight())
 		player, err := entity.NewPlayerEntity()
