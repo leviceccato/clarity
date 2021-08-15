@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/leviceccato/clarity/system"
 	"github.com/leviceccato/clarity/utility"
 	"github.com/leviceccato/clarity/world"
 
@@ -17,15 +18,12 @@ type stateWorld interface {
 	Draw(*ebiten.Image)
 }
 
-type control struct {
-}
-
 type state struct {
 	worlds       map[string]stateWorld
 	activeWorlds []string
 	renderWidth  int
 	renderHeight int
-	controls     map[string]*control
+	controls     map[string]*system.InputData
 	mouseInputs  map[ebiten.MouseButton]string
 	keyInputs    map[ebiten.Key]string
 }
@@ -56,7 +54,7 @@ func newState() *state {
 // Map the controls to the input fields
 func (s *state) UpdateControls() {
 	// Clear any existing values
-	s.controls = map[string]*control{}
+	s.controls = map[string]*system.InputData{}
 	for _, control := range s.mouseInputs {
 		s.controls[control] = nil
 	}
@@ -73,14 +71,24 @@ func (s *state) loadWorld(w stateWorld) {
 	s.worlds[w.GetName()] = w
 }
 
-// Expose as function so it can be used in an interface
 func (s state) RenderWidth() int {
 	return s.renderWidth
 }
 
-// Expose as function so it can be used in an interface
 func (s state) RenderHeight() int {
 	return s.renderHeight
+}
+
+func (s state) MouseInputs() map[ebiten.MouseButton]string {
+	return s.mouseInputs
+}
+
+func (s state) KeyInputs() map[ebiten.Key]string {
+	return s.keyInputs
+}
+
+func (s *state) SetControl(controlName string, data *system.InputData) {
+	s.controls[controlName] = data
 }
 
 // Build slices for exiting and entering worlds based on what

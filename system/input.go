@@ -2,20 +2,44 @@ package system
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
 )
 
 type input struct {
 	system
+	state SystemState
 }
 
-func NewInputSystem() *input {
-	return &input{}
+type InputData struct {
+	X, Y int
+}
+
+func NewInputSystem(state SystemState) *input {
+	s := &input{}
+	s.state = state
+	return s
 }
 
 func (s *input) Load() {}
 
 func (s *input) Update() {
-
+	for mouseInput, control := range s.state.MouseInputs() {
+		if inpututil.IsMouseButtonJustPressed(mouseInput) {
+			x, y := ebiten.CursorPosition()
+			s.state.SetControl(control, &InputData{X: x, Y: y})
+		}
+		if inpututil.IsMouseButtonJustReleased(mouseInput) {
+			s.state.SetControl(control, nil)
+		}
+	}
+	for keyInput, control := range s.state.KeyInputs() {
+		if inpututil.IsKeyJustPressed(keyInput) {
+			s.state.SetControl(control, &InputData{})
+		}
+		if inpututil.IsKeyJustReleased(keyInput) {
+			s.state.SetControl(control, nil)
+		}
+	}
 }
 
 func (s *input) Draw(screen *ebiten.Image) {}
