@@ -20,8 +20,8 @@ type WorldSystem interface {
 }
 
 type gameState interface {
-	GetWindowWidth() int
-	GetWindowHeight() int
+	RenderWidth() int
+	RenderHeight() int
 }
 
 type world struct {
