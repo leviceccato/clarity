@@ -19,23 +19,25 @@ type stateWorld interface {
 
 type control struct {
 }
+
 type state struct {
-	worlds        map[string]stateWorld
-	activeWorlds  []string
-	renderWidth   int
-	renderHeight  int
-	controls      map[string]*control
-	mouseInputMap map[ebiten.MouseButton]string
-	keyInputMap   map[ebiten.Key]string
+	worlds       map[string]stateWorld
+	activeWorlds []string
+	renderWidth  int
+	renderHeight int
+	controls     map[string]*control
+	mouseInputs  map[ebiten.MouseButton]string
+	keyInputs    map[ebiten.Key]string
 }
 
 func newState() *state {
 	s := &state{}
 	s.worlds = map[string]stateWorld{}
-	s.mouseInputMap = map[ebiten.MouseButton]string{
-		ebiten.MouseButtonLeft: "jump",
+	s.mouseInputs = map[ebiten.MouseButton]string{
+		ebiten.MouseButtonLeft: "click",
 	}
-	s.keyInputMap = map[ebiten.Key]string{
+	s.keyInputs = map[ebiten.Key]string{
+		ebiten.KeySpace:      "jump",
 		ebiten.KeyArrowUp:    "up",
 		ebiten.KeyW:          "up",
 		ebiten.KeyArrowLeft:  "left",
@@ -55,10 +57,10 @@ func newState() *state {
 func (s *state) UpdateControls() {
 	// Clear any existing values
 	s.controls = map[string]*control{}
-	for _, control := range s.mouseInputMap {
+	for _, control := range s.mouseInputs {
 		s.controls[control] = nil
 	}
-	for _, control := range s.keyInputMap {
+	for _, control := range s.keyInputs {
 		s.controls[control] = nil
 	}
 }
