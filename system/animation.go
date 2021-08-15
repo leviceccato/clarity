@@ -20,7 +20,7 @@ func (s *animation) Load() {}
 
 func (s *animation) Update() {
 	for _, e := range s.entities {
-		e.Appearance.Time = e.Appearance.Time + 4
+		e.Appearance.Time += 16
 		duration := float64(e.Appearance.Duration)
 		if e.Appearance.Time >= duration {
 			e.Appearance.Time = math.Min(duration, e.Appearance.Time-duration)
