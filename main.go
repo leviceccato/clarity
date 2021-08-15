@@ -11,8 +11,6 @@ import (
 )
 
 const (
-	windowWidth  = 1280
-	windowHeight = 720
 	renderWidth  = 480
 	renderHeight = 270
 )
