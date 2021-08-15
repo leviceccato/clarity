@@ -38,12 +38,14 @@ func (s *state) loadWorld(w stateWorld) {
 	s.worlds[w.GetName()] = w
 }
 
-func (s *state) GetWindowWidth() int {
-	return s.windowWidth
+// Expose as function so it can be used in an interface
+func (s state) RenderWidth() int {
+	return s.renderWidth
 }
 
-func (s *state) GetWindowHeight() int {
-	return s.windowHeight
+// Expose as function so it can be used in an interface
+func (s state) RenderHeight() int {
+	return s.renderHeight
 }
 
 // Build slices for exiting and entering worlds based on what
