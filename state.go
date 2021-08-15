@@ -17,16 +17,44 @@ type stateWorld interface {
 	Draw(*ebiten.Image)
 }
 
+type control struct {
+}
 type state struct {
 	worlds       map[string]stateWorld
 	activeWorlds []string
-	windowWidth  int
-	windowHeight int
+	renderWidth  int
+	renderHeight int
+	controls     map[string]*control
+	inputs       map[string]string
 }
 
 func newState() *state {
-	return &state{
-		worlds: map[string]stateWorld{},
+	s := &state{}
+	s.worlds = map[string]stateWorld{}
+	s.inputs = map[string]string{
+		"mouse1": "click",
+		"space":  "jump",
+		"up":     "up",
+		"w":      "up",
+		"left":   "left",
+		"a":      "left",
+		"right":  "right",
+		"d":      "right",
+		"down":   "down",
+		"s":      "down",
+		"escape": "menu",
+		"~":      "debug",
+	}
+	s.UpdateControls()
+	return s
+}
+
+// Map the controls to the input fields
+func (s *state) UpdateControls() {
+	// Clear any existing values
+	s.controls = map[string]*control{}
+	for _, control := range s.inputs {
+		s.controls[control] = nil
 	}
 }
 
