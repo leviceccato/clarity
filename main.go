@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/leviceccato/clarity/utility"
 	"github.com/leviceccato/clarity/world"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -11,6 +12,8 @@ import (
 const (
 	windowWidth  = 1280
 	windowHeight = 720
+	renderWidth  = 480
+	renderHeight = 270
 )
 
 type game struct {
@@ -31,9 +34,15 @@ func (g *game) Layout(_, _ int) (int, int) {
 }
 
 func main() {
+	// Initilisations
+	utility.InitTranslations()
+	utility.InitViewport(renderWidth, renderHeight)
+
 	ebiten.SetWindowSize(windowWidth, windowHeight)
+	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowTitle("Clarity")
 
+	// Create state and load game data
 	mainState := newState()
 	mainState.windowWidth = windowWidth
 	mainState.windowHeight = windowHeight
