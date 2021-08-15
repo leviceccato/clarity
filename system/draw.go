@@ -22,8 +22,7 @@ func NewDrawSystem() *draw {
 	return s
 }
 
-func (s *draw) Load() {
-}
+func (s *draw) Load() {}
 
 func (s *draw) Update() {
 	for _, e := range s.entities {
@@ -45,10 +44,6 @@ func (s *draw) Draw(screen *ebiten.Image) {
 	))
 }
 
-func (s *draw) Enter() {
+func (s *draw) Enter() {}
 
-}
-
-func (s *draw) Exit() {
-
-}
+func (s *draw) Exit() {}

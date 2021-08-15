@@ -39,17 +39,12 @@ func NewStartWorld(state gameState) (*start, error) {
 	return w, nil
 }
 
-func (w *start) Load() {
-}
+func (w *start) Load() {}
 
-func (w *start) Update() {
-}
+func (w *start) Update() {}
 
-func (w *start) Draw(screen *ebiten.Image) {
-}
+func (w *start) Draw(screen *ebiten.Image) {}
 
-func (w *start) Enter() {
-}
+func (w *start) Enter() {}
 
-func (w *start) Exit() {
-}
+func (w *start) Exit() {}
