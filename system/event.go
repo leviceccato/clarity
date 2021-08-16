@@ -11,11 +11,11 @@ type event struct {
 	state SystemState
 }
 
-type eventQuit struct {
+type quitEvent struct {
 	code int
 }
 
-type eventActivateWorlds struct {
+type activateWorldsEvent struct {
 	names []string
 }
 
@@ -30,9 +30,9 @@ func (s *event) Update() {
 	events := s.state.Events()
 	for len(events) > 0 {
 		switch e := events[0].(type) {
-		case eventQuit:
+		case quitEvent:
 			os.Exit(e.code)
-		case eventActivateWorlds:
+		case activateWorldsEvent:
 			s.state.ActivateWorlds(e.names)
 		}
 	}
