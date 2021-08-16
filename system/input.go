@@ -14,6 +14,19 @@ type InputData struct {
 	X, Y int
 }
 
+type Control int
+
+const (
+	ControlJump Control = iota + 1
+	ControlUp
+	ControlLeft
+	ControlRight
+	ControlDown
+	ControlMenu
+	ControlDebug
+	ControlClick
+)
+
 func NewInputSystem(state SystemState) *input {
 	s := &input{}
 	s.state = state
