@@ -20,7 +20,8 @@ type stateWorld interface {
 
 type state struct {
 	worlds                    map[string]stateWorld
-	activeWorlds, events      []string
+	activeWorlds              []string
+	events                    []interface{}
 	renderWidth, renderHeight int
 	controls                  map[system.Control]*system.InputData
 	mouseInputs               map[ebiten.MouseButton]system.Control
@@ -89,12 +90,19 @@ func (s state) KeyInputs() map[ebiten.Key]system.Control {
 func (s *state) SetControl(control system.Control, data *system.InputData) {
 	s.controls[control] = data
 }
+
+func (s state) Events() []interface{} {
+	return s.events
+}
+
+func (s *state) SetEvents(events []interface{}) {
+	s.events = events
 }
 
 // Build slices for exiting and entering worlds based on what
 // worlds are currently active and those that will be. Then
 // exit and enter all of those worlds.
-func (s *state) activateWorlds(names []string) {
+func (s *state) ActivateWorlds(names []string) {
 	var w stateWorld
 	exitingWorlds := utility.SliceStringDifference(s.activeWorlds, names)
 	enteringWorlds := utility.SliceStringDifference(names, s.activeWorlds)

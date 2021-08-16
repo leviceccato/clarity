@@ -12,9 +12,11 @@ type system struct {
 }
 
 type SystemState interface {
-	MouseInputs() map[ebiten.MouseButton]string
-	KeyInputs() map[ebiten.Key]string
-	SetControl(string, *InputData)
+	MouseInputs() map[ebiten.MouseButton]Control
+	KeyInputs() map[ebiten.Key]Control
+	SetControl(Control, *InputData)
+	Events() []interface{}
+	ActivateWorlds([]string)
 }
 
 func (s *system) GetComponents() []string {

@@ -49,7 +49,7 @@ func main() {
 		fmt.Printf("creating start world: %s", err)
 	}
 	mainState.loadWorld(startWorld)
-	mainState.activateWorlds([]string{"start"})
+	mainState.ActivateWorlds([]string{"start"})
 
 	err = ebiten.RunGame(&game{
 		state: mainState,
