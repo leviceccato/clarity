@@ -9,12 +9,12 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-type start struct {
+type startWorld struct {
 	world
 }
 
-func NewStartWorld(state gameState) (*start, error) {
-	w := &start{}
+func NewStartWorld(state gameState) (*startWorld, error) {
+	w := &startWorld{}
 	w.name = "start"
 
 	w.AddSystem(system.NewDrawSystem())
@@ -35,12 +35,12 @@ func NewStartWorld(state gameState) (*start, error) {
 	return w, nil
 }
 
-func (w *start) Load() {}
+func (w *startWorld) Load() {}
 
-func (w *start) Update() {}
+func (w *startWorld) Update() {}
 
-func (w *start) Draw(screen *ebiten.Image) {}
+func (w *startWorld) Draw(screen *ebiten.Image) {}
 
-func (w *start) Enter() {}
+func (w *startWorld) Enter() {}
 
-func (w *start) Exit() {}
+func (w *startWorld) Exit() {}

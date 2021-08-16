@@ -12,7 +12,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
-type Appearance struct {
+type AppearanceComponent struct {
 	Image                      *ebiten.Image
 	Frame, Duration            int
 	Sequence, PreviousSequence string
@@ -28,8 +28,8 @@ type AppearanceSequence struct {
 }
 
 // Load files, format the data and then create an Appearance component
-func NewAppearance(imagePath, animationPath string) (*Appearance, error) {
-	c := &Appearance{
+func NewAppearance(imagePath, animationPath string) (*AppearanceComponent, error) {
+	c := &AppearanceComponent{
 		Sequences: map[string]*AppearanceSequence{},
 	}
 	img, _, err := ebitenutil.NewImageFromFile(imagePath)

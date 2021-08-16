@@ -1,11 +1,11 @@
 package component
 
-type Size struct {
+type SizeComponent struct {
 	Width, Height float64
 }
 
-func NewSize(width, height float64) *Size {
-	return &Size{
+func NewSize(width, height float64) *SizeComponent {
+	return &SizeComponent{
 		Width:  width,
 		Height: height,
 	}

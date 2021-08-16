@@ -5,7 +5,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 )
 
-type input struct {
+type inputSystem struct {
 	system
 	state SystemState
 }
@@ -27,15 +27,15 @@ const (
 	ControlClick
 )
 
-func NewInputSystem(state SystemState) *input {
-	s := &input{}
+func NewInputSystem(state SystemState) *inputSystem {
+	s := &inputSystem{}
 	s.state = state
 	return s
 }
 
-func (s *input) Load() {}
+func (s *inputSystem) Load() {}
 
-func (s *input) Update() {
+func (s *inputSystem) Update() {
 	for mouseInput, control := range s.state.MouseInputs() {
 		if inpututil.IsMouseButtonJustPressed(mouseInput) {
 			x, y := ebiten.CursorPosition()
@@ -55,8 +55,8 @@ func (s *input) Update() {
 	}
 }
 
-func (s *input) Draw(screen *ebiten.Image) {}
+func (s *inputSystem) Draw(screen *ebiten.Image) {}
 
-func (s *input) Enter() {}
+func (s *inputSystem) Enter() {}
 
-func (s *input) Exit() {}
+func (s *inputSystem) Exit() {}

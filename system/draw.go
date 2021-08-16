@@ -8,12 +8,12 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
-type draw struct {
+type drawSystem struct {
 	system
 }
 
-func NewDrawSystem() *draw {
-	s := &draw{}
+func NewDrawSystem() *drawSystem {
+	s := &drawSystem{}
 	s.components = []string{
 		"Appearance",
 		"Position",
@@ -22,11 +22,11 @@ func NewDrawSystem() *draw {
 	return s
 }
 
-func (s *draw) Load() {}
+func (s *drawSystem) Load() {}
 
-func (s *draw) Update() {}
+func (s *drawSystem) Update() {}
 
-func (s *draw) Draw(screen *ebiten.Image) {
+func (s *drawSystem) Draw(screen *ebiten.Image) {
 	screen.Fill(color.NRGBA{0x00, 0x40, 0x80, 0xff})
 	for _, e := range s.entities {
 		options := &ebiten.DrawImageOptions{}
@@ -43,6 +43,6 @@ func (s *draw) Draw(screen *ebiten.Image) {
 	))
 }
 
-func (s *draw) Enter() {}
+func (s *drawSystem) Enter() {}
 
-func (s *draw) Exit() {}
+func (s *drawSystem) Exit() {}

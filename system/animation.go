@@ -6,19 +6,19 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-type animation struct {
+type animationSystem struct {
 	system
 }
 
-func NewAnimationSystem() *animation {
-	s := &animation{}
+func NewAnimationSystem() *animationSystem {
+	s := &animationSystem{}
 	s.components = []string{"Appearance"}
 	return s
 }
 
-func (s *animation) Load() {}
+func (s *animationSystem) Load() {}
 
-func (s *animation) Update() {
+func (s *animationSystem) Update() {
 	for _, e := range s.entities {
 		e.Appearance.Time += 16
 		duration := float64(e.Appearance.Duration)
@@ -31,8 +31,8 @@ func (s *animation) Update() {
 	}
 }
 
-func (s *animation) Draw(screen *ebiten.Image) {}
+func (s *animationSystem) Draw(screen *ebiten.Image) {}
 
-func (s *animation) Enter() {}
+func (s *animationSystem) Enter() {}
 
-func (s *animation) Exit() {}
+func (s *animationSystem) Exit() {}

@@ -35,7 +35,7 @@ func TestUpdateSystem(t *testing.T) {
 	})
 	t.Run("handles incompatible entities", func(t *testing.T) {
 		e := entity.NewEntity()
-		e.Position = &component.Position{}
+		e.Position = &component.PositionComponent{}
 		w := &world{}
 		w.AddSystem(system.NewDrawSystem())
 		w.AddEntity(e)

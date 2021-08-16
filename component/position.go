@@ -1,11 +1,11 @@
 package component
 
-type Position struct {
+type PositionComponent struct {
 	X, Y float64
 }
 
-func NewPosition(x, y float64) *Position {
-	return &Position{
+func NewPosition(x, y float64) *PositionComponent {
+	return &PositionComponent{
 		X: x,
 		Y: y,
 	}

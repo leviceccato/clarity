@@ -6,7 +6,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-type event struct {
+type eventSystem struct {
 	system
 	state SystemState
 }
@@ -19,14 +19,14 @@ type activateWorldsEvent struct {
 	names []string
 }
 
-func NewEventSystem(state SystemState) *event {
-	s := &event{}
+func NewEventSystem(state SystemState) *eventSystem {
+	s := &eventSystem{}
 	return s
 }
 
-func (s *event) Load() {}
+func (s *eventSystem) Load() {}
 
-func (s *event) Update() {
+func (s *eventSystem) Update() {
 	events := s.state.Events()
 	for len(events) > 0 {
 		switch e := events[0].(type) {
@@ -38,8 +38,8 @@ func (s *event) Update() {
 	}
 }
 
-func (s *event) Draw(screen *ebiten.Image) {}
+func (s *eventSystem) Draw(screen *ebiten.Image) {}
 
-func (s *event) Enter() {}
+func (s *eventSystem) Enter() {}
 
-func (s *event) Exit() {}
+func (s *eventSystem) Exit() {}
