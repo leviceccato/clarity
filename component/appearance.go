@@ -28,7 +28,7 @@ type AppearanceSequence struct {
 }
 
 // Load files, format the data and then create an Appearance component
-func NewAppearance(imagePath, animationPath string) (*AppearanceComponent, error) {
+func NewAppearanceComponent(imagePath, animationPath string) (*AppearanceComponent, error) {
 	c := &AppearanceComponent{
 		Sequences: map[string]*AppearanceSequence{},
 	}
