@@ -36,16 +36,22 @@ func NewInputSystem(state SystemState) *inputSystem {
 func (s *inputSystem) Load() {}
 
 func (s *inputSystem) Update() {
-	for mouseInput, control := range s.state.MouseInputs() {
+	var (
+		control    Control
+		mouseInput ebiten.MouseButton
+		keyInput   ebiten.Key
+		x, y       int
+	)
+	for mouseInput, control = range s.state.MouseInputs() {
 		if inpututil.IsMouseButtonJustPressed(mouseInput) {
-			x, y := ebiten.CursorPosition()
+			x, y = ebiten.CursorPosition()
 			s.state.SetControl(control, &InputData{X: x, Y: y})
 		}
 		if inpututil.IsMouseButtonJustReleased(mouseInput) {
 			s.state.SetControl(control, nil)
 		}
 	}
-	for keyInput, control := range s.state.KeyInputs() {
+	for keyInput, control = range s.state.KeyInputs() {
 		if inpututil.IsKeyJustPressed(keyInput) {
 			s.state.SetControl(control, &InputData{})
 		}
