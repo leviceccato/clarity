@@ -7,8 +7,10 @@ import (
 	"golang.org/x/text/language"
 )
 
-var bundle *i18n.Bundle
-var localizer *i18n.Localizer
+var (
+	bundle    *i18n.Bundle
+	localizer *i18n.Localizer
+)
 
 func InitTranslations() {
 	bundle = i18n.NewBundle(language.English)
