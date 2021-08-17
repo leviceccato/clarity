@@ -17,9 +17,11 @@ func NewStartWorld(state gameState) (*startWorld, error) {
 	w := &startWorld{}
 	w.name = "start"
 
+	systemState := state.(system.SystemState)
 	w.AddSystem(system.NewDrawSystem())
 	w.AddSystem(system.NewAnimationSystem())
-	w.AddSystem(system.NewInputSystem(state.(system.SystemState)))
+	w.AddSystem(system.NewInputSystem(systemState))
+	w.AddSystem(system.NewEventSystem(systemState))
 
 	// Create and position player
 	player, err := entity.NewPlayerEntity()

@@ -21,6 +21,7 @@ type activateWorldsEvent struct {
 
 func NewEventSystem(state SystemState) *eventSystem {
 	s := &eventSystem{}
+	s.state = state
 	return s
 }
 
