@@ -11,6 +11,7 @@ type Entity struct {
 	Position   *component.PositionComponent
 	Size       *component.SizeComponent
 	Appearance *component.AppearanceComponent
+	Hover      *component.HoverComponent
 }
 
 func NewEntity() *Entity {
