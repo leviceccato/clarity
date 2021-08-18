@@ -18,11 +18,13 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 	w.name = "title"
 
 	systemState := state.(system.SystemState)
-	w.AddSystem(system.NewDrawSystem())
-	w.AddSystem(system.NewAnimationSystem())
-	w.AddSystem(system.NewInputSystem(systemState))
-	w.AddSystem(system.NewEventSystem(systemState))
-	w.AddSystem(system.NewPlayableSystem(systemState))
+	w.systems = []WorldSystem{
+		system.NewDrawSystem(),
+		system.NewAnimationSystem(),
+		system.NewInputSystem(systemState),
+		system.NewEventSystem(systemState),
+		system.NewPlayableSystem(systemState),
+	}
 
 	// Create and position player
 	player, err := entity.NewPlayerEntity()

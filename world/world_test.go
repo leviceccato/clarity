@@ -11,7 +11,9 @@ import (
 func TestUpdateSystem(t *testing.T) {
 	t.Run("defaults to no components", func(t *testing.T) {
 		w := &world{}
-		w.AddSystem(system.NewDrawSystem())
+		w.systems = []WorldSystem{
+			system.NewDrawSystem(),
+		}
 		w.updateSystems()
 		drawSystem := w.systems[0]
 		got := drawSystem.GetEntityCount()
@@ -22,7 +24,9 @@ func TestUpdateSystem(t *testing.T) {
 	})
 	t.Run("adds components", func(t *testing.T) {
 		w := &world{}
-		w.AddSystem(system.NewDrawSystem())
+		w.systems = []WorldSystem{
+			system.NewDrawSystem(),
+		}
 		player, _ := entity.NewPlayerEntity()
 		w.AddEntity(player)
 		w.updateSystems()
@@ -37,7 +41,9 @@ func TestUpdateSystem(t *testing.T) {
 		e := entity.NewEntity()
 		e.Position = &component.PositionComponent{}
 		w := &world{}
-		w.AddSystem(system.NewDrawSystem())
+		w.systems = []WorldSystem{
+			system.NewDrawSystem(),
+		}
 		w.AddEntity(e)
 		w.updateSystems()
 		drawSystem := w.systems[0]

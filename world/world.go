@@ -34,10 +34,6 @@ func (w *world) AddEntity(entity *entity.Entity) {
 	w.entities = append(w.entities, entity)
 }
 
-func (w *world) AddSystem(system WorldSystem) {
-	w.systems = append(w.systems, system)
-}
-
 func (w *world) GetName() string {
 	return w.name
 }
