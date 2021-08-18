@@ -18,21 +18,21 @@ func NewPlayableSystem(state SystemState) *playableSystem {
 func (s *playableSystem) Load() {}
 
 func (s *playableSystem) Update() {
-	controls := s.state.Controls()
+	c := s.state.Controls()
 	for _, e := range s.entities {
-		if controls[ControlUp] != nil {
+		if c[ControlUp] != nil {
 			e.Position.Y -= 3
 		}
-		if controls[ControlLeft] != nil {
+		if c[ControlLeft] != nil {
 			e.Position.X -= 3
 		}
-		if controls[ControlRight] != nil {
+		if c[ControlRight] != nil {
 			e.Position.X += 3
 		}
-		if controls[ControlDown] != nil {
+		if c[ControlDown] != nil {
 			e.Position.Y += 3
 		}
-		if controls[ControlMenu] != nil {
+		if c[ControlMenu] != nil {
 			s.state.AddEvent(quitEvent{})
 		}
 	}
