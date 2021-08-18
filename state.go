@@ -103,6 +103,10 @@ func (s *state) SetEvents(events []interface{}) {
 	s.events = events
 }
 
+func (s *state) AddEvent(event interface{}) {
+	s.events = append(s.events, event)
+}
+
 // Build slices for exiting and entering worlds based on what
 // worlds are currently active and those that will be. Then
 // exit and enter all of those worlds.

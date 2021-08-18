@@ -17,6 +17,8 @@ type SystemState interface {
 	Controls() map[Control]*InputData
 	SetControl(Control, *InputData)
 	Events() []interface{}
+	SetEvents([]interface{})
+	AddEvent(interface{})
 	ActivateWorlds([]string)
 }
 

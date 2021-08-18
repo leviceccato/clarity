@@ -29,14 +29,19 @@ func (s *eventSystem) Load() {}
 
 func (s *eventSystem) Update() {
 	events := s.state.Events()
-	for len(events) > 0 {
-		switch e := events[0].(type) {
+	if len(events) == 0 {
+		return
+	}
+	for _, event := range events {
+		switch e := event.(type) {
 		case quitEvent:
 			os.Exit(e.code)
 		case activateWorldsEvent:
 			s.state.ActivateWorlds(e.names)
 		}
 	}
+	// Clear events
+	s.state.SetEvents([]interface{}{})
 }
 
 func (s *eventSystem) Draw(screen *ebiten.Image) {}
