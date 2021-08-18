@@ -26,6 +26,6 @@ A list of complete and incomplete tasks to track the completion of the game.
 
 - [x] Create ECS
 - [x] Add translation support
+- [x] Make event system remove events after actioning them
+- [x] Add player movement
 - [ ] Add systems and components for basic UI interactions
-- [ ] Add player movement
-- [ ] Make event system remove events after actioning them
