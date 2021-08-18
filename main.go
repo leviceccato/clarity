@@ -47,7 +47,12 @@ func main() {
 	if err != nil {
 		fmt.Printf("creating start world: %s", err)
 	}
+	titleWorld, err := world.NewTitleWorld(mainState)
+	if err != nil {
+		fmt.Printf("creating title world: %s", err)
+	}
 	mainState.loadWorld(startWorld)
+	mainState.loadWorld(titleWorld)
 	mainState.ActivateWorlds([]string{"start"})
 
 	err = ebiten.RunGame(&game{

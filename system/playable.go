@@ -33,7 +33,9 @@ func (s *playableSystem) Update() {
 			e.Position.Y += 3
 		}
 		if c[ControlMenu] != nil {
-			s.state.AddEvent(quitEvent{})
+			s.state.AddEvent(activateWorldsEvent{
+				names: []string{"title"},
+			})
 		}
 	}
 }
