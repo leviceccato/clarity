@@ -22,7 +22,7 @@ go test ./...
 
 ## Tasks
 
-A list of complete and incomplete tasks to track the completion of the game.
+A list of complete and incomplete tasks to track the progress of the game.
 
 - [x] Create ECS
 - [x] Add translation support
