@@ -51,10 +51,13 @@ func (w *world) GetSystems() []WorldSystem {
 // multiple system and entity updates.
 func (w *world) updateSystems() {
 	hasComponents := true
-	var entityReflection reflect.Value
-	var field reflect.Value
-	for _, system := range w.systems {
-		for _, entity := range w.entities {
+	var (
+		entityReflection, field reflect.Value
+		system                  WorldSystem
+		entity                  *entity.Entity
+	)
+	for _, system = range w.systems {
+		for _, entity = range w.entities {
 			entityReflection = reflect.Indirect(reflect.ValueOf(entity))
 			for _, component := range system.GetComponents() {
 				field = entityReflection.FieldByName(component)

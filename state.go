@@ -132,22 +132,28 @@ func (s *state) ActivateWorlds(names []string) {
 }
 
 func (s *state) update() {
-	var w stateWorld
+	var (
+		w      stateWorld
+		system world.WorldSystem
+	)
 	for _, world := range s.activeWorlds {
 		w = s.worlds[world]
 		w.Update()
-		for _, system := range w.GetSystems() {
+		for _, system = range w.GetSystems() {
 			system.Update()
 		}
 	}
 }
 
 func (s *state) draw(screen *ebiten.Image) {
-	var w stateWorld
+	var (
+		w      stateWorld
+		system world.WorldSystem
+	)
 	for _, world := range s.activeWorlds {
 		w = s.worlds[world]
 		w.Draw(screen)
-		for _, system := range w.GetSystems() {
+		for _, system = range w.GetSystems() {
 			system.Draw(screen)
 		}
 	}
