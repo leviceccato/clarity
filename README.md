@@ -28,3 +28,4 @@ A list of complete and incomplete tasks to track the completion of the game.
 - [x] Add translation support
 - [ ] Add systems and components for basic UI interactions
 - [ ] Add player movement
+- [ ] Make event system remove events after actioning them

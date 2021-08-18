@@ -87,6 +87,10 @@ func (s state) KeyInputs() map[ebiten.Key]system.Control {
 	return s.keyInputs
 }
 
+func (s state) Controls() map[system.Control]*system.InputData {
+	return s.controls
+}
+
 func (s *state) SetControl(control system.Control, data *system.InputData) {
 	s.controls[control] = data
 }

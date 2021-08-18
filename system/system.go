@@ -14,6 +14,7 @@ type system struct {
 type SystemState interface {
 	MouseInputs() map[ebiten.MouseButton]Control
 	KeyInputs() map[ebiten.Key]Control
+	Controls() map[Control]*InputData
 	SetControl(Control, *InputData)
 	Events() []interface{}
 	ActivateWorlds([]string)
