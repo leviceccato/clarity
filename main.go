@@ -32,9 +32,8 @@ func (g *game) Layout(w, h int) (int, int) {
 }
 
 func main() {
-	// Initilisations
+	// Initialisations
 	utility.InitTranslations()
-	utility.InitViewport(renderWidth, renderHeight)
 
 	ebiten.SetWindowSize(renderWidth*2, renderHeight*2)
 	ebiten.SetWindowResizable(true)
