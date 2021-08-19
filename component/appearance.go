@@ -43,13 +43,6 @@ func NewAppearanceComponent(imagePath, animationPath string) (*AppearanceCompone
 
 	// No animation required
 	if animationPath == "" {
-		c.Sequence = "default"
-		c.Sequences["default"] = &AppearanceSequence{
-			From:       0,
-			To:         0,
-			ShouldLoop: false,
-			Direction:  "forward",
-		}
 		w, h := img.Size()
 		c.Frames = []*image.Rectangle{{
 			Min: image.Point{0, 0},
