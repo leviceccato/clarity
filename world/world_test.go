@@ -25,18 +25,28 @@ func TestUpdateSystem(t *testing.T) {
 	t.Run("adds components", func(t *testing.T) {
 		w := &world{}
 		w.systems = []WorldSystem{
-			system.NewDrawSystem(),
+			system.NewAnimationSystem(),
 		}
-		player, _ := entity.NewPlayerEntity()
+		// Create player manually because path has to be relative to this dir
+		player := entity.NewEntity()
+		player.Position = &component.PositionComponent{}
+		player.Size = &component.SizeComponent{}
+		player.Playable = &component.PlayableComponent{}
+		appearance, err := component.NewAppearanceComponent("../assets/player.png", "../assets/player.json")
+		if err != nil {
+			t.Errorf("Creating appearance component: %s", err)
+		}
+		player.Appearance = appearance
+
 		w.entities = []*entity.Entity{
 			player,
 		}
 		w.updateSystems()
-		drawSystem := w.systems[0]
-		got := drawSystem.EntityCount()
+		animationSystem := w.systems[0]
+		got := animationSystem.EntityCount()
 		want := 1
 		if got != want {
-			t.Errorf("Component count was incorrect, got: %d, wanted: %d", got, want)
+			t.Errorf("Component count was incorrect, got: %d, wanted: %d, components: %s", got, want, animationSystem.Components())
 		}
 	})
 	t.Run("handles incompatible entities", func(t *testing.T) {
