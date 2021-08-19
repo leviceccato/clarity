@@ -42,24 +42,38 @@ func (w *world) Systems() []WorldSystem {
 // expensive function and should be used sparingly. Ideally after
 // multiple system and entity updates.
 func (w *world) updateSystems() {
+	// Assume entity to be suitable by default
 	hasComponents := true
 	var (
 		entityReflection, field reflect.Value
 		system                  WorldSystem
 		entity                  *entity.Entity
+		components              []string
 	)
 	for _, system = range w.systems {
 		for _, entity = range w.entities {
 			entityReflection = reflect.Indirect(reflect.ValueOf(entity))
-			for _, component := range system.Components() {
+			components = system.Components()
+
+			// Check if entity has required components
+			for _, component := range components {
 				field = entityReflection.FieldByName(component)
 				if field.IsNil() {
 					hasComponents = false
 				}
 			}
+
+			// A system w/o components should have no entities
+			if len(components) == 0 {
+				hasComponents = false
+			}
+
+			// The entity is suitable and we can add it
 			if hasComponents {
 				system.AddEntity(entity)
 			}
+
+			// Reset for next iteration
 			hasComponents = true
 		}
 	}
