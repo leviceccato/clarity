@@ -55,17 +55,17 @@ func (w *world) updateSystems() {
 			entityReflection = reflect.Indirect(reflect.ValueOf(entity))
 			components = system.Components()
 
+			// A system w/o components should have no entities
+			if len(components) == 0 {
+				hasComponents = false
+			}
+
 			// Check if entity has required components
 			for _, component := range components {
 				field = entityReflection.FieldByName(component)
 				if field.IsNil() {
 					hasComponents = false
 				}
-			}
-
-			// A system w/o components should have no entities
-			if len(components) == 0 {
-				hasComponents = false
 			}
 
 			// The entity is suitable and we can add it
