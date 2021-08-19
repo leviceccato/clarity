@@ -22,11 +22,11 @@ type SystemState interface {
 	ActivateWorlds([]string)
 }
 
-func (s *system) GetComponents() []string {
+func (s *system) Components() []string {
 	return s.components
 }
 
-func (s *system) GetEntityCount() int {
+func (s *system) EntityCount() int {
 	return len(s.entities)
 }
 

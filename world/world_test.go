@@ -16,7 +16,7 @@ func TestUpdateSystem(t *testing.T) {
 		}
 		w.updateSystems()
 		drawSystem := w.systems[0]
-		got := drawSystem.GetEntityCount()
+		got := drawSystem.EntityCount()
 		want := 0
 		if got != want {
 			t.Errorf("Component count was incorrect, got: %d, wanted: %d", got, want)
@@ -33,7 +33,7 @@ func TestUpdateSystem(t *testing.T) {
 		}
 		w.updateSystems()
 		drawSystem := w.systems[0]
-		got := drawSystem.GetEntityCount()
+		got := drawSystem.EntityCount()
 		want := 1
 		if got != want {
 			t.Errorf("Component count was incorrect, got: %d, wanted: %d", got, want)
@@ -51,7 +51,7 @@ func TestUpdateSystem(t *testing.T) {
 		}
 		w.updateSystems()
 		drawSystem := w.systems[0]
-		got := drawSystem.GetEntityCount()
+		got := drawSystem.EntityCount()
 		want := 0
 		if got != want {
 			t.Errorf("Component count was incorrect, got: %d, wanted: %d", got, want)

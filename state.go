@@ -9,8 +9,8 @@ import (
 )
 
 type stateWorld interface {
-	GetName() string
-	GetSystems() []world.WorldSystem
+	Name() string
+	Systems() []world.WorldSystem
 	Load()
 	Exit()
 	Enter()
@@ -65,10 +65,10 @@ func (s *state) UpdateControls() {
 
 func (s *state) loadWorld(w stateWorld) {
 	w.Load()
-	for _, system := range w.GetSystems() {
+	for _, system := range w.Systems() {
 		system.Load()
 	}
-	s.worlds[w.GetName()] = w
+	s.worlds[w.Name()] = w
 }
 
 func (s state) RenderWidth() int {
@@ -117,7 +117,7 @@ func (s *state) ActivateWorlds(names []string) {
 	for _, world := range exitingWorlds {
 		w = s.worlds[world]
 		w.Exit()
-		for _, system := range w.GetSystems() {
+		for _, system := range w.Systems() {
 			system.Exit()
 		}
 	}
@@ -125,7 +125,7 @@ func (s *state) ActivateWorlds(names []string) {
 	for _, world := range enteringWorlds {
 		w = s.worlds[world]
 		w.Enter()
-		for _, system := range w.GetSystems() {
+		for _, system := range w.Systems() {
 			system.Enter()
 		}
 	}
@@ -139,7 +139,7 @@ func (s *state) update() {
 	for _, world := range s.activeWorlds {
 		w = s.worlds[world]
 		w.Update()
-		for _, system = range w.GetSystems() {
+		for _, system = range w.Systems() {
 			system.Update()
 		}
 	}
@@ -153,7 +153,7 @@ func (s *state) draw(screen *ebiten.Image) {
 	for _, world := range s.activeWorlds {
 		w = s.worlds[world]
 		w.Draw(screen)
-		for _, system = range w.GetSystems() {
+		for _, system = range w.Systems() {
 			system.Draw(screen)
 		}
 	}

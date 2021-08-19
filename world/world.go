@@ -9,8 +9,8 @@ import (
 )
 
 type WorldSystem interface {
-	GetComponents() []string
-	GetEntityCount() int
+	Components() []string
+	EntityCount() int
 	AddEntity(*entity.Entity)
 	Enter()
 	Exit()
@@ -30,11 +30,11 @@ type world struct {
 	entities []*entity.Entity
 }
 
-func (w *world) GetName() string {
+func (w *world) Name() string {
 	return w.name
 }
 
-func (w *world) GetSystems() []WorldSystem {
+func (w *world) Systems() []WorldSystem {
 	return w.systems
 }
 
@@ -51,7 +51,7 @@ func (w *world) updateSystems() {
 	for _, system = range w.systems {
 		for _, entity = range w.entities {
 			entityReflection = reflect.Indirect(reflect.ValueOf(entity))
-			for _, component := range system.GetComponents() {
+			for _, component := range system.Components() {
 				field = entityReflection.FieldByName(component)
 				if field.IsNil() {
 					hasComponents = false
