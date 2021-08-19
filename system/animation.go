@@ -3,8 +3,9 @@ package system
 import (
 	"math"
 
-	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/leviceccato/clarity/component"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type animationSystem struct {
@@ -25,6 +26,10 @@ func (s *animationSystem) Update() {
 		sequence         *component.AppearanceSequence
 	)
 	for _, e := range s.entities {
+		// Skip animation if there is only 1 frame
+		if len(e.Appearance.Frames) == 1 {
+			return
+		}
 		e.Appearance.Time += 16
 		duration = float64(e.Appearance.Duration)
 		if e.Appearance.Time >= duration {
