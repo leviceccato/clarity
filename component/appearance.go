@@ -28,16 +28,37 @@ type AppearanceSequence struct {
 }
 
 // Load files, format the data and then create an Appearance component
+// Pass an empty string as the second param if an animation isn't required
 func NewAppearanceComponent(imagePath, animationPath string) (*AppearanceComponent, error) {
 	c := &AppearanceComponent{
 		Sequences: map[string]*AppearanceSequence{},
 	}
+
+	// Load image
 	img, _, err := ebitenutil.NewImageFromFile(imagePath)
 	if err != nil {
 		return c, fmt.Errorf("loading appearance image: %s", err)
 	}
 	c.Image = img
 
+	// No animation required
+	if animationPath == "" {
+		c.Sequence = "default"
+		c.Sequences["default"] = &AppearanceSequence{
+			From:       0,
+			To:         0,
+			ShouldLoop: false,
+			Direction:  "forward",
+		}
+		w, h := img.Size()
+		c.Frames = []*image.Rectangle{{
+			Min: image.Point{0, 0},
+			Max: image.Point{w, h},
+		}}
+		return c, nil
+	}
+
+	// Animation required
 	anim, err := newAnimationFromFile(animationPath)
 	if err != nil {
 		return c, fmt.Errorf("loading appearance animation: %s", err)
