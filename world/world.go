@@ -30,10 +30,6 @@ type world struct {
 	entities []*entity.Entity
 }
 
-func (w *world) AddEntity(entity *entity.Entity) {
-	w.entities = append(w.entities, entity)
-}
-
 func (w *world) GetName() string {
 	return w.name
 }

@@ -33,7 +33,9 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 	}
 	player.Position.X = 10
 	player.Position.Y = 10
-	w.AddEntity(player)
+	w.entities = []*entity.Entity{
+		player,
+	}
 
 	w.updateSystems()
 

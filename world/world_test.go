@@ -28,7 +28,9 @@ func TestUpdateSystem(t *testing.T) {
 			system.NewDrawSystem(),
 		}
 		player, _ := entity.NewPlayerEntity()
-		w.AddEntity(player)
+		w.entities = []*entity.Entity{
+			player,
+		}
 		w.updateSystems()
 		drawSystem := w.systems[0]
 		got := drawSystem.GetEntityCount()
@@ -44,7 +46,9 @@ func TestUpdateSystem(t *testing.T) {
 		w.systems = []WorldSystem{
 			system.NewDrawSystem(),
 		}
-		w.AddEntity(e)
+		w.entities = []*entity.Entity{
+			e,
+		}
 		w.updateSystems()
 		drawSystem := w.systems[0]
 		got := drawSystem.GetEntityCount()
