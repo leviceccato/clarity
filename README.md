@@ -15,9 +15,22 @@ Start the game:
 go run .
 ```
 
+Build executable:
+```
+go build .
+```
+
+## Tests
+
 Run tests:
 ```
 go test ./...
+```
+
+Generate coverage and then view it in a browser:
+```
+go test ./... -coverprofile='coverage.out'
+go tool cover -html='coverage.out'
 ```
 
 ## Tasks
