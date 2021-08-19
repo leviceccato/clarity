@@ -12,6 +12,9 @@ type playableSystem struct {
 func NewPlayableSystem(state SystemState) *playableSystem {
 	s := &playableSystem{}
 	s.state = state
+	s.components = []string{
+		"Playable",
+	}
 	return s
 }
 
