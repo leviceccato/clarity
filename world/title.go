@@ -27,14 +27,12 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 	}
 
 	// Create and position player
-	player, err := entity.NewPlayerEntity()
+	titleBg, err := entity.NewTitleBgEntity()
 	if err != nil {
 		return nil, fmt.Errorf("creating player entity: %s", err)
 	}
-	player.Position.X = 10
-	player.Position.Y = 10
 	w.entities = []*entity.Entity{
-		player,
+		titleBg,
 	}
 
 	w.updateSystems()
