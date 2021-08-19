@@ -67,4 +67,22 @@ func TestUpdateSystem(t *testing.T) {
 			t.Errorf("Component count was incorrect, got: %d, wanted: %d", got, want)
 		}
 	})
+	t.Run("doesn't add entities to systems w/o components", func(t *testing.T) {
+		e := entity.NewEntity()
+		e.Position = &component.PositionComponent{}
+		w := &world{}
+		w.systems = []WorldSystem{
+			system.NewInputSystem(nil),
+		}
+		w.entities = []*entity.Entity{
+			e,
+		}
+		w.updateSystems()
+		drawSystem := w.systems[0]
+		got := drawSystem.EntityCount()
+		want := 0
+		if got != want {
+			t.Errorf("Component count was incorrect, got: %d, wanted: %d", got, want)
+		}
+	})
 }
