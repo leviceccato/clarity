@@ -26,15 +26,14 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 		system.NewPlayableSystem(systemState),
 	}
 
-	// Create and position player
 	titleBg, err := entity.NewTitleBgEntity()
 	if err != nil {
-		return nil, fmt.Errorf("creating player entity: %s", err)
+		return nil, fmt.Errorf("creating title bg entity: %s", err)
 	}
+
 	w.entities = []*entity.Entity{
 		titleBg,
 	}
-
 	w.updateSystems()
 
 	return w, nil
