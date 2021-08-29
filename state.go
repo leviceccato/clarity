@@ -6,6 +6,7 @@ import (
 	"github.com/leviceccato/clarity/world"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"golang.org/x/image/font"
 )
 
 type stateWorld interface {
@@ -26,6 +27,7 @@ type state struct {
 	controls                  map[system.Control]*system.InputData
 	mouseInputs               map[ebiten.MouseButton]system.Control
 	keyInputs                 map[ebiten.Key]system.Control
+	fonts                     map[string]*font.Face
 }
 
 func newState() *state {

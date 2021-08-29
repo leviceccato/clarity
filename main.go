@@ -34,13 +34,19 @@ func (g *game) Layout(w, h int) (int, int) {
 func main() {
 	// Initialisations
 	utility.InitTranslations()
-
+	fonts, err := utility.LoadFonts(map[string]string{
+		"lana_pixel": "assets/lana_pixel.ttf",
+	})
+	if err != nil {
+		fmt.Printf("loading fonts: %s", err)
+	}
 	ebiten.SetWindowSize(renderWidth*2, renderHeight*2)
 	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowTitle("Clarity")
 
 	// Create state and load game data
 	mainState := newState()
+	mainState.fonts = fonts
 	mainState.renderWidth = renderWidth
 	mainState.renderHeight = renderHeight
 	startWorld, err := world.NewStartWorld(mainState)
