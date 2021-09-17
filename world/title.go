@@ -2,6 +2,7 @@ package world
 
 import (
 	"fmt"
+	"image/color"
 
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/system"
@@ -38,6 +39,7 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 		Width:  100,
 		Height: 50,
 		Text:   utility.Trans("start"),
+		Color:  color.NRGBA{255, 255, 255, 255},
 		Image:  "assets/cursor.png",
 	})
 	if err != nil {
