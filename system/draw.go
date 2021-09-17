@@ -6,6 +6,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
+	"github.com/hajimehoshi/ebiten/v2/text"
 )
 
 type drawSystem struct {
@@ -37,6 +38,10 @@ func (s *drawSystem) Draw(screen *ebiten.Image) {
 			e.Appearance.Image.SubImage(*e.Appearance.Frames[e.Appearance.Frame]).(*ebiten.Image),
 			options,
 		)
+		if e.Text != nil {
+			fmt.Print(e.Text.Content)
+			text.Draw(screen, e.Text.Content, *s.state.Font("lana_pixel"), int(e.Position.X), int(e.Position.Y), e.Text.Color)
+		}
 	}
 	ebitenutil.DebugPrint(screen, fmt.Sprintf(
 		"TPS: %0.2f\nFPS: %0.2f",
