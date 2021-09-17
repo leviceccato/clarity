@@ -41,10 +41,10 @@ func (s *hoverSystem) Update() {
 			if isHovered {
 				e.Appearance.PreviousSequence = e.Appearance.Sequence
 				e.Appearance.Sequence = "hover"
-			} else {
-				e.Appearance.PreviousSequence = "hover"
-				e.Appearance.Sequence = e.Appearance.PreviousSequence
+				continue
 			}
+			e.Appearance.PreviousSequence = "hover"
+			e.Appearance.Sequence = e.Appearance.PreviousSequence
 		}
 	}
 }
