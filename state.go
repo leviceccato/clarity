@@ -109,6 +109,10 @@ func (s *state) AddEvent(event interface{}) {
 	s.events = append(s.events, event)
 }
 
+func (s state) Font(name string) *font.Face {
+	return s.fonts[name]
+}
+
 // Build slices for exiting and entering worlds based on what
 // worlds are currently active and those that will be. Then
 // exit and enter all of those worlds.

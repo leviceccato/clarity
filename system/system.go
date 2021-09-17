@@ -2,6 +2,7 @@ package system
 
 import (
 	"github.com/leviceccato/clarity/entity"
+	"golang.org/x/image/font"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -20,6 +21,7 @@ type SystemState interface {
 	SetEvents([]interface{})
 	AddEvent(interface{})
 	ActivateWorlds([]string)
+	Font(string) *font.Face
 }
 
 func (s *system) Components() []string {
