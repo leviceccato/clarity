@@ -5,12 +5,12 @@ import (
 )
 
 type TextComponent struct {
-	Text  string
-	Color color.NRGBA
+	Content string
+	Color   color.NRGBA
 }
 
 func NewTextComponent(text string) *TextComponent {
 	return &TextComponent{
-		Text: text,
+		Content: text,
 	}
 }
