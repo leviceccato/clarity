@@ -39,7 +39,6 @@ func (s *drawSystem) Draw(screen *ebiten.Image) {
 			options,
 		)
 		if e.Text != nil {
-			fmt.Print(e.Text.Content)
 			text.Draw(screen, e.Text.Content, *s.state.Font("lana_pixel"), int(e.Position.X), int(e.Position.Y), e.Text.Color)
 		}
 	}
