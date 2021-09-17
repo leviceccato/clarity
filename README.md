@@ -46,5 +46,6 @@ A list of complete and incomplete tasks to track the progress of the game.
 - [x] Make event system remove events after actioning them
 - [x] Add player movement
 - [x] Have system effect no entities when no components are specified
+- [ ] Add text centering and box for buttons
 - [ ] Add systems and components for basic UI interactions
 - [ ] Get world switching working
