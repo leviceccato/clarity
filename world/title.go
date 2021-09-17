@@ -5,6 +5,7 @@ import (
 
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/system"
+	"github.com/leviceccato/clarity/utility"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -31,8 +32,21 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 		return nil, fmt.Errorf("creating title bg entity: %s", err)
 	}
 
+	titleButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
+		X:      50,
+		Y:      50,
+		Width:  100,
+		Height: 50,
+		Text:   utility.Trans("start"),
+		Image:  "assets/cursor.png",
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating title button entity: %s", err)
+	}
+
 	w.entities = []*entity.Entity{
 		titleBg,
+		titleButton,
 	}
 	w.updateSystems()
 
