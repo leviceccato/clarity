@@ -19,7 +19,7 @@ func NewStartWorld(state gameState) (*startWorld, error) {
 
 	systemState := state.(system.SystemState)
 	w.systems = []WorldSystem{
-		system.NewDrawSystem(),
+		system.NewDrawSystem(systemState),
 		system.NewAnimationSystem(),
 		system.NewInputSystem(systemState),
 		system.NewEventSystem(systemState),
@@ -33,10 +33,10 @@ func NewStartWorld(state gameState) (*startWorld, error) {
 	}
 	player.Position.X = float64(state.RenderWidth()) / 2
 	player.Position.Y = float64(state.RenderHeight()) / 2
+
 	w.entities = []*entity.Entity{
 		player,
 	}
-
 	w.updateSystems()
 
 	return w, nil

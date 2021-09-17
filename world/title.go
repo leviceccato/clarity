@@ -19,7 +19,7 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 
 	systemState := state.(system.SystemState)
 	w.systems = []WorldSystem{
-		system.NewDrawSystem(),
+		system.NewDrawSystem(systemState),
 		system.NewAnimationSystem(),
 		system.NewInputSystem(systemState),
 		system.NewEventSystem(systemState),

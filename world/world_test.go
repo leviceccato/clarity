@@ -12,7 +12,7 @@ func TestUpdateSystem(t *testing.T) {
 	t.Run("defaults to no components", func(t *testing.T) {
 		w := &world{}
 		w.systems = []WorldSystem{
-			system.NewDrawSystem(),
+			system.NewDrawSystem(nil),
 		}
 		w.updateSystems()
 		drawSystem := w.systems[0]
@@ -54,7 +54,7 @@ func TestUpdateSystem(t *testing.T) {
 		e.Position = &component.PositionComponent{}
 		w := &world{}
 		w.systems = []WorldSystem{
-			system.NewDrawSystem(),
+			system.NewDrawSystem(nil),
 		}
 		w.entities = []*entity.Entity{
 			e,

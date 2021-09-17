@@ -10,10 +10,12 @@ import (
 
 type drawSystem struct {
 	system
+	state SystemState
 }
 
-func NewDrawSystem() *drawSystem {
+func NewDrawSystem(state SystemState) *drawSystem {
 	s := &drawSystem{}
+	s.state = state
 	s.components = []string{
 		"Appearance",
 		"Position",
