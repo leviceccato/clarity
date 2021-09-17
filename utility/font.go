@@ -20,9 +20,9 @@ func LoadFonts(f map[string]string) (map[string]*font.Face, error) {
 			return nil, fmt.Errorf("parsing '%s' font file: %s", name, err)
 		}
 		font, err := opentype.NewFace(fontfile, &opentype.FaceOptions{
-			Size:    12,
+			Size:    11,
 			DPI:     72,
-			Hinting: font.HintingFull,
+			Hinting: font.HintingNone,
 		})
 		if err != nil {
 			return nil, fmt.Errorf("creating '%s' font face: %s", name, err)
