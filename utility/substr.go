@@ -1,12 +1,13 @@
 package utility
 
-func Substr(input string, start int, length int) string {
-	asRunes := []rune(input)
-	if start >= len(asRunes) {
+// Convert string to runes
+func Substr(str string, start int, length int) string {
+	runes := []rune(str)
+	if start >= len(runes) {
 		return ""
 	}
-	if start+length > len(asRunes) {
-		length = len(asRunes) - start
+	if start+length > len(runes) {
+		length = len(runes) - start
 	}
-	return string(asRunes[start : start+length])
+	return string(runes[start : start+length])
 }
