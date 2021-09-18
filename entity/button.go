@@ -32,12 +32,13 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 
 	// Button with text
 	if options.Text != "" {
-		// Fit text within padded rectangle
+		// Fit text within padded rectangle and build a slice
+		// of strings with unbroken words
 		maxWidth := options.Width - (options.Padding * 2)
 		textRect := text.BoundString(options.Font, options.Text)
 		textWidth := textRect.Max.X - textRect.Min.X
-		// Build a slice of strings with unbroken words
 		ratio := float64(textWidth) / maxWidth
+		// Base max chars on average chars per line
 		maxChars := int(math.Ceil(float64(len(options.Text)) / ratio))
 		words := strings.Fields(options.Text)
 		var (
