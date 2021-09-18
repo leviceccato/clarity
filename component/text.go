@@ -2,15 +2,20 @@ package component
 
 import (
 	"image/color"
+
+	"golang.org/x/image/font"
 )
 
 type TextComponent struct {
-	Content string
-	Color   color.NRGBA
+	Lines      []string
+	Color      color.NRGBA
+	LineHeight int
+	Font       font.Face
+	IsCentered bool
 }
 
 func NewTextComponent(text string) *TextComponent {
-	return &TextComponent{
-		Content: text,
-	}
+	c := &TextComponent{}
+	c.Lines = append(c.Lines, text)
+	return c
 }

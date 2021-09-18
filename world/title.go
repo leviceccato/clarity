@@ -39,6 +39,7 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 		Width:  100,
 		Height: 50,
 		Text:   utility.Trans("start"),
+		Font:   *systemState.Font("lana_pixel"),
 		Color:  color.NRGBA{255, 255, 255, 255},
 		Image:  "assets/cursor.png",
 	})
