@@ -21,7 +21,7 @@ func SliceStringDifference(a, b []string) []string {
 
 // Have to convert to runes to perform a substr so that
 // it supports non-ASCII characters
-func Substr(str string, start int, length int) string {
+func Substr(str string, start, length int) string {
 	runes := []rune(str)
 	if start >= len(runes) {
 		return ""
