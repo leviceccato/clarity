@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"image/color"
 	"math"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2/text"
 	"github.com/leviceccato/clarity/component"
-	"github.com/leviceccato/clarity/utility"
 	"golang.org/x/image/font"
 )
 
@@ -17,6 +17,8 @@ type ButtonEntityOptions struct {
 	Color                        color.NRGBA
 	Font                         font.Face
 }
+
+const space = " "
 
 func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 	e := NewEntity()
@@ -30,16 +32,32 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 
 	// Button with text
 	if options.Text != "" {
+		// Fit text within padded rectangle
 		maxWidth := options.Width - (options.Padding * 2)
 		textRect := text.BoundString(options.Font, options.Text)
 		textWidth := textRect.Max.X - textRect.Min.X
+		// Build a slice of strings with unbroken words
 		ratio := float64(textWidth) / maxWidth
 		maxChars := int(math.Ceil(float64(len(options.Text)) / ratio))
-		lineCount := int(math.Ceil(ratio))
-		var lines []string
-		for i := 0; i < lineCount; i++ {
-			lines = append(lines, utility.Substr(options.Text, i*maxChars, maxChars))
+		words := strings.Fields(options.Text)
+		var (
+			lines []string
+			line  string
+		)
+		for i, word := range words {
+			// We've reached the end of the line, start a new one
+			if len(line+space+word) >= maxChars {
+				lines = append(lines, line)
+				line = ""
+			}
+			// Put space between every word
+			if i > 0 {
+				line += space
+			}
+			line += word
 		}
+		lines = append(lines, line)
+
 		e.Text = &component.TextComponent{
 			Lines:      lines,
 			Color:      options.Color,
