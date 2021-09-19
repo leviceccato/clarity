@@ -2,6 +2,7 @@ package entity
 
 import (
 	"fmt"
+	"image"
 	"image/color"
 	"math"
 	"strings"
@@ -48,9 +49,11 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 	// Fit text within padded rectangle and build a slice
 	// of strings with unbroken words
 	var (
-		lines []component.TextLine
-		line  component.TextLine
-		word  string
+		lines     []component.TextLine
+		line      component.TextLine
+		word      string
+		lineRect  image.Rectangle
+		lineWidth int
 	)
 	// Loop over words and then once more to add the final line
 	for i := 0; i <= wordCount; i++ {
@@ -61,8 +64,8 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		// line then add a new line
 		if i == wordCount || len(line.Content+space+word) >= maxChars {
 			if options.IsCentered {
-				lineRect := text.BoundString(options.Font, line.Content)
-				lineWidth := lineRect.Max.X - lineRect.Min.X
+				lineRect = text.BoundString(options.Font, line.Content)
+				lineWidth = lineRect.Max.X - lineRect.Min.X
 				line.X = (maxWidth - float64(lineWidth)) / 2
 			}
 			lines = append(lines, line)
