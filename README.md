@@ -47,6 +47,7 @@ A list of complete and incomplete tasks to track the progress of the game.
 - [x] Add player movement
 - [x] Have system effect no entities when no components are specified
 - [x] Move text line creating logic into text component
-- [ ] Add text centering and box for buttons
+- [x] Add text centering and box for buttons
+- [x] Add button padding support
 - [ ] Add systems and components for basic UI interactions
 - [ ] Get world switching working

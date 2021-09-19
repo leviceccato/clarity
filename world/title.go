@@ -2,7 +2,6 @@ package world
 
 import (
 	"fmt"
-	"image/color"
 
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/system"
@@ -34,15 +33,15 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 	}
 
 	titleButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
-		X:          50,
-		Y:          50,
-		Width:      100,
-		Height:     50,
-		Text:       utility.Trans("start"),
-		Font:       *systemState.Font("lana_pixel"),
-		Color:      color.NRGBA{255, 255, 255, 255},
-		IsCentered: true,
-		Image:      "assets/cursor.png",
+		X:       50,
+		Y:       50,
+		Width:   100,
+		Height:  50,
+		Padding: 10,
+		Text:    utility.Trans("start"),
+		Font:    *systemState.Font("lana_pixel"),
+		Color:   systemState.Color("fg_title"),
+		Image:   "assets/cursor.png",
 	})
 	if err != nil {
 		return nil, fmt.Errorf("creating title button entity: %s", err)

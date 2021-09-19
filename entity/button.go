@@ -82,6 +82,7 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		Lines:      lines,
 		Color:      options.Color,
 		Font:       options.Font,
+		Padding:    options.Padding,
 		LineHeight: options.Font.Metrics().Height.Round(),
 	}
 	return e, nil

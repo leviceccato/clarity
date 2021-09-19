@@ -17,6 +17,7 @@ type TextComponent struct {
 	LineHeight int
 	Font       font.Face
 	IsCentered bool
+	Padding    float64
 }
 
 func NewTextComponent(text string) *TextComponent {

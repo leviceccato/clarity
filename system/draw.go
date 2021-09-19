@@ -48,7 +48,7 @@ func (s *drawSystem) Draw(screen *ebiten.Image) {
 					screen,
 					line.Content,
 					e.Text.Font,
-					int(e.Position.X)+int(line.X),
+					int(e.Position.X)+int(line.X)+int(e.Text.Padding),
 					int(e.Position.Y)+(i*e.Text.LineHeight),
 					e.Text.Color,
 				)
