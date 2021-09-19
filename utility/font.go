@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
+	"github.com/hajimehoshi/ebiten/v2/text"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/opentype"
 )
@@ -30,4 +31,9 @@ func LoadFonts(f map[string]string) (map[string]*font.Face, error) {
 		fonts[name] = &face
 	}
 	return fonts, nil
+}
+
+func TextWidth(f font.Face, content string) int {
+	rect := text.BoundString(f, content)
+	return rect.Max.X - rect.Min.X
 }

@@ -2,13 +2,12 @@ package entity
 
 import (
 	"fmt"
-	"image"
 	"image/color"
 	"math"
 	"strings"
 
-	"github.com/hajimehoshi/ebiten/v2/text"
 	"github.com/leviceccato/clarity/component"
+	"github.com/leviceccato/clarity/utility"
 	"golang.org/x/image/font"
 )
 
@@ -39,8 +38,7 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 
 	// Button with text
 	maxWidth := options.Width - (options.Padding * 2)
-	textRect := text.BoundString(options.Font, options.Text)
-	textWidth := textRect.Max.X - textRect.Min.X
+	textWidth := utility.TextWidth(options.Font, options.Text)
 	ratio := float64(textWidth) / maxWidth
 	// Base max chars on average chars per line
 	maxChars := int(math.Ceil(float64(len(options.Text)) / ratio))
@@ -52,7 +50,6 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		lines     []component.TextLine
 		line      component.TextLine
 		word      string
-		lineRect  image.Rectangle
 		lineWidth int
 	)
 	// Loop over words and then once more to add the final line
@@ -64,8 +61,7 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		// line then add a new line
 		if i == wordCount || len(line.Content+space+word) >= maxChars {
 			if options.IsCentered {
-				lineRect = text.BoundString(options.Font, line.Content)
-				lineWidth = lineRect.Max.X - lineRect.Min.X
+				lineWidth = utility.TextWidth(options.Font, line.Content)
 				line.X = (maxWidth - float64(lineWidth)) / 2
 			}
 			lines = append(lines, line)
