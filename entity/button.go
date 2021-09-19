@@ -56,6 +56,8 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		if i < wordCount {
 			word = words[i]
 		}
+		// If we are on the last iteration or if we will go on to the next
+		// line then add a new line
 		if i == wordCount || len(line.Content+space+word) >= maxChars {
 			if options.IsCentered {
 				lineRect := text.BoundString(options.Font, line.Content)
