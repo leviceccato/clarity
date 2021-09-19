@@ -44,15 +44,19 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 	// Base max chars on average chars per line
 	maxChars := int(math.Ceil(float64(len(options.Text)) / ratio))
 	words := strings.Fields(options.Text)
+	wordCount := len(words)
 	// Fit text within padded rectangle and build a slice
 	// of strings with unbroken words
 	var (
 		lines []component.TextLine
 		line  component.TextLine
+		word  string
 	)
-	for _, word := range words {
-		// We've reached the end of the line, start a new one
-		if len(line.Content+space+word) >= maxChars {
+	for i := 0; i <= wordCount; i++ {
+		if i < wordCount {
+			word = words[i]
+		}
+		if i == wordCount || len(line.Content+space+word) >= maxChars {
 			if options.IsCentered {
 				lineRect := text.BoundString(options.Font, line.Content)
 				lineWidth := lineRect.Max.X - lineRect.Min.X
@@ -67,12 +71,6 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		}
 		line.Content += word
 	}
-	if options.IsCentered {
-		lineRect := text.BoundString(options.Font, line.Content)
-		lineWidth := lineRect.Max.X - lineRect.Min.X
-		line.X = (maxWidth - float64(lineWidth)) / 2
-	}
-	lines = append(lines, line)
 
 	e.Text = &component.TextComponent{
 		Lines:      lines,
