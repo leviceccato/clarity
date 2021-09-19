@@ -49,5 +49,6 @@ A list of complete and incomplete tasks to track the progress of the game.
 - [x] Move text line creating logic into text component
 - [x] Add text centering and box for buttons
 - [x] Add button padding support
+- [ ] Add custom mouse cursor
 - [ ] Add systems and components for basic UI interactions
 - [ ] Get world switching working
