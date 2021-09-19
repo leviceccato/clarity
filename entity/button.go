@@ -52,6 +52,7 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		line  component.TextLine
 		word  string
 	)
+	// Loop over words and then once more to add the final line
 	for i := 0; i <= wordCount; i++ {
 		if i < wordCount {
 			word = words[i]
