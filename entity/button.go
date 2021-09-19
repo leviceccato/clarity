@@ -19,8 +19,6 @@ type ButtonEntityOptions struct {
 	Font                         font.Face
 }
 
-const space = " "
-
 func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 	e := NewEntity()
 	e.Position = &component.PositionComponent{X: options.X, Y: options.Y}
@@ -59,7 +57,7 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		}
 		// If we are on the last iteration or if we will go on to the next
 		// line then add a new line
-		if i == wordCount || len(line.Content+space+word) >= maxChars {
+		if i == wordCount || len(line.Content+" "+word) >= maxChars {
 			if options.IsCentered {
 				lineWidth = utility.TextWidth(options.Font, line.Content)
 				line.X = (maxWidth - float64(lineWidth)) / 2
@@ -69,7 +67,7 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		}
 		// Put space between every word but not at the start of a line
 		if line.Content != "" {
-			line.Content += space
+			line.Content += " "
 		}
 		line.Content += word
 	}
