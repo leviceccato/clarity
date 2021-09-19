@@ -25,6 +25,7 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 		system.NewInputSystem(systemState),
 		system.NewEventSystem(systemState),
 		system.NewPlayableSystem(systemState),
+		system.NewCursorSystem(),
 	}
 
 	titleBg, err := entity.NewTitleBgEntity()
@@ -47,9 +48,15 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 		return nil, fmt.Errorf("creating title button entity: %s", err)
 	}
 
+	cursor, err := entity.NewCursorEntity()
+	if err != nil {
+		return nil, fmt.Errorf("creating cursor entity: %s", err)
+	}
+
 	w.entities = []*entity.Entity{
 		titleBg,
 		titleButton,
+		cursor,
 	}
 	w.updateSystems()
 
