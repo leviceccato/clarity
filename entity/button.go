@@ -13,6 +13,7 @@ import (
 
 type ButtonEntityOptions struct {
 	X, Y, Width, Height, Padding float64
+	IsCentered                   bool
 	Text, Image, Animation       string
 	Color                        color.NRGBA
 	Font                         font.Face
@@ -30,41 +31,54 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 	}
 	e.Appearance = appearance
 
-	// Button with text
-	if options.Text != "" {
-		// Fit text within padded rectangle and build a slice
-		// of strings with unbroken words
-		maxWidth := options.Width - (options.Padding * 2)
-		textRect := text.BoundString(options.Font, options.Text)
-		textWidth := textRect.Max.X - textRect.Min.X
-		ratio := float64(textWidth) / maxWidth
-		// Base max chars on average chars per line
-		maxChars := int(math.Ceil(float64(len(options.Text)) / ratio))
-		words := strings.Fields(options.Text)
-		var (
-			lines []string
-			line  string
-		)
-		for i, word := range words {
-			// We've reached the end of the line, start a new one
-			if len(line+space+word) >= maxChars {
-				lines = append(lines, line)
-				line = ""
-			}
-			// Put space between every word
-			if i > 0 {
-				line += space
-			}
-			line += word
-		}
-		lines = append(lines, line)
+	// No text
+	if options.Text == "" {
+		return e, nil
+	}
 
-		e.Text = &component.TextComponent{
-			Lines:      lines,
-			Color:      options.Color,
-			Font:       options.Font,
-			LineHeight: options.Font.Metrics().Height.Round(),
+	// Button with text
+	maxWidth := options.Width - (options.Padding * 2)
+	textRect := text.BoundString(options.Font, options.Text)
+	textWidth := textRect.Max.X - textRect.Min.X
+	ratio := float64(textWidth) / maxWidth
+	// Base max chars on average chars per line
+	maxChars := int(math.Ceil(float64(len(options.Text)) / ratio))
+	words := strings.Fields(options.Text)
+	// Fit text within padded rectangle and build a slice
+	// of strings with unbroken words
+	var (
+		lines []component.TextLine
+		line  component.TextLine
+	)
+	for _, word := range words {
+		// We've reached the end of the line, start a new one
+		if len(line.Content+space+word) >= maxChars {
+			if options.IsCentered {
+				lineRect := text.BoundString(options.Font, line.Content)
+				lineWidth := lineRect.Max.X - lineRect.Min.X
+				line.X = (maxWidth - float64(lineWidth)) / 2
+			}
+			lines = append(lines, line)
+			line = component.TextLine{}
 		}
+		// Put space between every word but not at the start of a line
+		if line.Content != "" {
+			line.Content += space
+		}
+		line.Content += word
+	}
+	if options.IsCentered {
+		lineRect := text.BoundString(options.Font, line.Content)
+		lineWidth := lineRect.Max.X - lineRect.Min.X
+		line.X = (maxWidth - float64(lineWidth)) / 2
+	}
+	lines = append(lines, line)
+
+	e.Text = &component.TextComponent{
+		Lines:      lines,
+		Color:      options.Color,
+		Font:       options.Font,
+		LineHeight: options.Font.Metrics().Height.Round(),
 	}
 	return e, nil
 }

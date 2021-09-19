@@ -46,9 +46,9 @@ func (s *drawSystem) Draw(screen *ebiten.Image) {
 			for i, line := range e.Text.Lines {
 				text.Draw(
 					screen,
-					line,
+					line.Content,
 					e.Text.Font,
-					int(e.Position.X),
+					int(e.Position.X)+int(line.X),
 					int(e.Position.Y)+(i*e.Text.LineHeight),
 					e.Text.Color,
 				)

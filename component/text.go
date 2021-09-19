@@ -6,8 +6,13 @@ import (
 	"golang.org/x/image/font"
 )
 
+type TextLine struct {
+	Content string
+	X       float64
+}
+
 type TextComponent struct {
-	Lines      []string
+	Lines      []TextLine
 	Color      color.NRGBA
 	LineHeight int
 	Font       font.Face
@@ -16,6 +21,6 @@ type TextComponent struct {
 
 func NewTextComponent(text string) *TextComponent {
 	c := &TextComponent{}
-	c.Lines = append(c.Lines, text)
+	c.Lines = append(c.Lines, TextLine{Content: text})
 	return c
 }
