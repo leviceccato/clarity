@@ -26,6 +26,10 @@ func (s *cursorSystem) Update() {
 
 func (s *cursorSystem) Draw(screen *ebiten.Image) {}
 
-func (s *cursorSystem) Enter() {}
+func (s *cursorSystem) Enter() {
+	ebiten.SetCursorMode(ebiten.CursorModeHidden)
+}
 
-func (s *cursorSystem) Exit() {}
+func (s *cursorSystem) Exit() {
+	ebiten.SetCursorMode(ebiten.CursorModeVisible)
+}
