@@ -35,7 +35,7 @@ type state struct {
 	fonts  map[string]*font.Face
 	colors map[string]color.NRGBA
 
-	cursorX, cursorY int
+	cursorX, cursorY float64
 }
 
 func newState() *state {
@@ -61,9 +61,6 @@ func newState() *state {
 	s.colors = map[string]color.NRGBA{
 		"fg_title": {255, 240, 157, 255},
 	}
-	x, y := ebiten.CursorPosition()
-	s.cursorX = x
-	s.cursorY = y
 	return s
 }
 
@@ -131,7 +128,7 @@ func (s state) Color(name string) color.NRGBA {
 	return s.colors[name]
 }
 
-func (s state) CursorPosition() (int, int) {
+func (s state) CursorPosition() (float64, float64) {
 	return s.cursorX, s.cursorY
 }
 
@@ -165,8 +162,8 @@ func (s *state) ActivateWorlds(names []string) {
 
 func (s *state) update() {
 	x, y := ebiten.CursorPosition()
-	s.cursorX = x
-	s.cursorY = y
+	s.cursorX = float64(x)
+	s.cursorY = float64(y)
 	var (
 		w         stateWorld
 		system    world.WorldSystem

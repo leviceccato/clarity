@@ -25,7 +25,7 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 		system.NewInputSystem(systemState),
 		system.NewEventSystem(systemState),
 		system.NewPlayableSystem(systemState),
-		system.NewCursorSystem(),
+		system.NewCursorSystem(systemState),
 	}
 
 	titleBg, err := entity.NewTitleBgEntity()

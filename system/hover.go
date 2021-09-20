@@ -7,10 +7,12 @@ import (
 
 type hoverSystem struct {
 	system
+	state SystemState
 }
 
-func NewHoverSystem() *hoverSystem {
+func NewHoverSystem(state SystemState) *hoverSystem {
 	s := &hoverSystem{}
+	s.state = state
 	s.components = []string{
 		"Hover",
 		"Position",
@@ -22,15 +24,15 @@ func NewHoverSystem() *hoverSystem {
 func (s *hoverSystem) Load() {}
 
 func (s *hoverSystem) Update() {
-	mouseX, mouseY := ebiten.CursorPosition()
+	mouseX, mouseY := s.state.CursorPosition()
 	var (
 		hasHoverChanged, isHovered, hasHoverSequence bool
 		e                                            *entity.Entity
 	)
 	for _, e = range s.entities {
 		// Check if mouse is within x and y ranges
-		isHovered = mouseX >= int(e.Position.X) && mouseX <= int(e.Position.X)+int(e.Size.Width) &&
-			mouseY >= int(e.Position.Y) && mouseY <= int(e.Position.Y)+int(e.Size.Height)
+		isHovered = mouseX >= e.Position.X && mouseX <= e.Position.X+e.Size.Width &&
+			mouseY >= e.Position.Y && mouseY <= e.Position.Y+e.Size.Height
 		hasHoverChanged = isHovered != e.Hover.IsHovered
 		if hasHoverChanged {
 			e.Hover.IsHovered = isHovered
