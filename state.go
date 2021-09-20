@@ -1,6 +1,8 @@
 package main
 
 import (
+	"image/color"
+
 	"github.com/leviceccato/clarity/system"
 	"github.com/leviceccato/clarity/utility"
 	"github.com/leviceccato/clarity/world"
@@ -20,14 +22,20 @@ type stateWorld interface {
 }
 
 type state struct {
-	worlds                    map[string]stateWorld
-	activeWorlds              []string
-	events                    []interface{}
 	renderWidth, renderHeight int
-	controls                  map[system.Control]*system.InputData
-	mouseInputs               map[ebiten.MouseButton]system.Control
-	keyInputs                 map[ebiten.Key]system.Control
-	fonts                     map[string]*font.Face
+
+	worlds       map[string]stateWorld
+	activeWorlds []string
+	events       []interface{}
+
+	controls    map[system.Control]*system.InputData
+	mouseInputs map[ebiten.MouseButton]system.Control
+	keyInputs   map[ebiten.Key]system.Control
+
+	fonts  map[string]*font.Face
+	colors map[string]color.NRGBA
+
+	cursorX, cursorY float64
 }
 
 func newState() *state {
@@ -50,6 +58,9 @@ func newState() *state {
 		ebiten.KeyBackquote:  system.ControlDebug,
 	}
 	s.UpdateControls()
+	s.colors = map[string]color.NRGBA{
+		"fg_title": {255, 240, 157, 255},
+	}
 	return s
 }
 
@@ -113,37 +124,53 @@ func (s state) Font(name string) *font.Face {
 	return s.fonts[name]
 }
 
+func (s state) Color(name string) color.NRGBA {
+	return s.colors[name]
+}
+
+func (s state) CursorPosition() (float64, float64) {
+	return s.cursorX, s.cursorY
+}
+
 // Build slices for exiting and entering worlds based on what
 // worlds are currently active and those that will be. Then
 // exit and enter all of those worlds.
 func (s *state) ActivateWorlds(names []string) {
-	var w stateWorld
 	exitingWorlds := utility.SliceStringDifference(s.activeWorlds, names)
 	enteringWorlds := utility.SliceStringDifference(names, s.activeWorlds)
-	for _, world := range exitingWorlds {
-		w = s.worlds[world]
+	var (
+		w         stateWorld
+		system    world.WorldSystem
+		worldName string
+	)
+	for _, worldName = range exitingWorlds {
+		w = s.worlds[worldName]
 		w.Exit()
-		for _, system := range w.Systems() {
+		for _, system = range w.Systems() {
 			system.Exit()
 		}
 	}
 	s.activeWorlds = names
-	for _, world := range enteringWorlds {
-		w = s.worlds[world]
+	for _, worldName = range enteringWorlds {
+		w = s.worlds[worldName]
 		w.Enter()
-		for _, system := range w.Systems() {
+		for _, system = range w.Systems() {
 			system.Enter()
 		}
 	}
 }
 
 func (s *state) update() {
+	x, y := ebiten.CursorPosition()
+	s.cursorX = float64(x)
+	s.cursorY = float64(y)
 	var (
-		w      stateWorld
-		system world.WorldSystem
+		w         stateWorld
+		system    world.WorldSystem
+		worldName string
 	)
-	for _, world := range s.activeWorlds {
-		w = s.worlds[world]
+	for _, worldName = range s.activeWorlds {
+		w = s.worlds[worldName]
 		w.Update()
 		for _, system = range w.Systems() {
 			system.Update()
@@ -153,11 +180,12 @@ func (s *state) update() {
 
 func (s *state) draw(screen *ebiten.Image) {
 	var (
-		w      stateWorld
-		system world.WorldSystem
+		w         stateWorld
+		system    world.WorldSystem
+		worldName string
 	)
-	for _, world := range s.activeWorlds {
-		w = s.worlds[world]
+	for _, worldName = range s.activeWorlds {
+		w = s.worlds[worldName]
 		w.Draw(screen)
 		for _, system = range w.Systems() {
 			system.Draw(screen)

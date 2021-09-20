@@ -14,6 +14,7 @@ type Entity struct {
 	Hover      *component.HoverComponent
 	Playable   *component.PlayableComponent
 	Text       *component.TextComponent
+	Cursor     *component.CursorComponent
 }
 
 func NewEntity() *Entity {

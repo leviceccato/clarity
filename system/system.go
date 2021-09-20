@@ -1,6 +1,8 @@
 package system
 
 import (
+	"image/color"
+
 	"github.com/leviceccato/clarity/entity"
 	"golang.org/x/image/font"
 
@@ -22,6 +24,8 @@ type SystemState interface {
 	AddEvent(interface{})
 	ActivateWorlds([]string)
 	Font(string) *font.Face
+	Color(string) color.NRGBA
+	CursorPosition() (float64, float64)
 }
 
 func (s *system) Components() []string {
