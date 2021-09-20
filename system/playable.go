@@ -2,6 +2,7 @@ package system
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/leviceccato/clarity/entity"
 )
 
 type playableSystem struct {
@@ -22,7 +23,8 @@ func (s *playableSystem) Load() {}
 
 func (s *playableSystem) Update() {
 	c := s.state.Controls()
-	for _, e := range s.entities {
+	var e *entity.Entity
+	for _, e = range s.entities {
 		if c[ControlUp] != nil {
 			e.Position.Y -= 3
 		}

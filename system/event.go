@@ -32,7 +32,8 @@ func (s *eventSystem) Update() {
 	if len(events) == 0 {
 		return
 	}
-	for _, event := range events {
+	var event interface{}
+	for _, event = range events {
 		switch e := event.(type) {
 		case quitEvent:
 			os.Exit(e.code)

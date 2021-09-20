@@ -2,6 +2,7 @@ package system
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/leviceccato/clarity/entity"
 )
 
 type hoverSystem struct {
@@ -22,8 +23,11 @@ func (s *hoverSystem) Load() {}
 
 func (s *hoverSystem) Update() {
 	mouseX, mouseY := ebiten.CursorPosition()
-	var hasHoverChanged, isHovered, hasHoverSequence bool
-	for _, e := range s.entities {
+	var (
+		hasHoverChanged, isHovered, hasHoverSequence bool
+		e                                            *entity.Entity
+	)
+	for _, e = range s.entities {
 		// Check if mouse is within x and y ranges
 		isHovered = mouseX >= int(e.Position.X) && mouseX <= int(e.Position.X)+int(e.Size.Width) &&
 			mouseY >= int(e.Position.Y) && mouseY <= int(e.Position.Y)+int(e.Size.Height)

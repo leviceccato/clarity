@@ -17,11 +17,15 @@ func NewCursorSystem() *cursorSystem {
 func (s *cursorSystem) Load() {}
 
 func (s *cursorSystem) Update() {
-	for _, e := range s.entities {
-		x, y := ebiten.CursorPosition()
-		e.Position.X = float64(x)
-		e.Position.Y = float64(y)
-	}
+	// var (
+	// 	e    *entity.Entity
+	// 	x, y int
+	// )
+	// for _, e = range s.entities {
+	// 	x, y = ebiten.CursorPosition()
+	// 	e.Position.X = float64(x)
+	// 	e.Position.Y = float64(y)
+	// }
 }
 
 func (s *cursorSystem) Draw(screen *ebiten.Image) {}
