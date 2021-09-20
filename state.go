@@ -127,21 +127,25 @@ func (s state) Color(name string) color.NRGBA {
 // worlds are currently active and those that will be. Then
 // exit and enter all of those worlds.
 func (s *state) ActivateWorlds(names []string) {
-	var w stateWorld
 	exitingWorlds := utility.SliceStringDifference(s.activeWorlds, names)
 	enteringWorlds := utility.SliceStringDifference(names, s.activeWorlds)
-	for _, world := range exitingWorlds {
-		w = s.worlds[world]
+	var (
+		w         stateWorld
+		system    world.WorldSystem
+		worldName string
+	)
+	for _, worldName = range exitingWorlds {
+		w = s.worlds[worldName]
 		w.Exit()
-		for _, system := range w.Systems() {
+		for _, system = range w.Systems() {
 			system.Exit()
 		}
 	}
 	s.activeWorlds = names
-	for _, world := range enteringWorlds {
-		w = s.worlds[world]
+	for _, worldName = range enteringWorlds {
+		w = s.worlds[worldName]
 		w.Enter()
-		for _, system := range w.Systems() {
+		for _, system = range w.Systems() {
 			system.Enter()
 		}
 	}
@@ -149,11 +153,12 @@ func (s *state) ActivateWorlds(names []string) {
 
 func (s *state) update() {
 	var (
-		w      stateWorld
-		system world.WorldSystem
+		w         stateWorld
+		system    world.WorldSystem
+		worldName string
 	)
-	for _, world := range s.activeWorlds {
-		w = s.worlds[world]
+	for _, worldName = range s.activeWorlds {
+		w = s.worlds[worldName]
 		w.Update()
 		for _, system = range w.Systems() {
 			system.Update()
@@ -163,11 +168,12 @@ func (s *state) update() {
 
 func (s *state) draw(screen *ebiten.Image) {
 	var (
-		w      stateWorld
-		system world.WorldSystem
+		w         stateWorld
+		system    world.WorldSystem
+		worldName string
 	)
-	for _, world := range s.activeWorlds {
-		w = s.worlds[world]
+	for _, worldName = range s.activeWorlds {
+		w = s.worlds[worldName]
 		w.Draw(screen)
 		for _, system = range w.Systems() {
 			system.Draw(screen)
