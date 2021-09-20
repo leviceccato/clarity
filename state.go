@@ -22,15 +22,20 @@ type stateWorld interface {
 }
 
 type state struct {
-	worlds                    map[string]stateWorld
-	activeWorlds              []string
-	events                    []interface{}
 	renderWidth, renderHeight int
-	controls                  map[system.Control]*system.InputData
-	mouseInputs               map[ebiten.MouseButton]system.Control
-	keyInputs                 map[ebiten.Key]system.Control
-	fonts                     map[string]*font.Face
-	colors                    map[string]color.NRGBA
+
+	worlds       map[string]stateWorld
+	activeWorlds []string
+	events       []interface{}
+
+	controls    map[system.Control]*system.InputData
+	mouseInputs map[ebiten.MouseButton]system.Control
+	keyInputs   map[ebiten.Key]system.Control
+
+	fonts  map[string]*font.Face
+	colors map[string]color.NRGBA
+
+	cursorX, cursorY int
 }
 
 func newState() *state {
@@ -56,6 +61,9 @@ func newState() *state {
 	s.colors = map[string]color.NRGBA{
 		"fg_title": {255, 240, 157, 255},
 	}
+	x, y := ebiten.CursorPosition()
+	s.cursorX = x
+	s.cursorY = y
 	return s
 }
 
@@ -123,6 +131,10 @@ func (s state) Color(name string) color.NRGBA {
 	return s.colors[name]
 }
 
+func (s state) CursorPosition() (int, int) {
+	return s.cursorX, s.cursorY
+}
+
 // Build slices for exiting and entering worlds based on what
 // worlds are currently active and those that will be. Then
 // exit and enter all of those worlds.
@@ -152,6 +164,9 @@ func (s *state) ActivateWorlds(names []string) {
 }
 
 func (s *state) update() {
+	x, y := ebiten.CursorPosition()
+	s.cursorX = x
+	s.cursorY = y
 	var (
 		w         stateWorld
 		system    world.WorldSystem
