@@ -4,6 +4,7 @@ import (
 	"math"
 
 	"github.com/leviceccato/clarity/component"
+	"github.com/leviceccato/clarity/entity"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -24,8 +25,9 @@ func (s *animationSystem) Update() {
 	var (
 		duration, length float64
 		sequence         *component.AppearanceSequence
+		e                *entity.Entity
 	)
-	for _, e := range s.entities {
+	for _, e = range s.entities {
 		// Skip animation if there is only 1 frame
 		if len(e.Appearance.Frames) == 1 {
 			return
