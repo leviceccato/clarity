@@ -10,7 +10,7 @@ Game state is managed through the state file and it's functions. It is responsib
 
 - Go 1.15
 - Aseprite 1.2
-- GIMP (For windows .ico file)
+- GIMP (For windows `.ico` file)
 
 ## Development
 
