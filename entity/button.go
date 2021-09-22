@@ -8,6 +8,7 @@ import (
 
 	"github.com/leviceccato/clarity/component"
 	"github.com/leviceccato/clarity/utility"
+
 	"golang.org/x/image/font"
 )
 
