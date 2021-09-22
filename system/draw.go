@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"image/color"
 
+	"github.com/leviceccato/clarity/component"
+	"github.com/leviceccato/clarity/entity"
+
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/hajimehoshi/ebiten/v2/text"
-	"github.com/leviceccato/clarity/component"
-	"github.com/leviceccato/clarity/entity"
 )
 
 type drawSystem struct {

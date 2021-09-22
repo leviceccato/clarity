@@ -4,9 +4,9 @@ import (
 	"image/color"
 
 	"github.com/leviceccato/clarity/entity"
-	"golang.org/x/image/font"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"golang.org/x/image/font"
 )
 
 type system struct {

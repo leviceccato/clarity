@@ -1,8 +1,9 @@
 package system
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/leviceccato/clarity/entity"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type hoverSystem struct {
