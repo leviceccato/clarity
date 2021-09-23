@@ -11,8 +11,8 @@ Game state is managed through the state file and it's functions. It is responsib
 #### Root directory
 The main package is contained in the root. It contains the main entrypoint where everything is initialised, including the game state which is also in this folder. The state is passed to all Systems so data can be shared.
 
-#### Assets
-Built assets that are embedded into the final executable.
+#### Asset
+Asset package that contains built assets that are embedded into the final executable.
 
 #### Component
 Component package holds all Component files. Components are data buckets that are included in an Entity.
@@ -20,14 +20,11 @@ Component package holds all Component files. Components are data buckets that ar
 #### Entity
 Entity package holds all Entity files and their constructor. Entities are a collection of Components with varying data. They make up all things in the game.
 
-#### Sprites
-Contains all Aseprite and GIMP files for creating sprites.
+#### WIP
+Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the Asset package.
 
 #### System
 System package holds all systems and their constructor. Systems will runs their logic on all Entities that have the required Components.
-
-#### Translations
-Translation files. All text in the game is translated and are stored as keys in JSON files within this folder.
 
 #### Utility
 A utility package for various helpers used across multiple packages.
