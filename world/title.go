@@ -42,7 +42,7 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 		Text:    utility.Trans("start"),
 		Font:    *systemState.Font("lana_pixel"),
 		Color:   systemState.Color("fg_title"),
-		Image:   "assets/cursor.png",
+		Image:   "sprite/cursor.png",
 	})
 	if err != nil {
 		return nil, fmt.Errorf("creating title button entity: %s", err)
