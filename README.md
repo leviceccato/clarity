@@ -6,6 +6,35 @@
 
 Game state is managed through the state file and it's functions. It is responsible to containing worlds and transitioning between them. Worlds are collections of systems and act like scenes. Systems contain all the games logic, which they run on all related entities. Entities are a collection of components that are purely data containers. All of these elements are initialised per world in the world package.
 
+# Project structure
+
+#### Root directory
+The main package is contained in the root. It contains the main entrypoint where everything is initialised, including the game state which is also in this folder. The state is passed to all Systems so data can be shared.
+
+#### Assets
+Built assets that are embedded into the final executable.
+
+#### Component
+Component package holds all Component files. Components are data buckets that are included in an Entity.
+
+#### Entity
+Entity package holds all Entity files and their constructor. Entities are a collection of Components with varying data. They make up all things in the game.
+
+#### Sprites
+Contains all Aseprite and GIMP files for creating sprites.
+
+#### System
+System package holds all systems and their constructor. Systems will runs their logic on all Entities that have the required Components.
+
+#### Translations
+Translation files. All text in the game is translated and are stored as keys in JSON files within this folder.
+
+#### Utility
+A utility package for various helpers used across multiple packages.
+
+#### World
+World package holds all World files. Each worlds contains Systems and Entities and acts as a way of separating game scenes.
+
 ## Requirements
 
 - Go 1.15
