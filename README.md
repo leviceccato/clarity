@@ -52,7 +52,7 @@ go run .
 
 Build executable:
 ```
-go build .
+go build
 ```
 
 ## Tests
