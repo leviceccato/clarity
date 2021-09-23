@@ -1,6 +1,27 @@
 # Clarity
 
 🌿 A 2D, story-driven, pixel art platformer. Written in [Go](https://golang.org) using [Ebiten](https://ebiten.org) with an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture.
+ms and Entities and acts as a way of separating game scenes.
+
+## Requirements
+
+- Go 1.17
+- Aseprite 1.2
+- GIMP (For Windows `.ico` file)
+
+## Development
+
+All commands should be run from the root directory.
+
+Start the game:
+```
+go run .
+```
+
+Build executable:
+```
+go build
+```
 
 ## Architecture
 
@@ -30,27 +51,7 @@ System package holds all systems and their constructor. Systems will runs their 
 A utility package for various helpers used across multiple packages.
 
 #### World
-World package holds all World files. Each worlds contains Systems and Entities and acts as a way of separating game scenes.
-
-## Requirements
-
-- Go 1.17
-- Aseprite 1.2
-- GIMP (For Windows `.ico` file)
-
-## Development
-
-All commands should be run from the root directory.
-
-Start the game:
-```
-go run .
-```
-
-Build executable:
-```
-go build
-```
+World package holds all World files. Each worlds contains Syste
 
 ## Tests
 
