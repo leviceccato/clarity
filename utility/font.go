@@ -2,7 +2,8 @@ package utility
 
 import (
 	"fmt"
-	"io/ioutil"
+
+	"github.com/leviceccato/clarity/asset"
 
 	"github.com/hajimehoshi/ebiten/v2/text"
 	"golang.org/x/image/font"
@@ -12,7 +13,7 @@ import (
 func LoadFonts(f map[string]string) (map[string]*font.Face, error) {
 	fonts := map[string]*font.Face{}
 	for name, path := range f {
-		bytes, err := ioutil.ReadFile(path)
+		bytes, err := asset.FS.ReadFile(path)
 		if err != nil {
 			return nil, fmt.Errorf("loading '%s' font file: %s", name, err)
 		}

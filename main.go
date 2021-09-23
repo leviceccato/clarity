@@ -33,9 +33,12 @@ func (g *game) Layout(w, h int) (int, int) {
 
 func main() {
 	// Initialisations
-	utility.InitTranslations()
+	err := utility.InitTranslations()
+	if err != nil {
+		fmt.Printf("initialising translations: %s", err)
+	}
 	fonts, err := utility.LoadFonts(map[string]string{
-		"lana_pixel": "assets/lana_pixel.ttf",
+		"lana_pixel": "font/lana_pixel.ttf",
 	})
 	if err != nil {
 		fmt.Printf("loading fonts: %s", err)

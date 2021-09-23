@@ -12,7 +12,7 @@ func NewCursorEntity() (*Entity, error) {
 	e.Size = &component.SizeComponent{Width: 10, Height: 10}
 	e.Playable = &component.PlayableComponent{}
 	e.Cursor = &component.CursorComponent{}
-	appearance, err := component.NewAppearanceComponent("assets/cursor_pointer.png", "")
+	appearance, err := component.NewAppearanceComponent("sprite/cursor_pointer.png", "")
 	if err != nil {
 		return e, fmt.Errorf("creating appearance component: %s", err)
 	}

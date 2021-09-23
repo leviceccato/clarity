@@ -4,13 +4,13 @@ A list of complete and incomplete tasks to track the progress of the game.
 ### To Do (Lowest to highest priority)
 - Add systems and components for basic UI interactions
 - Get world switching working
-- Generate assets with `go generate`
-- Embed assets into exe
+- Document spritesheet export settings
 
 ### Doing
 - Show pointer cursor when hovering buttons
 
 ### Done (Most recent to oldest)
+- Embed assets into exe
 - Add custom mouse cursor
 - Have system effect no entities when no components are specified
 - Add button padding support
