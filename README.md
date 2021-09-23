@@ -37,7 +37,7 @@ World package holds all World files. Each worlds contains Systems and Entities a
 
 ## Requirements
 
-- Go 1.15
+- Go 1.17
 - Aseprite 1.2
 - GIMP (For Windows `.ico` file)
 
