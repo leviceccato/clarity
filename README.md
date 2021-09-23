@@ -68,3 +68,6 @@ go test ./... -coverprofile='coverage.out'
 go tool cover -html='coverage.out'
 ```
 
+## Exporting sprites
+
+All sprites should be exported as PNG files using Aseprite. Animated sprites or sprites with multiple states (e.g. hover) should be exported as spritesheets with an accompanying JSON file. Here are the settings used:
