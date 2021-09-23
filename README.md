@@ -51,7 +51,7 @@ System package holds all systems and their constructor. Systems will runs their 
 A utility package for various helpers used across multiple packages.
 
 #### World
-World package holds all World files. Each worlds contains Syste
+World package holds all World files. Each worlds contains Systems and Entities and acts as a way of separating game scenes.
 
 ## Tests
 
