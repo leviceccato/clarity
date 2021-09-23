@@ -4,6 +4,7 @@ A list of complete and incomplete tasks to track the progress of the game.
 ### To Do (Lowest to highest priority)
 - Add systems and components for basic UI interactions
 - Get world switching working
+- Document spritesheet export settings
 
 ### Doing
 - Embed assets into exe
