@@ -4,10 +4,9 @@ A list of complete and incomplete tasks to track the progress of the game.
 ### To Do (Lowest to highest priority)
 - Add systems and components for basic UI interactions
 - Get world switching working
-- Generate assets with `go generate`
-- Embed assets into exe
 
 ### Doing
+- Embed assets into exe
 - Show pointer cursor when hovering buttons
 
 ### Done (Most recent to oldest)
