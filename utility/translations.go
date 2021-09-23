@@ -2,7 +2,9 @@ package utility
 
 import (
 	"encoding/json"
+	"fmt"
 
+	"github.com/leviceccato/clarity/asset"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
 )
@@ -12,11 +14,17 @@ var (
 	localizer *i18n.Localizer
 )
 
-func InitTranslations() {
+func InitTranslations() error {
 	bundle = i18n.NewBundle(language.English)
 	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
-	bundle.MustLoadMessageFile("translations/en.json")
+	path := "translation/en.json"
+	bytes, err := asset.FS.ReadFile(path)
+	if err != nil {
+		return fmt.Errorf("loading english translation: %s", err)
+	}
+	bundle.ParseMessageFileBytes(bytes, path)
 	localizer = i18n.NewLocalizer(bundle, language.English.String())
+	return nil
 }
 
 // Translate a string into the current locale with optional template data

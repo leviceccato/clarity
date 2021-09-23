@@ -8,7 +8,7 @@ import (
 	_ "image/png"
 	"strings"
 
-	"github.com/leviceccato/clarity/assets"
+	"github.com/leviceccato/clarity/asset"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -36,20 +36,19 @@ func NewAppearanceComponent(imagePath, animationPath string) (*AppearanceCompone
 	}
 
 	// Load image
-	imgBytes, err := assets.FS.ReadFile(imagePath)
+	imgBytes, err := asset.FS.ReadFile(imagePath)
 	if err != nil {
 		return c, fmt.Errorf("loading appearance image: %s", err)
 	}
-	rawImage, _, err := image.Decode(bytes.NewReader(imgBytes))
+	rawImg, _, err := image.Decode(bytes.NewReader(imgBytes))
 	if err != nil {
 		return c, fmt.Errorf("decoding appearance image: %s", err)
 	}
-	img := ebiten.NewImageFromImage(rawImage)
-	c.Image = img
+	c.Image = ebiten.NewImageFromImage(rawImg)
 
 	// No animation required
 	if animationPath == "" {
-		w, h := img.Size()
+		w, h := c.Image.Size()
 		c.Frames = []*image.Rectangle{{
 			Min: image.Point{0, 0},
 			Max: image.Point{w, h},
@@ -118,7 +117,7 @@ type animation struct {
 
 // Load an Aseprite JSON file as an animation
 func newAnimationFromFile(path string) (*animation, error) {
-	file, err := assets.FS.ReadFile(path)
+	file, err := asset.FS.ReadFile(path)
 	if err != nil {
 		return nil, fmt.Errorf("loading animation json: %s", err)
 	}

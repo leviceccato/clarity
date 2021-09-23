@@ -1,9 +1,9 @@
-package assets
+package asset
 
 import (
 	"embed"
 )
 
 // Embed assets folder inside the executable
-//go:embed *
+//go:embed **/*
 var FS embed.FS
