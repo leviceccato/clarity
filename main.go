@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"fmt"
 
 	"github.com/leviceccato/clarity/utility"
@@ -31,6 +32,10 @@ func (g *game) Layout(w, h int) (int, int) {
 	return renderWidth, renderHeight
 }
 
+// Embed assets folder inside the executable
+//go:embed assets/*
+var assetsFolder embed.FS
+
 func main() {
 	// Initialisations
 	utility.InitTranslations()
@@ -47,6 +52,7 @@ func main() {
 	// Create state and load game data
 	mainState := newState()
 	mainState.fonts = fonts
+	mainState.assetsFolder = assetsFolder
 	mainState.renderWidth = renderWidth
 	mainState.renderHeight = renderHeight
 	startWorld, err := world.NewStartWorld(mainState)

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"image/color"
 
 	"github.com/leviceccato/clarity/system"
@@ -27,6 +28,7 @@ type state struct {
 	worlds       map[string]stateWorld
 	activeWorlds []string
 	events       []interface{}
+	assetsFolder embed.FS
 
 	controls    map[system.Control]*system.InputData
 	mouseInputs map[ebiten.MouseButton]system.Control
