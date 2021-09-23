@@ -7,10 +7,10 @@ A list of complete and incomplete tasks to track the progress of the game.
 - Document spritesheet export settings
 
 ### Doing
-- Embed assets into exe
 - Show pointer cursor when hovering buttons
 
 ### Done (Most recent to oldest)
+- Embed assets into exe
 - Add custom mouse cursor
 - Have system effect no entities when no components are specified
 - Add button padding support
