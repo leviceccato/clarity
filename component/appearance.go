@@ -1,15 +1,16 @@
 package component
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"image"
 	_ "image/png"
-	"io/ioutil"
 	"strings"
 
+	"github.com/leviceccato/clarity/assets"
+
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 type AppearanceComponent struct {
@@ -35,10 +36,15 @@ func NewAppearanceComponent(imagePath, animationPath string) (*AppearanceCompone
 	}
 
 	// Load image
-	img, _, err := ebitenutil.NewImageFromFile(imagePath)
+	imgBytes, err := assets.FS.ReadFile(imagePath)
 	if err != nil {
 		return c, fmt.Errorf("loading appearance image: %s", err)
 	}
+	rawImage, _, err := image.Decode(bytes.NewReader(imgBytes))
+	if err != nil {
+		return c, fmt.Errorf("decoding appearance image: %s", err)
+	}
+	img := ebiten.NewImageFromImage(rawImage)
 	c.Image = img
 
 	// No animation required
@@ -112,7 +118,7 @@ type animation struct {
 
 // Load an Aseprite JSON file as an animation
 func newAnimationFromFile(path string) (*animation, error) {
-	file, err := ioutil.ReadFile(path)
+	file, err := assets.FS.ReadFile(path)
 	if err != nil {
 		return nil, fmt.Errorf("loading animation json: %s", err)
 	}
