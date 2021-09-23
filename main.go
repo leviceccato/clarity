@@ -38,7 +38,7 @@ func main() {
 		fmt.Printf("initialising translations: %s", err)
 	}
 	fonts, err := utility.LoadFonts(map[string]string{
-		"lana_pixel": "assets/lana_pixel.ttf",
+		"lana_pixel": "font/lana_pixel.ttf",
 	})
 	if err != nil {
 		fmt.Printf("loading fonts: %s", err)
