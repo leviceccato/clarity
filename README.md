@@ -1,7 +1,6 @@
 # Clarity
 
 🌿 A 2D, story-driven, pixel art platformer. Written in [Go](https://golang.org) using [Ebiten](https://ebiten.org) with an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture.
-ms and Entities and acts as a way of separating game scenes.
 
 ## Requirements
 
