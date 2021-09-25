@@ -68,3 +68,17 @@ go tool cover -html='coverage.out'
 ## Exporting sprites
 
 All sprites should be exported as PNG files using Aseprite. Animated sprites or sprites with multiple states (e.g. hover) should be exported as spritesheets with an accompanying JSON file. Here are the settings used:
+
+Setting | Value
+--- | ---
+Sheet Type | By Rows
+Constraints | None
+Merge Duplicates | `false`
+Ignore Empty | `false`
+Layers | Visible Layers
+Borders | Default settings
+Output File | `true`
+JSON Data | `true` with same name as output file
+JSON Style | Array
+JSON Meta | Tags, Slices
+JSON File Name | {frame}
