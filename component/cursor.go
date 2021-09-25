@@ -2,6 +2,6 @@ package component
 
 type CursorComponent struct{}
 
-func NewCursorComponent() *PlayableComponent {
-	return &PlayableComponent{}
+func NewCursorComponent() *CursorComponent {
+	return &CursorComponent{}
 }
