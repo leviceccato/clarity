@@ -44,6 +44,7 @@ WIP | Contains all WIP files, such as for creating sprites. The subfolders shoul
 System | Package holds all systems and their constructor. Systems will runs their logic on all Entities that have the required Components.
 Utility | A utility package for various helpers used across multiple packages.
 World | Package holds all World files. Each world contains Systems and Entities and acts as a way of separating game scenes.
+Windows | Package specifically for generating Windows specific resource file.
 
 ## Tests
 
