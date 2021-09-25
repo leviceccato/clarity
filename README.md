@@ -28,29 +28,16 @@ Game state is managed through the state file and it's functions. It is responsib
 
 ## Project structure
 
-#### Root directory
-The main package is contained in the root. It contains the main entrypoint where everything is initialised, including the game state which is also in this folder. The state is passed to all Systems so data can be shared.
-
-#### Asset
-Asset package that contains built assets that are embedded into the final executable.
-
-#### Component
-Component package holds all Component files. Components are data buckets that are included in an Entity.
-
-#### Entity
-Entity package holds all Entity files and their constructor. Entities are a collection of Components with varying data. They make up all things in the game.
-
-#### WIP
-Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the Asset package.
-
-#### System
-System package holds all systems and their constructor. Systems will runs their logic on all Entities that have the required Components.
-
-#### Utility
-A utility package for various helpers used across multiple packages.
-
-#### World
-World package holds all World files. Each world contains Systems and Entities and acts as a way of separating game scenes.
+Folder | Description
+--- | ---
+Root directory | The main package is contained in the root. It contains the main entrypoint where everything is initialised, including the game state which is also in this folder. The state is passed to all Systems so data can be shared.
+Asset | Package that contains built assets that are embedded into the final executable.
+Component | Package holds all Component files. Components are data buckets that are included in an Entity.
+Entity | ackage holds all Entity files and their constructor. Entities are a collection of Components with varying data. They make up all things in the game.
+WIP | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the Asset package.
+System | Package holds all systems and their constructor. Systems will runs their logic on all Entities that have the required Components.
+Utility | A utility package for various helpers used across multiple packages.
+World | Package holds all World files. Each world contains Systems and Entities and acts as a way of separating game scenes.
 
 ## Tests
 
