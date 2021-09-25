@@ -17,14 +17,12 @@ Start the game:
 go run .
 ```
 
-### Building
-
 Build executable after running any platform specific commands below:
 ```
 go build
 ```
 
-#### Windows
+### Windows
 
 Generate a `rsrc_windows_amd64.syso` file in the root directory that will be automatically embedded into the executable. This allows setting an application icon:
 ```
