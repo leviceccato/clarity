@@ -21,14 +21,17 @@ func main() {
 	icon32, err := loadIcon("../asset/icon/icon_32.png")
 	if err != nil {
 		fmt.Printf("loading icon_32: %s", err)
+		return
 	}
 	icon16, err := loadIcon("../asset/icon/icon_16.png")
 	if err != nil {
 		fmt.Printf("loading icon_16: %s", err)
+		return
 	}
 	icon, err := winres.NewIconFromImages([]image.Image{icon32, icon16})
 	if err != nil {
 		fmt.Printf("creating icon from files: %s", err)
+		return
 	}
 	rs.SetIcon(winres.Name("APPICON"), icon)
 
@@ -36,11 +39,13 @@ func main() {
 	out, err := os.Create("../rsrc_windows_amd64.syso")
 	if err != nil {
 		fmt.Printf("creating syso file: %s", err)
+		return
 	}
 	defer out.Close()
 	err = rs.WriteObject(out, winres.ArchAMD64)
 	if err != nil {
 		fmt.Printf("writing resource to syso file: %s", err)
+		return
 	}
 }
 
