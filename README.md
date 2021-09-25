@@ -6,7 +6,6 @@
 
 - Go 1.17
 - Aseprite 1.2
-- GIMP (For Windows `.ico` file)
 
 ## Development
 
