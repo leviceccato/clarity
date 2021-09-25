@@ -18,12 +18,12 @@ func main() {
 	rs := winres.ResourceSet{}
 
 	// Add icons
-	icon32, err := loadIcon("../asset/icon/icon_32.png")
+	icon32, err := loadIcon("asset/icon/icon_32.png")
 	if err != nil {
 		fmt.Printf("loading icon_32: %s", err)
 		return
 	}
-	icon16, err := loadIcon("../asset/icon/icon_16.png")
+	icon16, err := loadIcon("asset/icon/icon_16.png")
 	if err != nil {
 		fmt.Printf("loading icon_16: %s", err)
 		return
@@ -36,7 +36,7 @@ func main() {
 	rs.SetIcon(winres.Name("APPICON"), icon)
 
 	// Output syso file for inclusion in executable
-	out, err := os.Create("../rsrc_windows_amd64.syso")
+	out, err := os.Create("rsrc_windows_amd64.syso")
 	if err != nil {
 		fmt.Printf("creating syso file: %s", err)
 		return
