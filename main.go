@@ -36,12 +36,14 @@ func main() {
 	err := utility.InitTranslations()
 	if err != nil {
 		fmt.Printf("initialising translations: %s", err)
+		return
 	}
 	fonts, err := utility.LoadFonts(map[string]string{
 		"lana_pixel": "font/lana_pixel.ttf",
 	})
 	if err != nil {
 		fmt.Printf("loading fonts: %s", err)
+		return
 	}
 	ebiten.SetWindowSize(renderWidth*2, renderHeight*2)
 	ebiten.SetWindowResizable(true)
@@ -55,10 +57,12 @@ func main() {
 	startWorld, err := world.NewStartWorld(mainState)
 	if err != nil {
 		fmt.Printf("creating start world: %s", err)
+		return
 	}
 	titleWorld, err := world.NewTitleWorld(mainState)
 	if err != nil {
 		fmt.Printf("creating title world: %s", err)
+		return
 	}
 	mainState.loadWorld(startWorld)
 	mainState.loadWorld(titleWorld)
@@ -69,5 +73,6 @@ func main() {
 	})
 	if err != nil {
 		fmt.Printf("running game: %s", err)
+		return
 	}
 }
