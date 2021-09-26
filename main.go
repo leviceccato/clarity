@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"image"
 
 	"github.com/leviceccato/clarity/utility"
 	"github.com/leviceccato/clarity/world"
@@ -45,6 +46,18 @@ func main() {
 		fmt.Printf("loading fonts: %s", err)
 		return
 	}
+	// Add icons
+	icon32, err := utility.LoadIcon("icon/icon_32.png")
+	if err != nil {
+		fmt.Printf("loading icon_32: %s", err)
+		return
+	}
+	icon16, err := utility.LoadIcon("icon/icon_16.png")
+	if err != nil {
+		fmt.Printf("loading icon_16: %s", err)
+		return
+	}
+	ebiten.SetWindowIcon([]image.Image{icon32, icon16})
 	ebiten.SetWindowSize(renderWidth*2, renderHeight*2)
 	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowTitle("Clarity")
