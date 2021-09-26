@@ -1,11 +1,11 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"image"
-	"io/ioutil"
 	"os"
+
+	"github.com/leviceccato/clarity/utility"
 
 	"github.com/tc-hib/winres"
 )
@@ -18,12 +18,12 @@ func main() {
 	rs := winres.ResourceSet{}
 
 	// Add icons
-	icon32, err := loadIcon("asset/icon/icon_32.png")
+	icon32, err := utility.LoadIcon("icon/icon_32.png")
 	if err != nil {
 		fmt.Printf("loading icon_32: %s", err)
 		return
 	}
-	icon16, err := loadIcon("asset/icon/icon_16.png")
+	icon16, err := utility.LoadIcon("icon/icon_16.png")
 	if err != nil {
 		fmt.Printf("loading icon_16: %s", err)
 		return
@@ -47,17 +47,4 @@ func main() {
 		fmt.Printf("writing resource to syso file: %s", err)
 		return
 	}
-}
-
-// Simple icon loading utility
-func loadIcon(path string) (image.Image, error) {
-	iconBytes, err := ioutil.ReadFile(path)
-	if err != nil {
-		return nil, fmt.Errorf("reading icon file: %s", err)
-	}
-	icon, _, err := image.Decode(bytes.NewReader(iconBytes))
-	if err != nil {
-		return nil, fmt.Errorf("decoding icon file: %s", err)
-	}
-	return icon, nil
 }
