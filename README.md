@@ -32,7 +32,7 @@ go run ./cmd/windows
 
 Build the executable:
 ```
-go build
+go build -o Clarity
 ```
 
 #### macOS

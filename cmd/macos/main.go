@@ -27,10 +27,10 @@ const infoTmpl = `
 // This will allow you to have an embedded icon.
 func main() {
 	for _, folder := range []string{
-		"clarity.app",
-		"clarity.app/Contents",
-		"clarity.app/Contents/MacOS",
-		"clarity.app/Contents/Resources",
+		"Clarity.app",
+		"Clarity.app/Contents",
+		"Clarity.app/Contents/MacOS",
+		"Clarity.app/Contents/Resources",
 	} {
 		err := os.Mkdir(folder, 0755)
 		if err != nil {
@@ -38,7 +38,7 @@ func main() {
 			return
 		}
 	}
-	err := os.WriteFile("clarity.app/Contents/Info.plist", []byte(infoTmpl), 0777)
+	err := os.WriteFile("Clarity.app/Contents/Info.plist", []byte(infoTmpl), 0777)
 	if err != nil {
 		fmt.Printf("creating Info.plist: %s", err)
 		return
@@ -48,7 +48,7 @@ func main() {
 		fmt.Printf("copying clarity binary: %s", err)
 		return
 	}
-	err = os.WriteFile("clarity.app/Contents/MacOS/clarity", bin, 0777)
+	err = os.WriteFile("Clarity.app/Contents/MacOS/clarity", bin, 0777)
 	if err != nil {
 		fmt.Printf("pasting clarity binary: %s", err)
 		return
@@ -56,7 +56,7 @@ func main() {
 	// Run macOS specific iconutil command to generate icons
 	err = exec.Command(
 		"iconutil", "-c", "icns", "-o",
-		"clarity.app/Contents/Resources/icon.icns", "asset/icon.iconset",
+		"Clarity.app/Contents/Resources/icon.icns", "asset/icon.iconset",
 	).Run()
 	if err != nil {
 		fmt.Printf("generating icons with iconutil: %s", err)
