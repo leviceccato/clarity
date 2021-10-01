@@ -5,7 +5,7 @@ import (
 
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/system"
-	"github.com/leviceccato/clarity/utility"
+	"github.com/leviceccato/clarity/util"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -39,7 +39,7 @@ func NewTitleWorld(state gameState) (*titleWorld, error) {
 		Width:   100,
 		Height:  50,
 		Padding: 10,
-		Text:    utility.Trans("start"),
+		Text:    util.Trans("start"),
 		Font:    *systemState.Font("lana_pixel"),
 		Color:   systemState.Color("fg_title"),
 		Image:   "sprite/cursor.png",

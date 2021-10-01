@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"image"
 
-	"github.com/leviceccato/clarity/utility"
+	"github.com/leviceccato/clarity/util"
 	"github.com/leviceccato/clarity/world"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -34,12 +34,12 @@ func (g *game) Layout(w, h int) (int, int) {
 
 func main() {
 	// Initialisations
-	err := utility.InitTranslations()
+	err := util.InitTranslations()
 	if err != nil {
 		fmt.Printf("initialising translations: %s", err)
 		return
 	}
-	fonts, err := utility.LoadFonts(map[string]string{
+	fonts, err := util.LoadFonts(map[string]string{
 		"lana_pixel": "font/lana_pixel.ttf",
 	})
 	if err != nil {
@@ -47,12 +47,12 @@ func main() {
 		return
 	}
 	// Add icons
-	icon32, err := utility.LoadIcon("icon/icon_32.png")
+	icon32, err := util.LoadIcon("icon/icon_32.png")
 	if err != nil {
 		fmt.Printf("loading icon_32: %s", err)
 		return
 	}
-	icon16, err := utility.LoadIcon("icon/icon_16.png")
+	icon16, err := util.LoadIcon("icon/icon_16.png")
 	if err != nil {
 		fmt.Printf("loading icon_16: %s", err)
 		return

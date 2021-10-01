@@ -4,7 +4,7 @@ import (
 	"image/color"
 
 	"github.com/leviceccato/clarity/system"
-	"github.com/leviceccato/clarity/utility"
+	"github.com/leviceccato/clarity/util"
 	"github.com/leviceccato/clarity/world"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -136,8 +136,8 @@ func (s state) CursorPosition() (float64, float64) {
 // worlds are currently active and those that will be. Then
 // exit and enter all of those worlds.
 func (s *state) ActivateWorlds(names []string) {
-	exitingWorlds := utility.SliceStringDifference(s.activeWorlds, names)
-	enteringWorlds := utility.SliceStringDifference(names, s.activeWorlds)
+	exitingWorlds := util.SliceStringDifference(s.activeWorlds, names)
+	enteringWorlds := util.SliceStringDifference(names, s.activeWorlds)
 	var (
 		w         stateWorld
 		system    world.WorldSystem

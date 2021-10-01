@@ -1,4 +1,4 @@
-package utility
+package util
 
 import (
 	"bytes"
@@ -8,7 +8,7 @@ import (
 	"github.com/leviceccato/clarity/asset"
 )
 
-// Simple icon loading utility
+// Simple icon loading util
 func LoadIcon(path string) (image.Image, error) {
 	iconBytes, err := asset.FS.ReadFile(path)
 	if err != nil {

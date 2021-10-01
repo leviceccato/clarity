@@ -1,4 +1,4 @@
-package utility
+package util
 
 // Find the unique strings in the first slice between 2 slices
 // of strings

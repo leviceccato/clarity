@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/leviceccato/clarity/component"
-	"github.com/leviceccato/clarity/utility"
+	"github.com/leviceccato/clarity/util"
 
 	"golang.org/x/image/font"
 )
@@ -37,7 +37,7 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 
 	// Button with text
 	maxWidth := options.Width - (options.Padding * 2)
-	textWidth := utility.TextWidth(options.Font, options.Text)
+	textWidth := util.TextWidth(options.Font, options.Text)
 	ratio := float64(textWidth) / maxWidth
 	// Base max chars on average chars per line
 	maxChars := int(math.Ceil(float64(len(options.Text)) / ratio))
@@ -60,7 +60,7 @@ func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 		// line then add a new line
 		if i == wordCount || len(line.Content+" "+word) >= maxChars {
 			if options.IsCentered {
-				lineWidth = utility.TextWidth(options.Font, line.Content)
+				lineWidth = util.TextWidth(options.Font, line.Content)
 				line.X = (maxWidth - float64(lineWidth)) / 2
 			}
 			lines = append(lines, line)
