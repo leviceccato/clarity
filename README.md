@@ -16,7 +16,12 @@ Start the game:
 go run .
 ```
 
-### Building
+Build to test:
+```
+go build
+```
+
+### Building for production
 
 #### Windows
 
