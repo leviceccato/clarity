@@ -22,7 +22,7 @@ go run .
 
 Generate a `rsrc_windows_amd64.syso` file in the root directory that will be automatically embedded into the executable. This allows setting an application icon:
 ```
-go run ./windows
+go run ./cmd/windows
 ```
 
 Build the executable:
@@ -39,7 +39,7 @@ go build
 
 Package that executable into a `.app` for distribution.
 ```
-go run ./macos
+go run ./cmd/macos
 ```
 
 ## Architecture
