@@ -90,3 +90,20 @@ JSON Data | `true` with same name as output file
 JSON Style | Array
 JSON Meta | Tags, Slices
 JSON File Name | {frame}
+
+## Creating icons for macOS
+
+The macOS `.app` folder requires an array of specific icon sizes named the following:
+- `icon_16x16.png`
+- `icon_16x16@2x.png`
+- `icon_32x32.png`
+- `icon_32x32@2x.png`
+- `icon_64x64.png`
+- `icon_64x64@2x.png`
+- `icon_128x128.png`
+- `icon_128x128@2x.png`
+- `icon_256x256.png`
+- `icon_256x256@2x.png`
+- `icon_512x512.png`
+- `icon_512x512@2x.png`
+The `@2x` simply means 200% size. These must be manually exported from Aseprite. There is a dedicated 512 x 512 Aseprite icon file since there is a limit that the 32 x 32 version may be resized from the UI. Windows currently only utilises the 16 x 16 and 32 x 32 icons.
