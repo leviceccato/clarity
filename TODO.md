@@ -4,12 +4,12 @@ A list of complete and incomplete tasks to track the progress of the game.
 ### To Do (Lowest to highest priority)
 - Add systems and components for basic UI interactions
 - Get world switching working
-- Show pointer cursor when hovering buttons
 
 ### Doing
-- Allow creating MacOS app image
+- Show pointer cursor when hovering buttons
 
 ### Done (Most recent to oldest)
+- Allow creating MacOS app image
 - Embed icon in Windows exe
 - Document spritesheet export settings
 - Embed assets into exe
