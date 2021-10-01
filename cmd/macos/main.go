@@ -56,10 +56,10 @@ func main() {
 	// Run macOS specific iconutil command to generate icons
 	err = exec.Command(
 		"iconutil", "-c", "icns", "-o",
-		"clarity.app/Contents/Resources/icon.icns", "asset/icon",
+		"clarity.app/Contents/Resources/icon.icns", "asset/icon.iconset",
 	).Run()
 	if err != nil {
-		fmt.Printf("running iconutil: %s", err)
+		fmt.Printf("generating icons with iconutil: %s", err)
 		return
 	}
 }
