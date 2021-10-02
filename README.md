@@ -32,7 +32,7 @@ go run ./cmd/windows
 
 Build the executable:
 ```
-go build -o Clarity
+go build -o Clarity.exe
 ```
 
 #### macOS
