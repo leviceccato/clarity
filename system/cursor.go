@@ -1,6 +1,8 @@
 package system
 
 import (
+	"fmt"
+
 	"github.com/leviceccato/clarity/entity"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -26,6 +28,7 @@ func (s *cursorSystem) Update() {
 		x, y int
 	)
 	isCursorHovering := s.state.IsCursorHovering()
+	fmt.Println(isCursorHovering)
 	for _, e = range s.entities {
 		if isCursorHovering && e.Appearance.Sequence == "default" {
 			e.Appearance.Sequence = "pointer"
