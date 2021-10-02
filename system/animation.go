@@ -36,6 +36,7 @@ func (s *animationSystem) Update() {
 		difference = float64(sequence.To - sequence.From)
 		if difference == 0 {
 			e.Appearance.Frame = sequence.From
+			println(e.Appearance.Frame)
 			return
 		}
 		e.Appearance.Time += 16
