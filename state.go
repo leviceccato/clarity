@@ -32,8 +32,6 @@ type state struct {
 
 	fonts  map[string]*font.Face
 	colors map[string]color.NRGBA
-
-	cursorX, cursorY float64
 }
 
 func newState() *state {
@@ -118,10 +116,6 @@ func (s state) Color(name string) color.NRGBA {
 	return s.colors[name]
 }
 
-func (s state) CursorPosition() (float64, float64) {
-	return s.cursorX, s.cursorY
-}
-
 // Build slices for exiting and entering worlds based on what
 // worlds are currently active and those that will be. Then
 // exit and enter all of those worlds.
@@ -151,9 +145,6 @@ func (s *state) ActivateWorlds(names []string) {
 }
 
 func (s *state) update() {
-	x, y := ebiten.CursorPosition()
-	s.cursorX = float64(x)
-	s.cursorY = float64(y)
 	var (
 		w         stateWorld
 		system    world.WorldSystem

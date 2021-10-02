@@ -25,7 +25,9 @@ func NewHoverSystem(state SystemState) *hoverSystem {
 func (s *hoverSystem) Load() {}
 
 func (s *hoverSystem) Update() {
-	mouseX, mouseY := s.state.CursorPosition()
+	x, y := ebiten.CursorPosition()
+	mouseX := float64(x)
+	mouseY := float64(y)
 	var (
 		hasHoverChanged, isHovered, hasHoverSequence bool
 		e                                            *entity.Entity
