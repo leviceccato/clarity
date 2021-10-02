@@ -12,7 +12,7 @@ const infoTmpl = `
 <plist version="1.0">
 <dict>
 	<key>CFBundleExecutable</key>
-	<string>clarity</string>
+	<string>Clarity</string>
 	<key>CFBundleIconFile</key>
 	<string>icon.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -48,7 +48,7 @@ func main() {
 		fmt.Printf("copying clarity binary: %s", err)
 		return
 	}
-	err = os.WriteFile("Clarity.app/Contents/MacOS/clarity", bin, 0777)
+	err = os.WriteFile("Clarity.app/Contents/MacOS/Clarity", bin, 0777)
 	if err != nil {
 		fmt.Printf("pasting clarity binary: %s", err)
 		return
