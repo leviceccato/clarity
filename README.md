@@ -61,7 +61,7 @@ Component | Package holds all Component files. Components are data buckets that 
 Entity | ackage holds all Entity files and their constructor. Entities are a collection of Components with varying data. They make up all things in the game.
 WIP | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the Asset package.
 System | Package holds all systems and their constructor. Systems will runs their logic on all Entities that have the required Components.
-util | A util package for various helpers used across multiple packages.
+Util | A util package for various helpers used across multiple packages.
 World | Package holds all World files. Each world contains Systems and Entities and acts as a way of separating game scenes.
 Windows | Package specifically for generating Windows specific resource file.
 
