@@ -14,7 +14,7 @@ type titleWorld struct {
 	world
 }
 
-func NewTitleWorld(state gameState) (*titleWorld, error) {
+func NewTitleWorld(state interface{}) (*titleWorld, error) {
 	w := &titleWorld{}
 	w.name = "title"
 

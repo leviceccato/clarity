@@ -22,8 +22,6 @@ type stateWorld interface {
 }
 
 type state struct {
-	renderWidth, renderHeight int
-
 	worlds       map[string]stateWorld
 	activeWorlds []string
 	events       []interface{}
@@ -82,14 +80,6 @@ func (s *state) loadWorld(w stateWorld) {
 		system.Load()
 	}
 	s.worlds[w.Name()] = w
-}
-
-func (s state) RenderWidth() int {
-	return s.renderWidth
-}
-
-func (s state) RenderHeight() int {
-	return s.renderHeight
 }
 
 func (s state) MouseInputs() map[ebiten.MouseButton]system.Control {

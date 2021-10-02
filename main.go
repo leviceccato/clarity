@@ -11,11 +11,6 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-const (
-	renderWidth  = 480
-	renderHeight = 270
-)
-
 type game struct {
 	state *state
 }
@@ -30,7 +25,7 @@ func (g *game) Draw(screen *ebiten.Image) {
 }
 
 func (g *game) Layout(w, h int) (int, int) {
-	return renderWidth, renderHeight
+	return asset.ConfRenderWidth, asset.ConfRenderHeight
 }
 
 func main() {
@@ -59,15 +54,13 @@ func main() {
 		return
 	}
 	ebiten.SetWindowIcon([]image.Image{icon32, icon16})
-	ebiten.SetWindowSize(renderWidth*2, renderHeight*2)
+	ebiten.SetWindowSize(asset.ConfRenderWidth*2, asset.ConfRenderHeight*2)
 	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowTitle(asset.ConfTitle)
 
 	// Create state and load game data
 	mainState := newState()
 	mainState.fonts = fonts
-	mainState.renderWidth = renderWidth
-	mainState.renderHeight = renderHeight
 	startWorld, err := world.NewStartWorld(mainState)
 	if err != nil {
 		fmt.Printf("creating start world: %s", err)

@@ -13,4 +13,7 @@ const (
 	ConfTitle       = "Clarity"
 	ConfDescription = "A 2D, story-driven, pixel art platformer."
 	ConfVersion     = "0.1.0"
+
+	ConfRenderWidth  = 480
+	ConfRenderHeight = 270
 )
