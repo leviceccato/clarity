@@ -1,7 +1,8 @@
 .DS_Store
 [I]con
 coverage.out
-[Cs]larity.exe
+Clarity.exe
+clarity.exe
 clarity
 Clarity.app
 rsrc_windows_amd64.syso
