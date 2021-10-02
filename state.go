@@ -32,6 +32,8 @@ type state struct {
 
 	fonts  map[string]*font.Face
 	colors map[string]color.NRGBA
+
+	isCursorHovering bool
 }
 
 func newState() *state {
@@ -114,6 +116,14 @@ func (s state) Font(name string) *font.Face {
 
 func (s state) Color(name string) color.NRGBA {
 	return s.colors[name]
+}
+
+func (s *state) SetIsCursorHovering(isCursorHovering bool) {
+	s.isCursorHovering = isCursorHovering
+}
+
+func (s state) IsCursorHovering() bool {
+	return s.isCursorHovering
 }
 
 // Build slices for exiting and entering worlds based on what

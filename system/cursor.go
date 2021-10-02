@@ -25,7 +25,14 @@ func (s *cursorSystem) Update() {
 		e    *entity.Entity
 		x, y int
 	)
+	isCursorHovering := s.state.IsCursorHovering()
 	for _, e = range s.entities {
+		if isCursorHovering && e.Appearance.Sequence == "default" {
+			e.Appearance.Sequence = "pointer"
+		}
+		if !isCursorHovering && e.Appearance.Sequence == "pointer" {
+			e.Appearance.Sequence = "default"
+		}
 		x, y = ebiten.CursorPosition()
 		e.Position.X = float64(x)
 		e.Position.Y = float64(y)

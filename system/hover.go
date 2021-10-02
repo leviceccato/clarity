@@ -39,6 +39,7 @@ func (s *hoverSystem) Update() {
 		hasHoverChanged = isHovered != e.Hover.IsHovered
 		if hasHoverChanged {
 			e.Hover.IsHovered = isHovered
+			s.state.SetIsCursorHovering(isHovered)
 			// For animations allow toggling a 'hover' sequence
 			if e.Appearance == nil {
 				continue

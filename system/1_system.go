@@ -25,6 +25,8 @@ type SystemState interface {
 	ActivateWorlds([]string)
 	Font(string) *font.Face
 	Color(string) color.NRGBA
+	SetIsCursorHovering(bool)
+	IsCursorHovering() bool
 }
 
 func (s *system) Components() []string {
