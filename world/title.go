@@ -26,6 +26,7 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 		system.NewEventSystem(systemState),
 		system.NewPlayableSystem(systemState),
 		system.NewCursorSystem(systemState),
+		system.NewHoverSystem(systemState),
 	}
 
 	titleBg, err := entity.NewTitleBgEntity()

@@ -22,6 +22,7 @@ type ButtonEntityOptions struct {
 
 func NewButtonEntity(options *ButtonEntityOptions) (*Entity, error) {
 	e := NewEntity()
+	e.Hover = &component.HoverComponent{}
 	e.Position = &component.PositionComponent{X: options.X, Y: options.Y}
 	e.Size = &component.SizeComponent{Width: options.Width, Height: options.Height}
 	appearance, err := component.NewAppearanceComponent(options.Image, options.Animation)
