@@ -1,11 +1,11 @@
 package util
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/leviceccato/clarity/asset"
 
-	"github.com/BurntSushi/toml"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
 )
@@ -17,8 +17,8 @@ var (
 
 func InitTranslations() error {
 	bundle = i18n.NewBundle(language.English)
-	bundle.RegisterUnmarshalFunc("toml", toml.Unmarshal)
-	path := "translation/en.toml"
+	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
+	path := "translation/en.json"
 	bytes, err := asset.FS.ReadFile(path)
 	if err != nil {
 		return fmt.Errorf("loading english translation: %s", err)

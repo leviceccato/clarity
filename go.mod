@@ -3,7 +3,6 @@ module github.com/leviceccato/clarity
 go 1.17
 
 require (
-	github.com/BurntSushi/toml v0.3.1
 	github.com/hajimehoshi/ebiten/v2 v2.1.7
 	github.com/nicksnyder/go-i18n/v2 v2.1.2
 	github.com/tc-hib/winres v0.1.5
