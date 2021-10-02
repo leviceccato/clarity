@@ -28,10 +28,14 @@ func (s *animationSystem) Update() {
 		e                    *entity.Entity
 	)
 	for _, e = range s.entities {
+		// Skip animation if there is only 1 frame
+		if len(e.Appearance.Frames) == 1 {
+			return
+		}
 		sequence = e.Appearance.Sequences[e.Appearance.Sequence]
 		difference = float64(sequence.To - sequence.From)
-		// Skip animation if there is only 1 frame
 		if difference == 0 {
+			e.Appearance.Frame = sequence.From
 			return
 		}
 		e.Appearance.Time += 16
