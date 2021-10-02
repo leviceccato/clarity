@@ -23,13 +23,15 @@ func (s *animationSystem) Load() {}
 
 func (s *animationSystem) Update() {
 	var (
-		duration, length float64
-		sequence         *component.AppearanceSequence
-		e                *entity.Entity
+		duration, difference float64
+		sequence             *component.AppearanceSequence
+		e                    *entity.Entity
 	)
 	for _, e = range s.entities {
+		sequence = e.Appearance.Sequences[e.Appearance.Sequence]
+		difference = float64(sequence.To - sequence.From)
 		// Skip animation if there is only 1 frame
-		if len(e.Appearance.Frames) == 1 {
+		if difference == 0 {
 			return
 		}
 		e.Appearance.Time += 16
@@ -37,9 +39,7 @@ func (s *animationSystem) Update() {
 		if e.Appearance.Time >= duration {
 			e.Appearance.Time = math.Min(duration, e.Appearance.Time-duration)
 		}
-		sequence = e.Appearance.Sequences[e.Appearance.Sequence]
-		length = float64(sequence.To - sequence.From)
-		e.Appearance.Frame = int(math.Floor(e.Appearance.Time/duration*length)) + sequence.From
+		e.Appearance.Frame = int(math.Floor(e.Appearance.Time/duration*difference)) + sequence.From
 	}
 }
 
