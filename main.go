@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"image"
 
+	"github.com/leviceccato/clarity/asset"
 	"github.com/leviceccato/clarity/util"
 	"github.com/leviceccato/clarity/world"
 
@@ -60,7 +61,7 @@ func main() {
 	ebiten.SetWindowIcon([]image.Image{icon32, icon16})
 	ebiten.SetWindowSize(renderWidth*2, renderHeight*2)
 	ebiten.SetWindowResizable(true)
-	ebiten.SetWindowTitle("Clarity")
+	ebiten.SetWindowTitle(asset.ConfTitle)
 
 	// Create state and load game data
 	mainState := newState()

@@ -56,7 +56,7 @@ Game state is managed through the state file and it's functions. It is responsib
 Folder | Description
 --- | ---
 Root directory | The main package is contained in the root. It contains the main entrypoint where everything is initialised, including the game state which is also in this folder. The state is passed to all Systems so data can be shared.
-Asset | Package that contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
+Asset | Package that contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file. Global config is contained within this package and exposed as constants.
 Component | Package holds all Component files. Components are data buckets that are included in an Entity.
 Entity | ackage holds all Entity files and their constructor. Entities are a collection of Components with varying data. They make up all things in the game.
 WIP | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the Asset package.
