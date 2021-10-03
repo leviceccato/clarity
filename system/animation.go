@@ -9,6 +9,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
+// 1/60th of a second in milliseconds. Ebiten ensures that the game is always run at 60 FPS.
 var delta = (1.0 / 60) * 1000
 
 type animationSystem struct {
@@ -34,7 +35,6 @@ func (s *animationSystem) Update() {
 		if len(e.Appearance.Frames) == 1 {
 			continue
 		}
-		// Ebiten ensures that the game is always run at 60 FPS.
 		e.Appearance.Time += delta
 		duration = float64(e.Appearance.Duration)
 		if e.Appearance.Time >= duration {
