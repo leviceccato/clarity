@@ -3,9 +3,11 @@ A list of complete and incomplete tasks to track the progress of the game.
 
 ### To Do (Lowest to highest priority)
 - Add systems and components for basic UI interactions
+- Get world switching working
+- Add debug mode support
 
 ### Doing
-- Get world switching working
+- Structure Title world and add art assets
 
 ### Done (Most recent to oldest)
 - Show pointer cursor when hovering buttons
