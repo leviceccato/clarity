@@ -6,11 +6,11 @@ import (
 	"github.com/leviceccato/clarity/component"
 )
 
-func NewTitleBgEntity() (*Entity, error) {
+func NewImageEntity(path string) (*Entity, error) {
 	e := NewEntity()
 	e.Position = &component.PositionComponent{X: 0, Y: 0}
 	e.Size = &component.SizeComponent{}
-	appearance, err := component.NewAppearanceComponent("sprite/title_bg.png", "")
+	appearance, err := component.NewAppearanceComponent(path, "")
 	if err != nil {
 		return e, fmt.Errorf("creating appearance component: %s", err)
 	}

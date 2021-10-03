@@ -30,9 +30,14 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 		system.NewHoverSystem(systemState),
 	}
 
-	titleBg, err := entity.NewTitleBgEntity()
+	cursor, err := entity.NewCursorEntity()
 	if err != nil {
-		return nil, fmt.Errorf("creating title bg entity: %s", err)
+		return nil, fmt.Errorf("creating cursor entity: %s", err)
+	}
+
+	background, err := entity.NewImageEntity("sprite/title_bg.png")
+	if err != nil {
+		return nil, fmt.Errorf("creating background entity: %s", err)
 	}
 
 	buttonWidth := 100.0
@@ -52,13 +57,8 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 		return nil, fmt.Errorf("creating title button entity: %s", err)
 	}
 
-	cursor, err := entity.NewCursorEntity()
-	if err != nil {
-		return nil, fmt.Errorf("creating cursor entity: %s", err)
-	}
-
 	w.entities = []*entity.Entity{
-		titleBg,
+		background,
 		titleButton,
 		cursor,
 	}
