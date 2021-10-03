@@ -30,20 +30,15 @@ func (s *animationSystem) Update() {
 	for _, e = range s.entities {
 		// Skip animation if there is only 1 frame
 		if len(e.Appearance.Frames) == 1 {
-			return
-		}
-		sequence = e.Appearance.Sequences[e.Appearance.Sequence]
-		difference = float64(sequence.To - sequence.From)
-		if difference == 0 {
-			e.Appearance.Frame = sequence.From
-			println(e.Appearance.Frame)
-			return
+			continue
 		}
 		e.Appearance.Time += 16
 		duration = float64(e.Appearance.Duration)
 		if e.Appearance.Time >= duration {
 			e.Appearance.Time = math.Min(duration, e.Appearance.Time-duration)
 		}
+		sequence = e.Appearance.Sequences[e.Appearance.Sequence]
+		difference = float64(sequence.To - sequence.From)
 		e.Appearance.Frame = int(math.Floor(e.Appearance.Time/duration*difference)) + sequence.From
 	}
 }
