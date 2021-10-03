@@ -3,6 +3,7 @@ package world
 import (
 	"fmt"
 
+	"github.com/leviceccato/clarity/asset"
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/system"
 	"github.com/leviceccato/clarity/util"
@@ -34,11 +35,13 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 		return nil, fmt.Errorf("creating title bg entity: %s", err)
 	}
 
+	buttonWidth := 100.0
+	buttonHeight := 50.0
 	titleButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
-		X:       50,
-		Y:       50,
-		Width:   100,
-		Height:  50,
+		X:       (asset.ConfRenderWidth / 2) - (buttonWidth / 2),
+		Y:       120,
+		Width:   buttonWidth,
+		Height:  buttonHeight,
 		Padding: 10,
 		Text:    util.Trans("start"),
 		Font:    *systemState.Font("lana_pixel"),
