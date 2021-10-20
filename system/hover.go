@@ -8,7 +8,6 @@ import (
 
 type hoverSystem struct {
 	system
-	state SystemState
 }
 
 func NewHoverSystem(state SystemState) *hoverSystem {

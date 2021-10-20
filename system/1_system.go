@@ -10,6 +10,7 @@ import (
 type system struct {
 	entities   []*entity.Entity
 	components []string
+	state      SystemState
 }
 
 type SystemState interface {

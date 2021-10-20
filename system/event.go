@@ -8,7 +8,6 @@ import (
 
 type eventSystem struct {
 	system
-	state SystemState
 }
 
 type quitEvent struct {

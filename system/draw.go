@@ -14,7 +14,6 @@ import (
 
 type drawSystem struct {
 	system
-	state SystemState
 }
 
 func NewDrawSystem(state SystemState) *drawSystem {
