@@ -14,17 +14,16 @@ type startWorld struct {
 	world
 }
 
-func NewStartWorld(state interface{}) (*startWorld, error) {
+func NewStartWorld(state system.SystemState) (*startWorld, error) {
 	w := &startWorld{}
 	w.name = "start"
 
-	systemState := state.(system.SystemState)
 	w.systems = []WorldSystem{
-		system.NewDrawSystem(systemState),
+		system.NewDrawSystem(state),
 		system.NewAnimationSystem(),
-		system.NewInputSystem(systemState),
-		system.NewEventSystem(systemState),
-		system.NewPlayableSystem(systemState),
+		system.NewInputSystem(state),
+		system.NewEventSystem(state),
+		system.NewPlayableSystem(state),
 	}
 
 	// Create and position player

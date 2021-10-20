@@ -15,19 +15,18 @@ type titleWorld struct {
 	world
 }
 
-func NewTitleWorld(state interface{}) (*titleWorld, error) {
+func NewTitleWorld(state system.SystemState) (*titleWorld, error) {
 	w := &titleWorld{}
 	w.name = "title"
 
-	systemState := state.(system.SystemState)
 	w.systems = []WorldSystem{
-		system.NewDrawSystem(systemState),
+		system.NewDrawSystem(state),
 		system.NewAnimationSystem(),
-		system.NewInputSystem(systemState),
-		system.NewEventSystem(systemState),
-		system.NewPlayableSystem(systemState),
-		system.NewCursorSystem(systemState),
-		system.NewHoverSystem(systemState),
+		system.NewInputSystem(state),
+		system.NewEventSystem(state),
+		system.NewPlayableSystem(state),
+		system.NewCursorSystem(state),
+		system.NewHoverSystem(state),
 	}
 
 	cursor, err := entity.NewCursorEntity()
@@ -49,7 +48,7 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 		Height:  buttonHeight,
 		Padding: 10,
 		Text:    util.Trans("start"),
-		Font:    *systemState.Font("lana_pixel"),
+		Font:    *state.Font("lana_pixel"),
 		Color:   config.ColFgTitle,
 		Image:   "sprite/cursor.png",
 	})
