@@ -114,4 +114,4 @@ The macOS `.app` folder requires an array of specific icon sizes named the follo
 - icon_512x512.png
 - icon_512x512@2x.png
 
-The `@2x` simply means 200% size. These must be manually exported from Aseprite. There is a dedicated 512 x 512 Aseprite icon file since there is a limit that the 32 x 32 version may be resized from the UI. Windows currently only utilises the 16 x 16 and 32 x 32 icons.
+The **@2x** simply means 200% size. These must be manually exported from Aseprite. There is a dedicated 512 x 512 Aseprite icon file since there is a limit that the 32 x 32 version may be resized from the UI. Windows currently only utilises the 16 x 16 and 32 x 32 icons.
