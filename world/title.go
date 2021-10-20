@@ -50,7 +50,7 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 		Padding: 10,
 		Text:    util.Trans("start"),
 		Font:    *systemState.Font("lana_pixel"),
-		Color:   systemState.Color("fg_title"),
+		Color:   config.ColFgTitle,
 		Image:   "sprite/cursor.png",
 	})
 	if err != nil {

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"image/color"
-
 	"github.com/leviceccato/clarity/system"
 	"github.com/leviceccato/clarity/util"
 	"github.com/leviceccato/clarity/world"
@@ -30,8 +28,7 @@ type state struct {
 	mouseInputs map[ebiten.MouseButton]system.Control
 	keyInputs   map[ebiten.Key]system.Control
 
-	fonts  map[string]*font.Face
-	colors map[string]color.NRGBA
+	fonts map[string]*font.Face
 
 	isCursorHovering bool
 }
@@ -56,9 +53,6 @@ func newState() *state {
 		ebiten.KeyBackquote:  system.ControlDebug,
 	}
 	s.UpdateControls()
-	s.colors = map[string]color.NRGBA{
-		"fg_title": {255, 240, 157, 255},
-	}
 	return s
 }
 
@@ -112,10 +106,6 @@ func (s *state) AddEvent(event interface{}) {
 
 func (s state) Font(name string) *font.Face {
 	return s.fonts[name]
-}
-
-func (s state) Color(name string) color.NRGBA {
-	return s.colors[name]
 }
 
 func (s *state) SetIsCursorHovering(isCursorHovering bool) {
