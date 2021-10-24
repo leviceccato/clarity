@@ -42,16 +42,34 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 
 	buttonWidth := 100.0
 	buttonHeight := 50.0
-	titleButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
-		X:       (asset.ConfRenderWidth / 2) - (buttonWidth / 2),
-		Y:       120,
-		Width:   buttonWidth,
-		Height:  buttonHeight,
-		Padding: 10,
-		Text:    util.Trans("start"),
-		Font:    *systemState.Font("lana_pixel"),
-		Color:   systemState.Color("fg_title"),
-		Image:   "sprite/cursor.png",
+	buttonYSpacing := 5.0
+	buttonYStart := 120.0
+	startButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
+		X:          (asset.ConfRenderWidth / 2) - (buttonWidth / 2),
+		Y:          buttonYStart,
+		Width:      buttonWidth,
+		Height:     buttonHeight,
+		Padding:    10,
+		Text:       util.Trans("start"),
+		Font:       *systemState.Font("lana_pixel"),
+		Color:      systemState.Color("fg_title"),
+		Image:      "sprite/cursor.png",
+		IsCentered: true,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("creating title button entity: %s", err)
+	}
+	exitButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
+		X:          (asset.ConfRenderWidth / 2) - (buttonWidth / 2),
+		Y:          buttonYStart + buttonHeight + buttonYSpacing,
+		Width:      buttonWidth,
+		Height:     buttonHeight,
+		Padding:    10,
+		Text:       util.Trans("exit"),
+		Font:       *systemState.Font("lana_pixel"),
+		Color:      systemState.Color("fg_title"),
+		Image:      "sprite/cursor.png",
+		IsCentered: true,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("creating title button entity: %s", err)
@@ -59,7 +77,8 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 
 	w.entities = []*entity.Entity{
 		background,
-		titleButton,
+		startButton,
+		exitButton,
 		cursor,
 	}
 	w.updateSystems()
