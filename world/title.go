@@ -3,7 +3,7 @@ package world
 import (
 	"fmt"
 
-	"github.com/leviceccato/clarity/asset"
+	"github.com/leviceccato/clarity/config"
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/system"
 	"github.com/leviceccato/clarity/util"
@@ -15,19 +15,18 @@ type titleWorld struct {
 	world
 }
 
-func NewTitleWorld(state interface{}) (*titleWorld, error) {
+func NewTitleWorld(state system.SystemState) (*titleWorld, error) {
 	w := &titleWorld{}
 	w.name = "title"
 
-	systemState := state.(system.SystemState)
 	w.systems = []WorldSystem{
-		system.NewDrawSystem(systemState),
+		system.NewDrawSystem(state),
 		system.NewAnimationSystem(),
-		system.NewInputSystem(systemState),
-		system.NewEventSystem(systemState),
-		system.NewPlayableSystem(systemState),
-		system.NewCursorSystem(systemState),
-		system.NewHoverSystem(systemState),
+		system.NewInputSystem(state),
+		system.NewEventSystem(state),
+		system.NewPlayableSystem(state),
+		system.NewCursorSystem(state),
+		system.NewHoverSystem(state),
 	}
 
 	cursor, err := entity.NewCursorEntity()
@@ -45,14 +44,14 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 	buttonYSpacing := 5.0
 	buttonYStart := 120.0
 	startButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
-		X:          (asset.ConfRenderWidth / 2) - (buttonWidth / 2),
+		X:          (config.RenderWidth / 2) - (buttonWidth / 2),
 		Y:          buttonYStart,
 		Width:      buttonWidth,
 		Height:     buttonHeight,
 		Padding:    10,
 		Text:       util.Trans("start"),
-		Font:       *systemState.Font("lana_pixel"),
-		Color:      systemState.Color("fg_title"),
+		Font:       *state.Font("lana_pixel"),
+		Color:      config.ColFgTitle,
 		Image:      "sprite/cursor.png",
 		IsCentered: true,
 	})
@@ -60,14 +59,14 @@ func NewTitleWorld(state interface{}) (*titleWorld, error) {
 		return nil, fmt.Errorf("creating title button entity: %s", err)
 	}
 	exitButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
-		X:          (asset.ConfRenderWidth / 2) - (buttonWidth / 2),
+		X:          (config.RenderWidth / 2) - (buttonWidth / 2),
 		Y:          buttonYStart + buttonHeight + buttonYSpacing,
 		Width:      buttonWidth,
 		Height:     buttonHeight,
 		Padding:    10,
 		Text:       util.Trans("exit"),
-		Font:       *systemState.Font("lana_pixel"),
-		Color:      systemState.Color("fg_title"),
+		Font:       *state.Font("lana_pixel"),
+		Color:      config.ColFgTitle,
 		Image:      "sprite/cursor.png",
 		IsCentered: true,
 	})

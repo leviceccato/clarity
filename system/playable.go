@@ -8,7 +8,6 @@ import (
 
 type playableSystem struct {
 	system
-	state SystemState
 }
 
 func NewPlayableSystem(state SystemState) *playableSystem {

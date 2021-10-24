@@ -8,7 +8,6 @@ import (
 
 type cursorSystem struct {
 	system
-	state SystemState
 }
 
 func NewCursorSystem(state SystemState) *cursorSystem {

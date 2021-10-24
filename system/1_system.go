@@ -1,8 +1,6 @@
 package system
 
 import (
-	"image/color"
-
 	"github.com/leviceccato/clarity/entity"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -12,6 +10,7 @@ import (
 type system struct {
 	entities   []*entity.Entity
 	components []string
+	state      SystemState
 }
 
 type SystemState interface {
@@ -24,7 +23,6 @@ type SystemState interface {
 	AddEvent(interface{})
 	ActivateWorlds([]string)
 	Font(string) *font.Face
-	Color(string) color.NRGBA
 	SetIsCursorHovering(bool)
 	IsCursorHovering() bool
 }

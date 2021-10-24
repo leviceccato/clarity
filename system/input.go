@@ -7,7 +7,6 @@ import (
 
 type inputSystem struct {
 	system
-	state SystemState
 }
 
 type InputData struct {

@@ -3,7 +3,7 @@ package world
 import (
 	"fmt"
 
-	"github.com/leviceccato/clarity/asset"
+	"github.com/leviceccato/clarity/config"
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/system"
 
@@ -14,17 +14,16 @@ type startWorld struct {
 	world
 }
 
-func NewStartWorld(state interface{}) (*startWorld, error) {
+func NewStartWorld(state system.SystemState) (*startWorld, error) {
 	w := &startWorld{}
 	w.name = "start"
 
-	systemState := state.(system.SystemState)
 	w.systems = []WorldSystem{
-		system.NewDrawSystem(systemState),
+		system.NewDrawSystem(state),
 		system.NewAnimationSystem(),
-		system.NewInputSystem(systemState),
-		system.NewEventSystem(systemState),
-		system.NewPlayableSystem(systemState),
+		system.NewInputSystem(state),
+		system.NewEventSystem(state),
+		system.NewPlayableSystem(state),
 	}
 
 	// Create and position player
@@ -32,8 +31,8 @@ func NewStartWorld(state interface{}) (*startWorld, error) {
 	if err != nil {
 		return nil, fmt.Errorf("creating player entity: %s", err)
 	}
-	player.Position.X = float64(asset.ConfRenderWidth) / 2
-	player.Position.Y = float64(asset.ConfRenderHeight) / 2
+	player.Position.X = float64(config.RenderWidth) / 2
+	player.Position.Y = float64(config.RenderHeight) / 2
 
 	w.entities = []*entity.Entity{
 		player,
