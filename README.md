@@ -1,3 +1,5 @@
+![Clarity](https://raw.githubusercontent.com/leviceccato/clarity/main/banner.png)
+
 # Clarity
 
 🌿 A 2D, story-driven, pixel art platformer. Written in [Go](https://golang.org) using [Ebiten](https://ebiten.org) with an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture.
