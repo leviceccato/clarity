@@ -1,4 +1,8 @@
-![Clarity](https://raw.githubusercontent.com/leviceccato/clarity/main/banner.png)
+<img
+    alt="Clarity"
+    src="https://raw.githubusercontent.com/leviceccato/clarity/main/banner.png"
+    style="margin: 0 auto"
+>
 
 # Clarity
 
