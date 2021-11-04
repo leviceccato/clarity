@@ -29,7 +29,7 @@ go build
 
 Generate a `rsrc_windows_amd64.syso` file in the root directory that will be automatically embedded into the executable. This allows setting an application icon:
 ```
-go run ./cmd/windows
+go run ./windows
 ```
 
 Build the executable:
@@ -46,7 +46,7 @@ go build
 
 Package that executable into a `.app` for distribution.
 ```
-go run ./cmd/macos
+go run ./macos
 ```
 
 ## Architecture
@@ -58,15 +58,16 @@ Game state is managed through the state file and it's functions. It is responsib
 Folder | Description
 --- | ---
 Root directory | The main package is contained in the root. It contains the main entrypoint where everything is initialised, including the game state which is also in this folder. The state is passed to all Systems so data can be shared.
-Asset | Package that contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
-Config | Global config is contained within this package and exposed as constants and variables.
-Component | Package holds all Component files. Components are data buckets that are included in an Entity.
-Entity | Package holds all Entity files and their constructor. Entities are a collection of Components with varying data. They make up all things in the game.
-WIP | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the Asset package.
-System | Package holds all systems and their constructor. Systems will runs their logic on all Entities that have the required Components.
-Util | A util package for various helpers used across multiple packages.
-World | Package holds all World files. Each world contains Systems and Entities and acts as a way of separating game scenes.
-Windows | Package specifically for generating Windows specific resource file.
+asset | Package that contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
+config | Global config is contained within this package and exposed as constants and variables.
+component | Package holds all Component files. Components are data buckets that are included in an Entity.
+entity | Package holds all Entity files and their constructor. Entities are a collection of Components with varying data. They make up all things in the game.
+wip | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the Asset package.
+system | Package holds all systems and their constructor. Systems will runs their logic on all Entities that have the required Components.
+util | A util package for various helpers used across multiple packages.
+world | Package holds all World files. Each world contains Systems and Entities and acts as a way of separating game scenes.
+windows | Package specifically for generating Windows specific resource file.
+macos | Package specifically for generating macOS .app files.
 
 ## Tests
 
