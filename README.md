@@ -1,8 +1,4 @@
-<img
-    alt="Clarity"
-    src="https://raw.githubusercontent.com/leviceccato/clarity/main/banner.png"
-    style="margin: 0 auto"
->
+<img alt="Clarity" src="https://raw.githubusercontent.com/leviceccato/clarity/main/banner.png" style="margin: 0 auto">
 
 # Clarity
 
