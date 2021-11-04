@@ -52,7 +52,7 @@ func NewTitleWorld(state system.SystemState) (*titleWorld, error) {
 		Text:       util.Trans("start"),
 		Font:       *state.Font("lana_pixel"),
 		Color:      config.ColFgTitle,
-		Image:      "sprite/cursor.png",
+		Image:      "sprite/title_button.png",
 		IsCentered: true,
 	})
 	if err != nil {
@@ -67,7 +67,7 @@ func NewTitleWorld(state system.SystemState) (*titleWorld, error) {
 		Text:       util.Trans("exit"),
 		Font:       *state.Font("lana_pixel"),
 		Color:      config.ColFgTitle,
-		Image:      "sprite/cursor.png",
+		Image:      "sprite/title_button.png",
 		IsCentered: true,
 	})
 	if err != nil {
