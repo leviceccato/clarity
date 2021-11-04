@@ -29,24 +29,14 @@ go build
 
 #### Windows
 
-Generate a `rsrc_windows_amd64.syso` file in the root directory that will be automatically embedded into the executable. This allows setting an application icon:
+Build the executable with included icon:
 ```
 go run ./windows
 ```
 
-Build the executable:
-```
-go build -o Clarity.exe
-```
-
 #### macOS
 
-Build the executable first:
-```
-go build
-```
-
-Package that executable into a `.app` for distribution.
+Build the executable into a `.app` for distribution.
 ```
 go run ./macos
 ```

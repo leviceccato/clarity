@@ -26,6 +26,14 @@ const infoTmpl = `
 // This package creates a folder structure and config for a macOS .app.
 // This will allow you to have an embedded icon.
 func main() {
+
+	// Build executable
+	err := exec.Command("go", "build").Run()
+	if err != nil {
+		fmt.Printf("building macos executable: %s", err)
+		return
+	}
+
 	for _, folder := range []string{
 		"Clarity.app",
 		"Clarity.app/Contents",
@@ -38,7 +46,7 @@ func main() {
 			return
 		}
 	}
-	err := os.WriteFile("Clarity.app/Contents/Info.plist", []byte(infoTmpl), 0777)
+	err = os.WriteFile("Clarity.app/Contents/Info.plist", []byte(infoTmpl), 0777)
 	if err != nil {
 		fmt.Printf("creating Info.plist: %s", err)
 		return
@@ -53,6 +61,7 @@ func main() {
 		fmt.Printf("pasting clarity binary: %s", err)
 		return
 	}
+
 	// Run macOS specific iconutil command to generate icons
 	err = exec.Command(
 		"iconutil", "-c", "icns", "-o",

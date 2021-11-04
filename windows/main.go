@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"image"
 	"os"
+	"os/exec"
 
 	"github.com/leviceccato/clarity/util"
 
@@ -45,6 +46,13 @@ func main() {
 	err = rs.WriteObject(out, winres.ArchAMD64)
 	if err != nil {
 		fmt.Printf("writing resource to syso file: %s", err)
+		return
+	}
+
+	// Build executable
+	err = exec.Command("go", "build", "-o", "Clarity.exe").Run()
+	if err != nil {
+		fmt.Printf("generating windows executable: %s", err)
 		return
 	}
 }
