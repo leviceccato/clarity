@@ -39,8 +39,8 @@ func NewTitleWorld(state system.SystemState) (*titleWorld, error) {
 		return nil, fmt.Errorf("creating background entity: %s", err)
 	}
 
-	buttonWidth := 100.0
-	buttonHeight := 50.0
+	buttonWidth := 74.0
+	buttonHeight := 30.0
 	buttonYSpacing := 5.0
 	buttonYStart := 120.0
 	startButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
