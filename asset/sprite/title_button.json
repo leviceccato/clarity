@@ -1,0 +1,35 @@
+{ "frames": [
+   {
+    "filename": "0",
+    "frame": { "x": 0, "y": 0, "w": 74, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 74, "h": 30 },
+    "sourceSize": { "w": 74, "h": 30 },
+    "duration": 100
+   },
+   {
+    "filename": "1",
+    "frame": { "x": 74, "y": 0, "w": 74, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 74, "h": 30 },
+    "sourceSize": { "w": 74, "h": 30 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.27-x64",
+  "image": "title_button.png",
+  "format": "RGBA8888",
+  "size": { "w": 148, "h": 30 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "default", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "hover", "from": 1, "to": 1, "direction": "forward" }
+  ],
+  "slices": [
+  ]
+ }
+}
