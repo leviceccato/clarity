@@ -30,9 +30,22 @@ Build the executable with included icon for Windows:
 go run ./windows
 ```
 
-Build the executable into a `.app` for macOS.
+Build the executable into a `.app` for macOS:
 ```
 go run ./macos
+```
+
+## Tests
+
+Run tests:
+```
+go test ./...
+```
+
+Generate coverage and then view it in a browser:
+```
+go test ./... -coverprofile='coverage.out'
+go tool cover -html='coverage.out'
 ```
 
 ## Architecture
@@ -54,19 +67,6 @@ util | A util package for various helpers used across multiple packages.
 world | Package holds all World files. Each world contains Systems and Entities and acts as a way of separating game scenes.
 windows | Package specifically for generating Windows specific resource file.
 macos | Package specifically for generating macOS `.app` folder.
-
-## Tests
-
-Run tests:
-```
-go test ./...
-```
-
-Generate coverage and then view it in a browser:
-```
-go test ./... -coverprofile='coverage.out'
-go tool cover -html='coverage.out'
-```
 
 ## Exporting sprites
 
