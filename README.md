@@ -25,18 +25,12 @@ Build to test:
 go build
 ```
 
-### Building for production
-
-#### Windows
-
-Build the executable with included icon:
+Build the executable with included icon for Windows:
 ```
 go run ./windows
 ```
 
-#### macOS
-
-Build the executable into a `.app` for distribution.
+Build the executable into a `.app` for macOS.
 ```
 go run ./macos
 ```
