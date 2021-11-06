@@ -32,7 +32,7 @@ func TestUpdateSystem(t *testing.T) {
 		player.Position = &component.PositionComponent{}
 		player.Size = &component.SizeComponent{}
 		player.Playable = &component.PlayableComponent{}
-		appearance, err := component.NewAppearanceComponent("../assets/player.png", "../assets/player.json")
+		appearance, err := component.NewAppearanceComponent("sprite/player.png", "sprite/player.json")
 		if err != nil {
 			t.Errorf("Creating appearance component: %s", err)
 		}
