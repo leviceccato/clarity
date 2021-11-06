@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="472" height="232" alt="Clarity" src="https://raw.githubusercontent.com/leviceccato/clarity/main/banner.png">
+    <img width="472" height="232" alt="Clarity" src="https://raw.githubusercontent.com/leviceccato/clarity/main/asset/sprite/banner.png">
 </p>
 
 # Clarity
