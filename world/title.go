@@ -3,10 +3,10 @@ package world
 import (
 	"fmt"
 
+	"github.com/leviceccato/clarity/asset"
 	"github.com/leviceccato/clarity/config"
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/system"
-	"github.com/leviceccato/clarity/util"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -49,7 +49,7 @@ func NewTitleWorld(state system.SystemState) (*titleWorld, error) {
 		Width:      buttonWidth,
 		Height:     buttonHeight,
 		Padding:    10,
-		Text:       util.Trans("start"),
+		Text:       asset.Trans("start"),
 		Font:       *state.Font("lana_pixel"),
 		Color:      config.ColFgTitle,
 		Image:      "sprite/title_button.png",
@@ -64,7 +64,7 @@ func NewTitleWorld(state system.SystemState) (*titleWorld, error) {
 		Width:      buttonWidth,
 		Height:     buttonHeight,
 		Padding:    10,
-		Text:       util.Trans("exit"),
+		Text:       asset.Trans("exit"),
 		Font:       *state.Font("lana_pixel"),
 		Color:      config.ColFgTitle,
 		Image:      "sprite/title_button.png",

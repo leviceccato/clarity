@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/leviceccato/clarity/util"
+	"github.com/leviceccato/clarity/asset"
 
 	"github.com/tc-hib/winres"
 )
@@ -19,12 +19,12 @@ func main() {
 	rs := winres.ResourceSet{}
 
 	// Add icons
-	icon32, err := util.LoadIcon("icon.iconset/icon_32x32.png")
+	icon32, err := asset.LoadIcon("icon.iconset/icon_32x32.png")
 	if err != nil {
 		fmt.Printf("loading icon_32: %s", err)
 		return
 	}
-	icon16, err := util.LoadIcon("icon.iconset/icon_16x16.png")
+	icon16, err := asset.LoadIcon("icon.iconset/icon_16x16.png")
 	if err != nil {
 		fmt.Printf("loading icon_16: %s", err)
 		return

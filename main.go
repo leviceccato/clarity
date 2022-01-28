@@ -6,7 +6,6 @@ import (
 
 	"github.com/leviceccato/clarity/asset"
 	"github.com/leviceccato/clarity/config"
-	"github.com/leviceccato/clarity/util"
 	"github.com/leviceccato/clarity/world"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -31,7 +30,7 @@ func (g *game) Layout(w, h int) (int, int) {
 
 func main() {
 	// Initialisations
-	err := util.InitTranslations()
+	err := asset.InitTranslations()
 	if err != nil {
 		fmt.Printf("initialising translations: %s", err)
 		return
