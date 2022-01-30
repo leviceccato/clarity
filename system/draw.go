@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"image/color"
 
-	"github.com/leviceccato/clarity/component"
-	"github.com/leviceccato/clarity/entity"
+	"github.com/leviceccato/clarity/game"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -13,37 +12,32 @@ import (
 )
 
 type drawSystem struct {
-	system
+	System
 }
 
-func NewDrawSystem(state SystemState) *drawSystem {
-	s := &drawSystem{}
-	s.state = state
-	s.components = []string{
+func NewDrawSystem(s *game.State) *drawSystem {
+	sys := &drawSystem{}
+	sys.Components = []string{
 		"Appearance",
 		"Position",
 		"Size",
 	}
-	return s
+	return sys
 }
 
-func (s *drawSystem) Load() {}
+func (sys *drawSystem) Load(s *game.State) {}
 
-func (s *drawSystem) Update() {}
+func (sys *drawSystem) Update(s *game.State) {}
 
-func (s *drawSystem) Draw(screen *ebiten.Image) {
+func (sys *drawSystem) Draw(s *game.State, screen *ebiten.Image) {
 	screen.Fill(color.NRGBA{0x00, 0x40, 0x80, 0xff})
-	var (
-		e       *entity.Entity
-		options *ebiten.DrawImageOptions
-		line    component.TextLine
-		i       int
-	)
-	for _, e = range s.entities {
+
+	for _, e := range sys.Entities {
 
 		// Draw image
-		options = &ebiten.DrawImageOptions{}
+		options := &ebiten.DrawImageOptions{}
 		options.GeoM.Translate(e.Position.X, e.Position.Y)
+
 		screen.DrawImage(
 			e.Appearance.Image.SubImage(*e.Appearance.Frames[e.Appearance.Frame]).(*ebiten.Image),
 			options,
@@ -51,7 +45,7 @@ func (s *drawSystem) Draw(screen *ebiten.Image) {
 
 		// Draw lines of text
 		if e.Text != nil {
-			for i, line = range e.Text.Lines {
+			for i, line := range e.Text.Lines {
 				text.Draw(
 					screen,
 					line.Content,
@@ -63,6 +57,7 @@ func (s *drawSystem) Draw(screen *ebiten.Image) {
 			}
 		}
 	}
+
 	ebitenutil.DebugPrint(screen, fmt.Sprintf(
 		"TPS: %0.2f\nFPS: %0.2f",
 		ebiten.CurrentTPS(),
@@ -70,6 +65,6 @@ func (s *drawSystem) Draw(screen *ebiten.Image) {
 	))
 }
 
-func (s *drawSystem) Enter() {}
+func (sys *drawSystem) Enter(s *game.State) {}
 
-func (s *drawSystem) Exit() {}
+func (sys *drawSystem) Exit(s *game.State) {}

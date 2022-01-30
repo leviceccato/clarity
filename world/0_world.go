@@ -3,33 +3,52 @@ package world
 import (
 	"reflect"
 
-	"github.com/leviceccato/clarity/entity"
-
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/leviceccato/clarity/entity"
+	"github.com/leviceccato/clarity/game"
 )
-
-type WorldSystem interface {
-	Components() []string
-	EntityCount() int
-	AddEntity(*entity.Entity)
-	Enter()
-	Exit()
-	Load()
-	Update()
-	Draw(*ebiten.Image)
-}
 
 type world struct {
 	name     string
-	systems  []WorldSystem
+	systems  []game.GameSystem
 	entities []*entity.Entity
+}
+
+func (w *world) Update(s *game.State) {
+	for _, sys := range w.systems {
+		sys.Update(s)
+	}
+}
+
+func (w *world) Draw(s *game.State, screen *ebiten.Image) {
+	for _, sys := range w.systems {
+		sys.Draw(s, screen)
+	}
+}
+
+func (w *world) Enter(s *game.State) {
+	for _, sys := range w.systems {
+		sys.Enter(s)
+	}
+}
+
+func (w *world) Exit(s *game.State) {
+	for _, sys := range w.systems {
+		sys.Enter(s)
+	}
+}
+
+func (w *world) Load(s *game.State) {
+	for _, sys := range w.systems {
+		sys.Load(s)
+	}
 }
 
 func (w *world) Name() string {
 	return w.name
 }
 
-func (w *world) Systems() []WorldSystem {
+func (w *world) Systems() []game.GameSystem {
 	return w.systems
 }
 
@@ -37,18 +56,13 @@ func (w *world) Systems() []WorldSystem {
 // expensive function and should be used sparingly. Ideally after
 // multiple system and entity updates.
 func (w *world) updateSystems() {
-	var (
-		entityReflection, field reflect.Value
-		system                  WorldSystem
-		entity                  *entity.Entity
-		components              []string
-	)
 	// Assume entity to be suitable by default
 	hasComponents := true
-	for _, system = range w.systems {
-		for _, entity = range w.entities {
-			entityReflection = reflect.Indirect(reflect.ValueOf(entity))
-			components = system.Components()
+
+	for _, system := range w.systems {
+		for _, entity := range w.entities {
+			entityReflection := reflect.Indirect(reflect.ValueOf(entity))
+			components := system.GetComponents()
 
 			// A system w/o components should have no entities
 			if len(components) == 0 {
@@ -57,7 +71,7 @@ func (w *world) updateSystems() {
 
 			// Check if entity has required components
 			for _, component := range components {
-				field = entityReflection.FieldByName(component)
+				field := entityReflection.FieldByName(component)
 				if field.IsNil() {
 					hasComponents = false
 				}

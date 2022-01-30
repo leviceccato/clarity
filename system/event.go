@@ -4,10 +4,11 @@ import (
 	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/leviceccato/clarity/game"
 )
 
 type eventSystem struct {
-	system
+	System
 }
 
 type quitEvent struct {
@@ -18,34 +19,34 @@ type activateWorldsEvent struct {
 	names []string
 }
 
-func NewEventSystem(state SystemState) *eventSystem {
-	s := &eventSystem{}
-	s.state = state
-	return s
+func NewEventSystem(s *game.State) *eventSystem {
+	sys := &eventSystem{}
+	return sys
 }
 
-func (s *eventSystem) Load() {}
+func (sys *eventSystem) Load(s *game.State) {}
 
-func (s *eventSystem) Update() {
-	events := s.state.Events()
-	if len(events) == 0 {
+func (sys *eventSystem) Update(s *game.State) {
+	// No events, nothing to do
+	if len(s.Events) == 0 {
 		return
 	}
-	var event interface{}
-	for _, event = range events {
+
+	for _, event := range s.Events {
 		switch e := event.(type) {
 		case quitEvent:
 			os.Exit(e.code)
 		case activateWorldsEvent:
-			s.state.ActivateWorlds(e.names)
+			s.ActivateWorlds(e.names...)
 		}
 	}
+
 	// Clear events
-	s.state.SetEvents([]interface{}{})
+	s.ClearEvents()
 }
 
-func (s *eventSystem) Draw(screen *ebiten.Image) {}
+func (sys *eventSystem) Draw(s *game.State, screen *ebiten.Image) {}
 
-func (s *eventSystem) Enter() {}
+func (sys *eventSystem) Enter(s *game.State) {}
 
-func (s *eventSystem) Exit() {}
+func (sys *eventSystem) Exit(s *game.State) {}

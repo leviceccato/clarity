@@ -1,67 +1,47 @@
 package system
 
 import (
+	"github.com/leviceccato/clarity/component"
+	"github.com/leviceccato/clarity/game"
+
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 )
 
 type inputSystem struct {
-	system
+	System
 }
 
-type InputData struct {
-	X, Y int
+func NewInputSystem(s *game.State) *inputSystem {
+	sys := &inputSystem{}
+	return sys
 }
 
-type Control int
+func (sys *inputSystem) Load(s *game.State) {}
 
-const (
-	ControlJump Control = iota + 1
-	ControlUp
-	ControlLeft
-	ControlRight
-	ControlDown
-	ControlMenu
-	ControlDebug
-	ControlClick
-)
-
-func NewInputSystem(state SystemState) *inputSystem {
-	s := &inputSystem{}
-	s.state = state
-	return s
-}
-
-func (s *inputSystem) Load() {}
-
-func (s *inputSystem) Update() {
-	var (
-		control    Control
-		mouseInput ebiten.MouseButton
-		keyInput   ebiten.Key
-		x, y       int
-	)
-	for mouseInput, control = range s.state.MouseInputs() {
+func (sys *inputSystem) Update(s *game.State) {
+	for mouseInput, control := range s.MouseInputs {
 		if inpututil.IsMouseButtonJustPressed(mouseInput) {
-			x, y = ebiten.CursorPosition()
-			s.state.SetControl(control, &InputData{X: x, Y: y})
+			x, y := ebiten.CursorPosition()
+			s.SetControl(control, &component.InputData{X: x, Y: y})
 		}
 		if inpututil.IsMouseButtonJustReleased(mouseInput) {
-			s.state.SetControl(control, nil)
+			s.SetControl(control, nil)
 		}
 	}
-	for keyInput, control = range s.state.KeyInputs() {
+
+	for keyInput, control := range s.KeyInputs {
 		if inpututil.IsKeyJustPressed(keyInput) {
-			s.state.SetControl(control, &InputData{})
+			s.SetControl(control, &component.InputData{})
 		}
 		if inpututil.IsKeyJustReleased(keyInput) {
-			s.state.SetControl(control, nil)
+			s.SetControl(control, nil)
 		}
 	}
 }
 
-func (s *inputSystem) Draw(screen *ebiten.Image) {}
+func (sys *inputSystem) Draw(s *game.State, screen *ebiten.Image) {}
 
-func (s *inputSystem) Enter() {}
+func (sys *inputSystem) Enter(s *game.State) {}
 
-func (s *inputSystem) Exit() {}
+func (sys *inputSystem) Exit(s *game.State) {}
