@@ -76,7 +76,9 @@ func NewGame(options Options) (*State, error) {
 	}
 	g.UpdateControls()
 
-	g.Colors["fg-title"] = color.NRGBA{255, 240, 157, 255}
+	g.Colors = map[string]color.NRGBA{
+		"fg-title": {255, 240, 157, 255},
+	}
 
 	return g, nil
 }
