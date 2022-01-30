@@ -3,7 +3,6 @@ package world
 import (
 	"fmt"
 
-	"github.com/leviceccato/clarity/config"
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/game"
 	"github.com/leviceccato/clarity/system"
@@ -44,7 +43,7 @@ func NewTitleWorld(s *game.State) *titleWorld {
 	buttonYSpacing := 5.0
 	buttonYStart := 120.0
 	startButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
-		X:          (config.RenderWidth / 2) - (buttonWidth / 2),
+		X:          (float64(s.RenderWidth) / 2) - (buttonWidth / 2),
 		Y:          buttonYStart,
 		Width:      buttonWidth,
 		Height:     buttonHeight,
@@ -59,7 +58,7 @@ func NewTitleWorld(s *game.State) *titleWorld {
 		panic(fmt.Sprintf("creating title button entity: %s", err))
 	}
 	exitButton, err := entity.NewButtonEntity(&entity.ButtonEntityOptions{
-		X:          (config.RenderWidth / 2) - (buttonWidth / 2),
+		X:          (float64(s.RenderWidth) / 2) - (buttonWidth / 2),
 		Y:          buttonYStart + buttonHeight + buttonYSpacing,
 		Width:      buttonWidth,
 		Height:     buttonHeight,
