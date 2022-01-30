@@ -16,7 +16,7 @@ func main() {
 		RenderHeight: 270,
 	})
 	if err != nil {
-		panic(fmt.Sprintf("creating game: %w", err))
+		panic(fmt.Sprintf("creating game: %s", err))
 	}
 
 	g.LoadWorld(world.NewStartWorld(g))
@@ -25,6 +25,6 @@ func main() {
 
 	err = ebiten.RunGame(g)
 	if err != nil {
-		panic(fmt.Sprintf("running game: %w", err))
+		panic(fmt.Sprintf("running game: %s", err))
 	}
 }

@@ -3,6 +3,7 @@ package game
 import (
 	"fmt"
 	"image"
+	"image/color"
 
 	"github.com/leviceccato/clarity/asset"
 	"github.com/leviceccato/clarity/component"
@@ -74,6 +75,8 @@ func NewGame(options Options) (*State, error) {
 		ebiten.KeyBackquote:  component.ControlDebug,
 	}
 	g.UpdateControls()
+
+	g.Colors["fg-title"] = color.NRGBA{255, 240, 157, 255}
 
 	return g, nil
 }

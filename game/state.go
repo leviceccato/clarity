@@ -1,6 +1,8 @@
 package game
 
 import (
+	"image/color"
+
 	"github.com/leviceccato/clarity/component"
 	"github.com/leviceccato/clarity/entity"
 
@@ -43,6 +45,8 @@ type State struct {
 	IsCursorHovering bool
 
 	Fonts map[string]font.Face
+
+	Colors map[string]color.NRGBA
 }
 
 func (s *State) Update() error {

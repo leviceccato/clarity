@@ -51,7 +51,7 @@ func NewTitleWorld(s *game.State) *titleWorld {
 		Padding:    10,
 		Text:       "start",
 		Font:       s.Fonts["lana_pixel"],
-		Color:      config.ColFgTitle,
+		Color:      s.Colors["fg-title"],
 		Image:      "sprite/title_button.png",
 		IsCentered: true,
 	})
@@ -66,7 +66,7 @@ func NewTitleWorld(s *game.State) *titleWorld {
 		Padding:    10,
 		Text:       "exit",
 		Font:       s.Fonts["lana_pixel"],
-		Color:      config.ColFgTitle,
+		Color:      s.Colors["fg-title"],
 		Image:      "sprite/title_button.png",
 		IsCentered: true,
 	})
