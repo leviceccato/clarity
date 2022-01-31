@@ -35,19 +35,6 @@ Build the executable into a `.app` for macOS:
 go run ./macos
 ```
 
-## Tests
-
-Run tests:
-```
-go test ./...
-```
-
-Generate coverage and then view it in a browser:
-```
-go test ./... -coverprofile='coverage.out'
-go tool cover -html='coverage.out'
-```
-
 ## Architecture
 
 Game state is managed through the `game` package and it's functions. It is responsible for containing worlds and transitioning between them. Worlds are collections of systems and act like scenes. Systems contain all the games logic, which they run on all related entities. Entities are a collection of components that are purely data containers. All of these elements are initialised per world in the world package.
