@@ -30,8 +30,7 @@ func main() {
 	// Build executable
 	err := exec.Command("go", "build").Run()
 	if err != nil {
-		fmt.Printf("building macos executable: %s", err)
-		return
+		panic(fmt.Sprintf("building macos executable: %s", err))
 	}
 
 	for _, folder := range []string{
@@ -42,24 +41,20 @@ func main() {
 	} {
 		err := os.Mkdir(folder, 0755)
 		if err != nil {
-			fmt.Printf("creating %s folder: %s", folder, err)
-			return
+			panic(fmt.Sprintf("creating %s folder: %s", folder, err))
 		}
 	}
 	err = os.WriteFile("Clarity.app/Contents/Info.plist", []byte(infoTmpl), 0777)
 	if err != nil {
-		fmt.Printf("creating Info.plist: %s", err)
-		return
+		panic(fmt.Sprintf("creating Info.plist: %s", err))
 	}
 	bin, err := os.ReadFile("clarity")
 	if err != nil {
-		fmt.Printf("copying clarity binary: %s", err)
-		return
+		panic(fmt.Sprintf("copying clarity binary: %s", err))
 	}
 	err = os.WriteFile("Clarity.app/Contents/MacOS/Clarity", bin, 0777)
 	if err != nil {
-		fmt.Printf("pasting clarity binary: %s", err)
-		return
+		panic(fmt.Sprintf("pasting clarity binary: %s", err))
 	}
 
 	// Run macOS specific iconutil command to generate icons
@@ -68,7 +63,6 @@ func main() {
 		"Clarity.app/Contents/Resources/icon.icns", "asset/icon.iconset",
 	).Run()
 	if err != nil {
-		fmt.Printf("generating icons with iconutil: %s", err)
-		return
+		panic(fmt.Sprintf("generating icons with iconutil: %s", err))
 	}
 }
