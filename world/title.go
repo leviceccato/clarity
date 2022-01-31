@@ -6,8 +6,6 @@ import (
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/game"
 	"github.com/leviceccato/clarity/system"
-
-	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type titleWorld struct {
@@ -83,13 +81,3 @@ func NewTitleWorld(s *game.State) *titleWorld {
 
 	return w
 }
-
-func (w *titleWorld) Load(s *game.State) {}
-
-func (w *titleWorld) Update(s *game.State) {}
-
-func (w *titleWorld) Draw(s *game.State, screen *ebiten.Image) {}
-
-func (w *titleWorld) Enter(s *game.State) {}
-
-func (w *titleWorld) Exit(s *game.State) {}

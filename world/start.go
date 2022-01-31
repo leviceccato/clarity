@@ -6,8 +6,6 @@ import (
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/game"
 	"github.com/leviceccato/clarity/system"
-
-	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type startWorld struct {
@@ -41,13 +39,3 @@ func NewStartWorld(s *game.State) *startWorld {
 
 	return w
 }
-
-func (w *startWorld) Load(s *game.State) {}
-
-func (w *startWorld) Update(s *game.State) {}
-
-func (w *startWorld) Draw(s *game.State, screen *ebiten.Image) {}
-
-func (w *startWorld) Enter(s *game.State) {}
-
-func (w *startWorld) Exit(s *game.State) {}
