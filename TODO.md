@@ -5,6 +5,7 @@ A list of complete and incomplete tasks to track the progress of the game.
 - Add systems and components for basic UI interactions
 - Get world switching working
 - Add debug mode support
+- Fix translations
 
 ### Doing
 - Structure Title world and add art assets
