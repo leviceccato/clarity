@@ -3,6 +3,7 @@ package game
 import (
 	"image/color"
 
+	"github.com/leviceccato/clarity/asset"
 	"github.com/leviceccato/clarity/component"
 	"github.com/leviceccato/clarity/entity"
 
@@ -47,6 +48,8 @@ type State struct {
 	Fonts map[string]font.Face
 
 	Colors map[string]color.NRGBA
+
+	Translator *asset.Translator
 }
 
 func (s *State) Update() error {
