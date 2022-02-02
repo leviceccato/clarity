@@ -53,8 +53,8 @@ func (sys *hoverSystem) Update(s *game.State) {
 			e.Appearance.Sequence = "hover"
 			continue
 		}
-		e.Appearance.PreviousSequence = "hover"
 		e.Appearance.Sequence = e.Appearance.PreviousSequence
+		e.Appearance.PreviousSequence = "hover"
 	}
 }
 
