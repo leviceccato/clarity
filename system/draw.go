@@ -51,15 +51,9 @@ func (sys *drawSystem) Draw(s *game.State, screen *ebiten.Image) {
 		// Draw lines of text
 		for i, line := range e.Text.Lines {
 			x := int(e.Position.X) + int(line.X) + int(e.Text.Padding)
-			y := int(e.Position.Y) + (int(e.Size.Height) / 2) - ((i + 1) * (e.Text.LineHeight / 2))
-			text.Draw(
-				screen,
-				line.Content,
-				e.Text.Font,
-				x,
-				y,
-				e.Text.Color,
-			)
+			y := int(e.Position.Y) + int(e.Size.Height/2) - ((e.Text.LineHeight * len(e.Text.Lines)) / 2) + ((i + 1) * e.Text.LineHeight)
+
+			text.Draw(screen, line.Content, e.Text.Font, x, y, e.Text.Color)
 		}
 	}
 
