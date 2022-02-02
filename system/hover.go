@@ -31,7 +31,7 @@ func (sys *hoverSystem) Update(s *game.State) {
 		// If no change, nothing to do
 		hasHoverChanged := isHovered != e.Hover.IsHovered
 		if !hasHoverChanged {
-			return
+			continue
 		}
 
 		e.Hover.IsHovered = isHovered
