@@ -23,17 +23,15 @@ func NewCursorSystem(s *game.State) *cursorSystem {
 func (sys *cursorSystem) Load(s *game.State) {}
 
 func (sys *cursorSystem) Update(s *game.State) {
-	isCursorHovering := s.IsCursorHovering
 	for _, e := range sys.Entities {
-		if isCursorHovering && e.Appearance.Sequence == "default" {
+		if s.IsCursorHovering && e.Appearance.Sequence == "default" {
 			e.Appearance.Sequence = "pointer"
 		}
-		if !isCursorHovering && e.Appearance.Sequence == "pointer" {
+		if !s.IsCursorHovering && e.Appearance.Sequence == "pointer" {
 			e.Appearance.Sequence = "default"
 		}
-		x, y := ebiten.CursorPosition()
-		e.Position.X = float64(x)
-		e.Position.Y = float64(y)
+		e.Position.X = s.CursorX
+		e.Position.Y = s.CursorY
 	}
 }
 
