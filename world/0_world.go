@@ -3,9 +3,10 @@ package world
 import (
 	"reflect"
 
-	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/leviceccato/clarity/entity"
 	"github.com/leviceccato/clarity/game"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type world struct {

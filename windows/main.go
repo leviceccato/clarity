@@ -7,6 +7,7 @@ import (
 	"os/exec"
 
 	"github.com/leviceccato/clarity/asset"
+
 	"github.com/tc-hib/winres"
 )
 

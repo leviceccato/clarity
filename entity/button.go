@@ -6,9 +6,9 @@ import (
 	"math"
 	"strings"
 
-	"github.com/hajimehoshi/ebiten/v2/text"
 	"github.com/leviceccato/clarity/component"
 
+	"github.com/hajimehoshi/ebiten/v2/text"
 	"golang.org/x/image/font"
 )
 
