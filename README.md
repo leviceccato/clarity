@@ -13,7 +13,7 @@
 
 ## Development
 
-All commands should be run from the root directory.
+All commands must be run from the root directory.
 
 Start the game:
 ```
@@ -37,26 +37,28 @@ go run ./macos
 
 ## Architecture
 
-Game state is managed through the `game` package and it's functions. It is responsible for containing worlds and transitioning between them. Worlds are collections of systems and act like scenes. Systems contain all the games logic, which they run on all related entities. Entities are a collection of components that are purely data containers. All of these elements are initialised per world in the world package.
+Game state is managed through the game package and it's functions. It is responsible for containing worlds and transitioning between them. Worlds are collections of systems and act like scenes from other game engines. Systems contain all the logic, which they run on all related entities. Entities are a collection of components that are purely data containers. All of these elements are initialised per world in the world package.
 
 ## Project structure
 
 Folder | Description
 --- | ---
 Root directory | The main package is contained in the root. It contains the main entrypoint where everything is initialised.
-game | The game is created and state is initialised in this package. The state is passed to all Systems so data can be shared.
-asset | Package that contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
-component | Package holds all Component files. Components are data buckets that are included in an Entity.
-entity | Package holds all Entity files and their constructor. Entities are a collection of Components with varying data. They make up all things in the game.
-wip | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the Asset package.
-system | Package holds all systems and their constructor. Systems will runs their logic on all Entities that have the required Components.
-world | Package holds all World files. Each world contains Systems and Entities and acts as a way of separating game scenes.
-windows | Package specifically for generating Windows specific resource file.
-macos | Package specifically for generating macOS `.app` folder.
+game | The game is created and state is initialised in this package. State is passed to all systems so data can be shared.
+asset | Contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
+component | Holds all component files. Components are data buckets that are included in an entity.
+entity | Holds all entity files and their constructor. Entities are a collection of components with varying data. They make up all things in the game.
+wip | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the asset package.
+system | Holds all systems and their constructor. Systems will runs their logic on all entities that have the required components.
+world | Holds all world files. Each world contains systems and entities and acts as a way of separating game scenes.
+windows | For generating Windows specific resource file.
+macos | For generating macOS `.app` folder.
+
+Files are prefixed with `0_` to ensure they are displayed first when sorted alphabetically. This is helpful for packages with many files.
 
 ## Exporting sprites
 
-All sprites should be exported as PNG files using Aseprite. Animated sprites or sprites with multiple states (e.g. hover) should be exported as spritesheets with an accompanying JSON file. Here are the settings used:
+All sprites should be exported as `.png` files using Aseprite. Animated sprites or sprites with multiple states (e.g. hover) should be exported as spritesheets with an accompanying `.json` file. Here are the settings used:
 
 Setting | Value
 --- | ---
@@ -89,4 +91,4 @@ The macOS `.app` folder requires an array of specific icon sizes named the follo
 - icon_512x512.png
 - icon_512x512<span>@</span>2x.png
 
-The **@2x** simply means 200% size. These must be manually exported from Aseprite. There is a dedicated 512 x 512 Aseprite icon file since there is a limit that the 32 x 32 version may be resized from the UI. Windows currently only utilises the 16 x 16 and 32 x 32 icons.
+@2x means 200% size. These icons must be manually exported from Aseprite. There is a dedicated 512 x 512 Aseprite icon file since there is a limit that the 32 x 32 version may be resized from the UI. Windows only utilises the 16 x 16 and 32 x 32 icons.
