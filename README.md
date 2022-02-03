@@ -43,16 +43,16 @@ Game state is managed through the game package and it's functions. It is respons
 
 Folder | Description
 --- | ---
-Root directory | The main package is contained in the root. It contains the main entrypoint where everything is initialised.
-game | The game is created and state is initialised in this package. State is passed to all systems so data can be shared.
-asset | Contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
-component | Holds all component files. Components are data buckets that are included in an entity.
-entity | Holds all entity files and their constructor. Entities are a collection of components with varying data. They make up all things in the game.
-wip | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the asset package.
-system | Holds all systems and their constructor. Systems will runs their logic on all entities that have the required components.
-world | Holds all world files. Each world contains systems and entities and acts as a way of separating game scenes.
-windows | For generating Windows specific resource file.
-macos | For generating macOS `.app` folder.
+/ | The main package is contained in the root. It contains the main entrypoint where everything is initialised.
+/game | The game is created and state is initialised in this package. State is passed to all systems so data can be shared.
+/asset | Contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
+/component | Holds all component files. Components are data buckets that are included in an entity.
+/entity | Holds all entity files and their constructor. Entities are a collection of components with varying data. They make up all things in the game.
+/wip | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the asset package.
+/system | Holds all systems and their constructor. Systems will runs their logic on all entities that have the required components.
+/world | Holds all world files. Each world contains systems and entities and acts as a way of separating game scenes.
+/windows | For generating Windows specific resource file.
+/macos | For generating macOS `.app` folder.
 
 Files are prefixed with `0_` to ensure they are displayed first when sorted alphabetically. This is helpful for packages with many files.
 
