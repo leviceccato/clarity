@@ -3,8 +3,9 @@ package system
 import (
 	"os"
 
-	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/leviceccato/clarity/game"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type eventSystem struct {

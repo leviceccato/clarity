@@ -46,10 +46,11 @@ func NewTitleWorld(s *game.State) *titleWorld {
 		Width:      buttonWidth,
 		Height:     buttonHeight,
 		Padding:    10,
-		Text:       "start",
+		Text:       s.Translator.Trans("start"),
 		Font:       s.Fonts["lana_pixel"],
 		Color:      s.Colors["fg-title"],
 		Image:      "sprite/title_button.png",
+		Animation:  "sprite/title_button.json",
 		IsCentered: true,
 	})
 	if err != nil {
@@ -61,10 +62,11 @@ func NewTitleWorld(s *game.State) *titleWorld {
 		Width:      buttonWidth,
 		Height:     buttonHeight,
 		Padding:    10,
-		Text:       "exit",
+		Text:       s.Translator.Trans("exit"),
 		Font:       s.Fonts["lana_pixel"],
 		Color:      s.Colors["fg-title"],
 		Image:      "sprite/title_button.png",
+		Animation:  "sprite/title_button.json",
 		IsCentered: true,
 	})
 	if err != nil {

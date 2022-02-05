@@ -5,12 +5,12 @@ A list of complete and incomplete tasks to track the progress of the game.
 - Add systems and components for basic UI interactions
 - Get world switching working
 - Add debug mode support
-- Fix translations
 
 ### Doing
 - Structure Title world and add art assets
 
 ### Done (Most recent to oldest)
+- Fix translations
 - Show pointer cursor when hovering buttons
 - Allow creating MacOS app image
 - Embed icon in Windows exe

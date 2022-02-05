@@ -31,7 +31,7 @@ func (sys *hoverSystem) Update(s *game.State) {
 		// If no change, nothing to do
 		hasHoverChanged := isHovered != e.Hover.IsHovered
 		if !hasHoverChanged {
-			return
+			continue
 		}
 
 		e.Hover.IsHovered = isHovered
@@ -53,8 +53,8 @@ func (sys *hoverSystem) Update(s *game.State) {
 			e.Appearance.Sequence = "hover"
 			continue
 		}
-		e.Appearance.PreviousSequence = "hover"
 		e.Appearance.Sequence = e.Appearance.PreviousSequence
+		e.Appearance.PreviousSequence = "hover"
 	}
 }
 

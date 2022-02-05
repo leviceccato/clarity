@@ -9,7 +9,7 @@ import (
 )
 
 type Translator struct {
-	language   language.Tag
+	Language   language.Tag
 	localizers map[language.Tag]*i18n.Localizer
 }
 
@@ -37,7 +37,7 @@ func (t *Translator) AddLocalizer(path string, lang language.Tag) error {
 }
 
 func (t Translator) TransData(str string, data interface{}) (string, error) {
-	translation, err := t.localizers[t.language].Localize(&i18n.LocalizeConfig{
+	translation, err := t.localizers[t.Language].Localize(&i18n.LocalizeConfig{
 		MessageID:    str,
 		TemplateData: data,
 	})

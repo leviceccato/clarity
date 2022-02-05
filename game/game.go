@@ -32,6 +32,8 @@ func NewGame(options Options) (*State, error) {
 	if err != nil {
 		return nil, fmt.Errorf("adding localizer: %s", err)
 	}
+	translator.Language = language.English
+	g.Translator = translator
 
 	// Load fonts
 	lanaPixel, err := asset.LoadFont("font/lana_pixel.ttf")
