@@ -55,16 +55,14 @@ func (s *State) Update() error {
 	s.UpdateCursor()
 
 	for _, worldName := range s.activeWorlds {
-		w := s.worlds[worldName]
-		w.Update(s)
+		s.worlds[worldName].Update(s)
 	}
 	return nil
 }
 
 func (s *State) Draw(screen *ebiten.Image) {
 	for _, worldName := range s.activeWorlds {
-		w := s.worlds[worldName]
-		w.Draw(s, screen)
+		s.worlds[worldName].Draw(s, screen)
 	}
 }
 
@@ -98,15 +96,13 @@ func (s *State) ActivateWorlds(names ...string) {
 	enteringWorlds := sliceStringDifference(names, s.activeWorlds)
 
 	for _, worldName := range exitingWorlds {
-		w := s.worlds[worldName]
-		w.Exit(s)
+		s.worlds[worldName].Exit(s)
 	}
 
 	s.activeWorlds = names
 
 	for _, worldName := range enteringWorlds {
-		w := s.worlds[worldName]
-		w.Enter(s)
+		s.worlds[worldName].Enter(s)
 	}
 }
 
