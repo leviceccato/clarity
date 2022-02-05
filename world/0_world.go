@@ -48,10 +48,6 @@ func (w *world) Name() string {
 	return w.name
 }
 
-func (w *world) Systems() []game.GameSystem {
-	return w.systems
-}
-
 // Add entities to systems based on their components. This is an
 // expensive function and should be used sparingly. Ideally after
 // multiple system and entity updates.

@@ -22,7 +22,6 @@ type GameSystem interface {
 
 type gameWorld interface {
 	Name() string
-	Systems() []GameSystem
 	Load(*State)
 	Exit(*State)
 	Enter(*State)
