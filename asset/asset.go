@@ -32,7 +32,7 @@ func LoadIcon(path string) (image.Image, error) {
 func MustLoadIcon(path string) image.Image {
 	icon, err := LoadIcon(path)
 	if err != nil {
-		panic(fmt.Sprintf("loading icon: %s", err))
+		panic(fmt.Sprintf("loading icon: %v", err))
 	}
 
 	return icon
@@ -41,12 +41,12 @@ func MustLoadIcon(path string) image.Image {
 func LoadFont(path string) (font.Face, error) {
 	bytes, err := FS.ReadFile(path)
 	if err != nil {
-		return nil, fmt.Errorf("loading font file: %s", err)
+		return nil, fmt.Errorf("loading font file: %w", err)
 	}
 
 	fontfile, err := opentype.Parse(bytes)
 	if err != nil {
-		return nil, fmt.Errorf("parsing font file: %s", err)
+		return nil, fmt.Errorf("parsing font file: %w", err)
 	}
 
 	face, err := opentype.NewFace(fontfile, &opentype.FaceOptions{
@@ -55,7 +55,7 @@ func LoadFont(path string) (font.Face, error) {
 		Hinting: font.HintingNone,
 	})
 	if err != nil {
-		return nil, fmt.Errorf("creating font face: %s", err)
+		return nil, fmt.Errorf("creating font face: %w", err)
 	}
 
 	return face, nil
@@ -64,7 +64,7 @@ func LoadFont(path string) (font.Face, error) {
 func MustLoadFont(path string) font.Face {
 	font, err := LoadFont(path)
 	if err != nil {
-		panic(fmt.Sprintf("loading font: %s", err))
+		panic(fmt.Sprintf("loading font: %v", err))
 	}
 
 	return font
