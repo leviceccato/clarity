@@ -29,6 +29,15 @@ func LoadIcon(path string) (image.Image, error) {
 	return icon, nil
 }
 
+func MustLoadIcon(path string) image.Image {
+	icon, err := LoadIcon(path)
+	if err != nil {
+		panic(fmt.Sprintf("loading icon: %s", err))
+	}
+
+	return icon
+}
+
 func LoadFont(path string) (font.Face, error) {
 	bytes, err := FS.ReadFile(path)
 	if err != nil {
@@ -50,4 +59,13 @@ func LoadFont(path string) (font.Face, error) {
 	}
 
 	return face, nil
+}
+
+func MustLoadFont(path string) font.Face {
+	font, err := LoadFont(path)
+	if err != nil {
+		panic(fmt.Sprintf("loading font: %s", err))
+	}
+
+	return font
 }
