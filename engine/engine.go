@@ -31,6 +31,10 @@ func NewGame() *Game {
 	}
 }
 
+func (g *Game) Run() error {
+	return ebiten.RunGame(g)
+}
+
 // Entity IDs are unique to a Game
 func (g *Game) NewEntity() *Entity {
 	e := &Entity{Id: g.entityId}

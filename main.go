@@ -5,8 +5,6 @@ import (
 
 	"github.com/leviceccato/clarity/game"
 	"github.com/leviceccato/clarity/logger"
-
-	"github.com/hajimehoshi/ebiten/v2"
 )
 
 func main() {
@@ -25,7 +23,7 @@ func main() {
 	}
 
 	// Run the game
-	err = ebiten.RunGame(g)
+	err = g.Run()
 	if err != nil {
 		l.Error.Panicf("running game: %s", err)
 	}
