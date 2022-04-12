@@ -44,7 +44,7 @@ The ECS portion of the game is managed in the engine package. The implementation
 Folder | Go Package | Description
 --- | --- | ---
 / | ✅ | The main package is contained in the root. It's purpose is to initialise the game and otherwise do as little as possible.
-/engine | ✅ | This where the ECS is implemented and it removes purposefully decoupled from the game itself.
+/engine | ✅ | This where the ECS is implemented, it's purposefully decoupled from the game itself.
 /game | ✅ | This is where all of the Clarity-specific code resides, such Entity initilisation, System logic and Component definitions.
 /asset | ✅ | Contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
 /wip | | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the asset package.
