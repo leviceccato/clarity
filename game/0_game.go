@@ -33,14 +33,14 @@ type Options struct {
 	Logger *logger.Logger
 }
 
-func NewGame(options *Options) (*Game, error) {
+func CreateAndRun(options *Options) error {
 	g := &Game{Game: engine.NewGame()}
 
 	// Init translations
 	translator := asset.NewTranslator()
 	err := translator.AddLocalizer("translation/en.json", language.English)
 	if err != nil {
-		return g, fmt.Errorf("adding localizer: %w", err)
+		return fmt.Errorf("adding localizer: %w", err)
 	}
 	translator.Lang = language.English
 	g.translator = translator
@@ -53,7 +53,7 @@ func NewGame(options *Options) (*Game, error) {
 		font.HintingNone,
 	)
 	if err != nil {
-		return g, fmt.Errorf("loading font: %w", err)
+		return fmt.Errorf("loading font: %w", err)
 	}
 	g.fonts = map[string]font.Face{
 		"lana_pixel": lanaPixel,
@@ -62,11 +62,11 @@ func NewGame(options *Options) (*Game, error) {
 	// Add icons
 	icon16, err := asset.LoadIcon("icon.iconset/icon_16x16.png")
 	if err != nil {
-		return nil, fmt.Errorf("loading icon_16: %w", err)
+		return fmt.Errorf("loading icon_16: %w", err)
 	}
 	icon32, err := asset.LoadIcon("icon.iconset/icon_32x32.png")
 	if err != nil {
-		return nil, fmt.Errorf("loading icon_32: %w", err)
+		return fmt.Errorf("loading icon_32: %w", err)
 	}
 	ebiten.SetWindowIcon([]image.Image{icon32, icon16})
 
@@ -101,5 +101,11 @@ func NewGame(options *Options) (*Game, error) {
 	// Set title as active world
 	g.ActivateWorlds("title")
 
-	return g, nil
+	// Run the game
+	err = g.Run()
+	if err != nil {
+		return fmt.Errorf("running game: %w", err)
+	}
+
+	return nil
 }
