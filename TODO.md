@@ -7,9 +7,10 @@ A list of complete and incomplete tasks to track the progress of the game.
 - Add debug mode support
 
 ### Doing
-- Structure Title world and add art assets
+- Refactor to decouple engine from game code
 
 ### Done (Most recent to oldest)
+- Structure Title world and add art assets
 - Fix translations
 - Show pointer cursor when hovering buttons
 - Allow creating MacOS app image

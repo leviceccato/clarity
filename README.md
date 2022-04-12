@@ -8,7 +8,7 @@
 
 ## Requirements
 
-- Go 1.17
+- Go 1.18
 - Aseprite 1.2
 
 ## Development
@@ -37,22 +37,21 @@ go run ./macos
 
 ## Architecture
 
-Game state is managed through the game package and it's functions. It is responsible for containing worlds and transitioning between them. Worlds are collections of systems and act like scenes from other game engines. Systems contain all the logic, which they run on all related entities. Entities are a collection of components that are purely data containers. All of these elements are initialised per world in the world package.
+The ECS portion of the game is managed in the engine package. The implementation is similar to that of most ECS's, there is a global Game struct responsible for containing game state and managing creation of other objects. Within this there are World's which act as containers for groups of System's and Entities. Systems are where all of the games logic is stored. Entities are simply a collection of Components and Components are purely buckets of data which the Systems will be run on. This package's functions are utilised by the game package where all of the Clarity-specific logic is contained and initialised.
 
 ## Project structure
 
-Folder | Description
---- | ---
-/ | The main package is contained in the root. It contains the main entrypoint where everything is initialised.
-/game | The game is created and state is initialised in this package. State is passed to all systems so data can be shared.
-/asset | Contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
-/component | Holds all component files. Components are data buckets that are included in an entity.
-/entity | Holds all entity files and their constructor. Entities are a collection of components with varying data. They make up all things in the game.
-/wip | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the asset package.
-/system | Holds all systems and their constructor. Systems will runs their logic on all entities that have the required components.
-/world | Holds all world files. Each world contains systems and entities and acts as a way of separating game scenes.
-/windows | For generating Windows specific resource file.
-/macos | For generating macOS `.app` folder.
+Folder | Go Package | Description
+--- | --- | ---
+/ | ✅ | The main package is contained in the root. It's purpose is to initialise the game and otherwise do as little as possible.
+/engine | ✅ | This where the ECS is implemented and it removes purposefully decoupled from the game itself.
+/game | ✅ | This is where all of the Clarity-specific code resides, such Entity initilisation, System logic and Component definitions.
+/asset | ✅ | Contains built assets that are embedded into the final executable. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
+/wip | | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the asset package.
+/windows | ✅ | For building the project for Windows (`go run ./windows`).
+/macos | ✅ | For building the project for macOS (`go run ./macos`).
+/util | ✅ | Highly generic utility functions used across the project.
+/logger | ✅ | Simple logging implementation.
 
 Files are prefixed with `0_` to ensure they are displayed first when sorted alphabetically. This is helpful for packages with many files.
 

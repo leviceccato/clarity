@@ -1,12 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"image"
 	"os"
 	"os/exec"
 
 	"github.com/leviceccato/clarity/asset"
+	"github.com/leviceccato/clarity/util"
 
 	"github.com/tc-hib/winres"
 )
@@ -19,34 +19,16 @@ func main() {
 	rs := winres.ResourceSet{}
 
 	// Add icons
-	icon32, err := asset.LoadIcon("icon.iconset/icon_32x32.png")
-	if err != nil {
-		panic(fmt.Sprintf("loading icon_32: %s", err))
-	}
-	icon16, err := asset.LoadIcon("icon.iconset/icon_16x16.png")
-	if err != nil {
-		panic(fmt.Sprintf("loading icon_16: %s", err))
-	}
-	icon, err := winres.NewIconFromImages([]image.Image{icon32, icon16})
-	if err != nil {
-		panic(fmt.Sprintf("creating icon from files: %s", err))
-	}
+	icon32 := util.MustGet(asset.LoadIcon("icon.iconset/icon_32x32.png"))
+	icon16 := util.MustGet(asset.LoadIcon("icon.iconset/icon_16x16.png"))
+	icon := util.MustGet(winres.NewIconFromImages([]image.Image{icon32, icon16}))
 	rs.SetIcon(winres.Name("APPICON"), icon)
 
 	// Output syso file for inclusion in executable
-	out, err := os.Create("rsrc_windows_amd64.syso")
-	if err != nil {
-		panic(fmt.Sprintf("creating syso file: %s", err))
-	}
+	out := util.MustGet(os.Create("rsrc_windows_amd64.syso"))
 	defer out.Close()
-	err = rs.WriteObject(out, winres.ArchAMD64)
-	if err != nil {
-		panic(fmt.Sprintf("writing resource to syso file: %s", err))
-	}
+	util.Must(rs.WriteObject(out, winres.ArchAMD64))
 
 	// Build executable
-	err = exec.Command("go", "build", "-o", "Clarity.exe").Run()
-	if err != nil {
-		panic(fmt.Sprintf("generating windows executable: %s", err))
-	}
+	util.Must(exec.Command("go", "build", "-o", "Clarity.exe").Run())
 }

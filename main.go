@@ -1,30 +1,32 @@
 package main
 
 import (
-	"fmt"
+	"os"
 
 	"github.com/leviceccato/clarity/game"
-	"github.com/leviceccato/clarity/world"
+	"github.com/leviceccato/clarity/logger"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 func main() {
-	g, err := game.NewGame(game.Options{
+	// Create logger for application
+	l := logger.New(os.Stdout, os.Stderr)
+
+	// Create game
+	g, err := game.NewGame(&game.Options{
 		Title:        "Clarity",
 		RenderWidth:  480,
 		RenderHeight: 270,
+		Logger:       l,
 	})
 	if err != nil {
-		panic(fmt.Sprintf("creating game: %s", err))
+		l.Error.Panicf("creating game: %s", err)
 	}
 
-	g.LoadWorld(world.NewStartWorld(g))
-	g.LoadWorld(world.NewTitleWorld(g))
-	g.ActivateWorlds("start")
-
+	// Run the game
 	err = ebiten.RunGame(g)
 	if err != nil {
-		panic(fmt.Sprintf("running game: %s", err))
+		l.Error.Panicf("running game: %s", err)
 	}
 }
