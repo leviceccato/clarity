@@ -25,8 +25,3 @@ type textLine struct {
 	Content string
 	X       float64
 }
-
-// Create new text component with a single line
-func newText(content string) *textComponent {
-	return &textComponent{Lines: []textLine{{Content: content}}}
-}
