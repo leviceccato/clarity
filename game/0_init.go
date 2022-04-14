@@ -70,6 +70,18 @@ func CreateAndRun(options *Options) error {
 		"fg-title": {255, 240, 157, 255},
 	}
 
+	// Set inputs
+	g.mouseInputs = map[ebiten.MouseButton]command{}
+	g.keyInputs = map[ebiten.Key]command{}
+	g.inputs = map[command]*inputData{}
+	g.InputBindings = map[command][]any{
+		commandJump:      {ebiten.KeySpace},
+		commandMoveLeft:  {ebiten.KeyA, ebiten.KeyArrowLeft},
+		commandMoveRight: {ebiten.KeyD, ebiten.KeyArrowRight},
+		commandMoveUp:    {ebiten.KeyW, ebiten.KeyArrowUp},
+		commandMoveDown:  {ebiten.KeyS, ebiten.KeyArrowDown},
+	}
+
 	// Init systems
 	g.AddSystems(
 		newAnimationSystem(g),
