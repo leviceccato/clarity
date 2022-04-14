@@ -21,10 +21,6 @@ type Game struct {
 
 	// Globals
 	RenderWidth, RenderHeight int
-
-	// Hooks
-	BeforeUpdate func() error
-	BeforeDraw   func(screen *ebiten.Image)
 }
 
 func NewGame() *Game {
@@ -53,13 +49,6 @@ func (g Game) GetEntity(id int) *Entity {
 }
 
 func (g Game) Update() error {
-	if g.BeforeUpdate != nil {
-		err := g.BeforeUpdate()
-		if err != nil {
-			return fmt.Errorf("before updating game: %w", err)
-		}
-	}
-
 	for _, w := range g.activeWorlds {
 		err := w.update(g)
 		if err != nil {
@@ -71,10 +60,6 @@ func (g Game) Update() error {
 }
 
 func (g Game) Draw(screen *ebiten.Image) {
-	if g.BeforeDraw != nil {
-		g.BeforeDraw(screen)
-	}
-
 	for _, w := range g.activeWorlds {
 		w.draw(g, screen)
 	}
