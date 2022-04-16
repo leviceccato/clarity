@@ -71,8 +71,6 @@ func CreateAndRun(options *Options) error {
 	}
 
 	// Set inputs
-	g.mouseInputs = map[ebiten.MouseButton]command{}
-	g.keyInputs = map[ebiten.Key]command{}
 	g.inputs = map[command]*inputData{}
 	g.InputBindings = map[command][]any{
 		commandJump:      {ebiten.KeySpace},

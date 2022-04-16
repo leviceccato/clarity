@@ -7,7 +7,6 @@ import (
 	"github.com/leviceccato/clarity/engine"
 	"github.com/leviceccato/clarity/logger"
 
-	"github.com/hajimehoshi/ebiten/v2"
 	"golang.org/x/image/font"
 )
 
@@ -40,8 +39,6 @@ type Game struct {
 
 	// State
 	isCursorHovering bool
-	mouseInputs      map[ebiten.MouseButton]command
-	keyInputs        map[ebiten.Key]command
 	inputs           map[command]*inputData
 }
 
