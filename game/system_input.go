@@ -14,10 +14,10 @@ func newInputSystem(g *Game) *engine.System {
 		x, y := engine.CursorPosition()
 
 		for cmd, inputs := range g.InputBindings {
-			for _, anyInput := range inputs {
-				switch input := anyInput.(type) {
+			for _, input := range inputs {
+				switch i := input.(type) {
 				case ebiten.MouseButton:
-					if inpututil.IsMouseButtonJustPressed(input) {
+					if inpututil.IsMouseButtonJustPressed(i) {
 						g.setInput(cmd, &inputData{
 							isStart: true,
 							x:       x,
@@ -26,7 +26,7 @@ func newInputSystem(g *Game) *engine.System {
 						continue
 					}
 
-					if inpututil.IsMouseButtonJustReleased(input) {
+					if inpututil.IsMouseButtonJustReleased(i) {
 						g.setInput(cmd, &inputData{
 							isStart: false,
 							x:       x,
@@ -35,21 +35,21 @@ func newInputSystem(g *Game) *engine.System {
 						continue
 					}
 
-					if !ebiten.IsMouseButtonPressed(input) {
+					if !ebiten.IsMouseButtonPressed(i) {
 						g.setInput(cmd, nil)
 					}
 				case ebiten.Key:
-					if inpututil.IsKeyJustPressed(input) {
+					if inpututil.IsKeyJustPressed(i) {
 						g.setInput(cmd, &inputData{isStart: true})
 						continue
 					}
 
-					if inpututil.IsKeyJustReleased(input) {
+					if inpututil.IsKeyJustReleased(i) {
 						g.setInput(cmd, &inputData{isStart: false})
 						continue
 					}
 
-					if !ebiten.IsKeyPressed(input) {
+					if !ebiten.IsKeyPressed(i) {
 						g.setInput(cmd, nil)
 					}
 				}
