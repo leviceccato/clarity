@@ -85,7 +85,6 @@ func CreateAndRun(options *Options) error {
 		newAnimationSystem(g),
 		newCursorSystem(g),
 		newDrawSystem(g),
-		newEventSystem(g),
 		newHoverSystem(g),
 		newInputSystem(g),
 		newPlayableSystem(g),
