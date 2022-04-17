@@ -180,13 +180,19 @@ func NewWorld(name string, systemNames []string) *World {
 
 func (w World) update(g Game) error {
 	for _, systemName := range w.systemNames {
-		s := g.systems[systemName]
+		s, ok := g.systems[systemName]
+		if !ok {
+			return fmt.Errorf("accessing unknown '%s' system", systemName)
+		}
 
-		if s.Update != nil {
-			err := s.Update()
-			if err != nil {
-				return fmt.Errorf("updating world %s: %w", w.name, err)
-			}
+		// No update method defined
+		if s.Update == nil {
+			return nil
+		}
+
+		err := s.Update()
+		if err != nil {
+			return fmt.Errorf("updating world %s: %w", w.name, err)
 		}
 	}
 	return nil
@@ -196,9 +202,12 @@ func (w World) draw(g Game, screen *ebiten.Image) {
 	for _, systemName := range w.systemNames {
 		s := g.systems[systemName]
 
-		if s.Draw != nil {
-			s.Draw(screen)
+		// No draw method defined
+		if s.Draw == nil {
+			return
 		}
+
+		s.Draw(screen)
 	}
 }
 
