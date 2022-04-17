@@ -11,49 +11,53 @@ func newInputSystem(g *Game) *engine.System {
 	s := engine.NewSystem("input", []string{})
 
 	s.Update = func() error {
-		x, y := engine.CursorPosition()
-
 		for cmd, inputs := range g.InputBindings {
-			for _, input := range inputs {
-				switch i := input.(type) {
-				case ebiten.MouseButton:
-					if inpututil.IsMouseButtonJustPressed(i) {
-						g.setInput(cmd, &inputData{
-							isStart: true,
-							x:       x,
-							y:       y,
-						})
-						continue
+			func() {
+				for _, input := range inputs {
+					switch i := input.(type) {
+					case ebiten.MouseButton:
+						if inpututil.IsMouseButtonJustPressed(i) {
+							x, y := engine.CursorPosition()
+							g.setInput(cmd, &inputData{
+								isStart: true,
+								x:       x,
+								y:       y,
+							})
+							return
+						}
+
+						if inpututil.IsMouseButtonJustReleased(i) {
+							x, y := engine.CursorPosition()
+							g.setInput(cmd, &inputData{
+								isStart:      false,
+								shouldExpire: true,
+								x:            x,
+								y:            y,
+							})
+							return
+						}
+					case ebiten.Key:
+						if inpututil.IsKeyJustPressed(i) {
+							g.setInput(cmd, &inputData{isStart: true})
+							return
+						}
+
+						if inpututil.IsKeyJustReleased(i) {
+							g.setInput(cmd, &inputData{
+								isStart:      false,
+								shouldExpire: true,
+							})
+							return
+						}
 					}
 
-					if inpututil.IsMouseButtonJustReleased(i) {
-						g.setInput(cmd, &inputData{
-							isStart: false,
-							x:       x,
-							y:       y,
-						})
-						continue
-					}
-
-					if !ebiten.IsMouseButtonPressed(i) {
+					data := g.inputs[cmd]
+					if data != nil && data.shouldExpire {
 						g.setInput(cmd, nil)
-					}
-				case ebiten.Key:
-					if inpututil.IsKeyJustPressed(i) {
-						g.setInput(cmd, &inputData{isStart: true})
-						continue
-					}
-
-					if inpututil.IsKeyJustReleased(i) {
-						g.setInput(cmd, &inputData{isStart: false})
-						continue
-					}
-
-					if !ebiten.IsKeyPressed(i) {
-						g.setInput(cmd, nil)
+						return
 					}
 				}
-			}
+			}()
 		}
 
 		return nil

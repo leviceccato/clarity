@@ -10,21 +10,6 @@ import (
 	"golang.org/x/image/font"
 )
 
-type command int
-
-const (
-	commandJump command = iota
-	commandMoveLeft
-	commandMoveRight
-	commandMoveDown
-	commandMoveUp
-)
-
-type inputData struct {
-	isStart bool
-	x, y    float64
-}
-
 type Game struct {
 	*engine.Game
 
@@ -44,6 +29,26 @@ type Game struct {
 
 func (g *Game) setIsCursorHovering(to bool) {
 	g.isCursorHovering = to
+}
+
+type command int
+
+const (
+	commandJump command = iota
+	commandMoveLeft
+	commandMoveRight
+	commandMoveDown
+	commandMoveUp
+)
+
+type inputData struct {
+	// Track beginning and end of input
+	isStart bool
+
+	// After input ended, mark as expired so struct is deleted in next frame
+	shouldExpire bool
+
+	x, y float64
 }
 
 func (g *Game) setInput(cmd command, data *inputData) {
