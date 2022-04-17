@@ -11,7 +11,6 @@ func newTitleWorld(g *Game) *engine.World {
 		"cursor",
 		"animation",
 		"input",
-		"event",
 		"playable",
 		"hover",
 		"draw",

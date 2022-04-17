@@ -12,7 +12,6 @@ func newStartWorld(g *Game) *engine.World {
 		"draw",
 		"animation",
 		"input",
-		"event",
 		"playable",
 	})
 
