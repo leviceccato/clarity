@@ -2,6 +2,7 @@ package game
 
 import (
 	"image/color"
+	"os"
 
 	"github.com/leviceccato/clarity/asset"
 	"github.com/leviceccato/clarity/engine"
@@ -25,6 +26,12 @@ type Game struct {
 	// State
 	isCursorHovering bool
 	inputs           map[command]*inputData
+}
+
+func (g Game) quit(code int) {
+	g.logger.Info.Printf("quit with code: %v", code)
+
+	os.Exit(code)
 }
 
 func (g *Game) setIsCursorHovering(to bool) {
