@@ -9,6 +9,8 @@ import (
 func newCursorEntity(g *Game) (*engine.Entity, error) {
 	e := g.NewEntity()
 
+	e.AddComponent(&cursorComponent{})
+
 	e.AddComponent(&positionComponent{
 		X: 10,
 		Y: 10,
