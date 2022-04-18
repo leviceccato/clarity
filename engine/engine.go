@@ -3,6 +3,8 @@ package engine
 import (
 	"fmt"
 
+	"github.com/leviceccato/clarity/util"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -11,8 +13,8 @@ const Delta = (1.0 / 60) * 1000
 
 // The main game struct that contains all worlds and systems
 type Game struct {
-	worlds       map[string]*World
-	activeWorlds []*World
+	worlds           map[string]*World
+	activeWorldNames []string
 
 	systems map[string]*System
 
@@ -49,7 +51,12 @@ func (g Game) GetEntity(id int) *Entity {
 }
 
 func (g Game) Update() error {
-	for _, w := range g.activeWorlds {
+	for _, worldName := range g.activeWorldNames {
+		w, ok := g.worlds[worldName]
+		if !ok {
+			return fmt.Errorf("accessing unknown world '%s'", worldName)
+		}
+
 		err := w.update(g)
 		if err != nil {
 			return fmt.Errorf("updating game: %w", err)
@@ -60,7 +67,12 @@ func (g Game) Update() error {
 }
 
 func (g Game) Draw(screen *ebiten.Image) {
-	for _, w := range g.activeWorlds {
+	for _, worldName := range g.activeWorldNames {
+		w, ok := g.worlds[worldName]
+		if !ok {
+			return
+		}
+
 		w.draw(g, screen)
 	}
 }
@@ -73,37 +85,17 @@ func (g Game) Layout(_, _ int) (int, int) {
 // Figure out which worlds need activation/deactivation then
 // run their associated functions
 func (g *Game) ActivateWorlds(worldNames ...string) {
-	// Preallocate for performance
-	exitingWorlds := make([]*World, 0, len(g.activeWorlds))
-	enteringWorlds := make([]*World, 0, len(worldNames))
-	newActiveWorlds := make([]*World, 0, len(worldNames))
+	exitingWorlds := util.Unique(g.activeWorldNames, worldNames)
+	enteringWorlds := util.Unique(worldNames, g.activeWorldNames)
 
-	for _, w := range g.activeWorlds {
-		for _, worldName := range worldNames {
-			if w.name != worldName {
-				exitingWorlds = append(exitingWorlds, w)
-			}
-		}
+	for _, worldName := range exitingWorlds {
+		g.worlds[worldName].Exit()
 	}
 
-	for _, worldName := range worldNames {
-		newActiveWorlds = append(newActiveWorlds, g.worlds[worldName])
+	g.activeWorldNames = worldNames
 
-		for _, w := range g.activeWorlds {
-			if worldName != w.name {
-				enteringWorlds = append(enteringWorlds, g.worlds[worldName])
-			}
-		}
-	}
-
-	for _, w := range exitingWorlds {
-		w.Exit()
-	}
-
-	g.activeWorlds = newActiveWorlds
-
-	for _, w := range enteringWorlds {
-		w.Enter()
+	for _, worldName := range enteringWorlds {
+		g.worlds[worldName].Enter()
 	}
 }
 
