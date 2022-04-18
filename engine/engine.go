@@ -39,7 +39,10 @@ func (g *Game) Run() error {
 
 // Entity IDs are unique to a Game
 func (g *Game) NewEntity() *Entity {
-	e := &Entity{Id: g.entityId}
+	e := &Entity{
+		Id:         g.entityId,
+		components: map[string]component{},
+	}
 
 	g.entityId++
 
