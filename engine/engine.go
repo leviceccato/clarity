@@ -237,9 +237,13 @@ func (e *Entity) AddComponent(c component) {
 func GetComponent[T component](e *Entity, c T) (T, bool) {
 	component, ok := e.components[c.Name()]
 	if !ok {
-		return component.(T), false
+		return c, false
 	}
-	return component.(T), true
+	underlyingComponent, ok := component.(T)
+	if !ok {
+		return c, false
+	}
+	return underlyingComponent, true
 }
 
 func CursorPosition() (float64, float64) {
