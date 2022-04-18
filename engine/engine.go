@@ -187,7 +187,7 @@ func (w World) update(g Game) error {
 
 		// No update method defined
 		if s.Update == nil {
-			return nil
+			continue
 		}
 
 		err := s.Update()
@@ -204,7 +204,7 @@ func (w World) draw(g Game, screen *ebiten.Image) {
 
 		// No draw method defined
 		if s.Draw == nil {
-			return
+			continue
 		}
 
 		s.Draw(screen)
