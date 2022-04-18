@@ -12,9 +12,10 @@ func newCursorSystem(g *Game) *engine.System {
 	})
 
 	s.Update = func() error {
+		cursorX, cursorY := engine.CursorPosition()
+
 		for _, entityId := range s.EntityIds {
 			e := g.GetEntity(entityId)
-			cursorX, cursorY := engine.CursorPosition()
 
 			appearance, _ := engine.GetComponent(e, &appearanceComponent{})
 			position, _ := engine.GetComponent(e, &positionComponent{})
