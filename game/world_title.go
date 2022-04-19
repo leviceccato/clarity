@@ -17,14 +17,14 @@ func newTitleWorld(g *Game) *engine.World {
 	})
 
 	w.Enter = func() error {
-		cursor, err := newCursorEntity(g)
-		if err != nil {
-			return fmt.Errorf("creating cursor entity: %w", err)
-		}
-
 		background, err := newImageEntity(g, "sprite/title_bg.png")
 		if err != nil {
 			return fmt.Errorf("creating background entity: %w", err)
+		}
+
+		cursor, err := newCursorEntity(g)
+		if err != nil {
+			return fmt.Errorf("creating cursor entity: %w", err)
 		}
 
 		buttonWidth := 74.0
