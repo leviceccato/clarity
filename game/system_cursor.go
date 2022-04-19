@@ -2,6 +2,8 @@ package game
 
 import (
 	"github.com/leviceccato/clarity/engine"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 func newCursorSystem(g *Game) *engine.System {
@@ -10,6 +12,10 @@ func newCursorSystem(g *Game) *engine.System {
 		"position",
 		"appearance",
 	})
+
+	s.Enter = func() {
+		ebiten.SetCursorMode(ebiten.CursorModeHidden)
+	}
 
 	s.Update = func() error {
 		cursorX, cursorY := engine.CursorPosition()
@@ -33,6 +39,10 @@ func newCursorSystem(g *Game) *engine.System {
 		}
 
 		return nil
+	}
+
+	s.Exit = func() {
+		ebiten.SetCursorMode(ebiten.CursorModeVisible)
 	}
 
 	return s
