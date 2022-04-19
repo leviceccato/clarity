@@ -92,13 +92,37 @@ func (g *Game) ActivateWorlds(worldNames ...string) {
 	enteringWorlds := util.Unique(worldNames, g.activeWorldNames)
 
 	for _, worldName := range exitingWorlds {
-		g.worlds[worldName].Exit()
+		w := g.worlds[worldName]
+
+		if w.Exit != nil {
+			w.Exit()
+		}
+
+		for _, systemName := range w.systemNames {
+			s := g.systems[systemName]
+
+			if s.Exit != nil {
+				s.Exit()
+			}
+		}
 	}
 
 	g.activeWorldNames = worldNames
 
 	for _, worldName := range enteringWorlds {
-		g.worlds[worldName].Enter()
+		w := g.worlds[worldName]
+
+		if w.Enter != nil {
+			w.Enter()
+		}
+
+		for _, systemName := range w.systemNames {
+			s := g.systems[systemName]
+
+			if s.Enter != nil {
+				s.Enter()
+			}
+		}
 	}
 }
 
@@ -210,8 +234,11 @@ type System struct {
 	name           string
 	EntityIds      []int
 	componentNames []string
-	Update         func() error
-	Draw           func(screen *ebiten.Image)
+
+	Update func() error
+	Draw   func(screen *ebiten.Image)
+	Enter  func()
+	Exit   func()
 }
 
 func NewSystem(name string, componentNames []string) *System {
