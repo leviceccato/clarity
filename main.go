@@ -13,7 +13,7 @@ func main() {
 
 	// Start game
 	err := game.CreateAndRun(&game.Options{
-		Title:        "Clarity",
+		Title:        "Clarity - DEBUG",
 		RenderWidth:  480,
 		RenderHeight: 270,
 		Logger:       l,
