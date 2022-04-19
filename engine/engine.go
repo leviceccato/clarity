@@ -261,6 +261,10 @@ func (e *Entity) AddComponent(c component) {
 	e.components[c.Name()] = c
 }
 
+func (e *Entity) RemoveComponent(c component) {
+	e.components[c.Name()] = nil
+}
+
 func GetComponent[T component](e *Entity, c T) (T, bool) {
 	component, ok := e.components[c.Name()]
 	if !ok {
