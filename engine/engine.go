@@ -270,10 +270,12 @@ func GetComponent[T component](e *Entity, c T) (T, bool) {
 	if !ok {
 		return c, false
 	}
+
 	underlyingComponent, ok := component.(T)
 	if !ok {
 		return c, false
 	}
+
 	return underlyingComponent, true
 }
 
