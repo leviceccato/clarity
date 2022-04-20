@@ -14,7 +14,7 @@ func Must(err error) {
 
 // Find unique items between two slices
 func Unique[T comparable](aItems, bItems []T) []T {
-	items := []T{}
+	items := make([]T, 0, len(aItems))
 	isUnique := true
 
 	for _, a := range aItems {
