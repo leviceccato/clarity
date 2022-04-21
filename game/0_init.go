@@ -60,7 +60,8 @@ func CreateAndRun(options *Options) error {
 	}
 	ebiten.SetWindowIcon([]image.Image{icon32, icon16})
 
-	// Set other options>|o0˚…≤]	g.isDebug = options.IsDebug
+	// Set other options
+	g.isDebug = options.IsDebug
 	g.RenderWidth = options.RenderWidth
 	g.RenderHeight = options.RenderHeight
 	ebiten.SetWindowSize(g.RenderWidth*2, g.RenderHeight*2)
