@@ -8,6 +8,7 @@ import (
 	"github.com/leviceccato/clarity/engine"
 	"github.com/leviceccato/clarity/logger"
 
+	"github.com/hajimehoshi/ebiten/v2"
 	"golang.org/x/image/font"
 )
 
@@ -37,6 +38,15 @@ func (g Game) quit(code int) {
 
 func (g *Game) setIsCursorHovering(to bool) {
 	g.isCursorHovering = to
+}
+
+func (g Game) setTitle(to string) {
+	title := to
+	if g.isDebug {
+		title = title + " - DEBUG"
+	}
+
+	ebiten.SetWindowTitle(title)
 }
 
 type command int

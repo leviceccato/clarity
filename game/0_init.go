@@ -60,13 +60,12 @@ func CreateAndRun(options *Options) error {
 	}
 	ebiten.SetWindowIcon([]image.Image{icon32, icon16})
 
-	// Set other options
+	// Set other options>|o0˚…≤]	g.isDebug = options.IsDebug
 	g.RenderWidth = options.RenderWidth
 	g.RenderHeight = options.RenderHeight
 	ebiten.SetWindowSize(g.RenderWidth*2, g.RenderHeight*2)
 	ebiten.SetWindowResizable(true)
-	ebiten.SetWindowTitle(options.Title)
-	g.isDebug = options.IsDebug
+	g.setTitle(options.Title)
 
 	// Set colours
 	g.colors = map[string]color.NRGBA{
