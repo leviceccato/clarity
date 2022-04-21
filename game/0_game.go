@@ -26,6 +26,7 @@ type Game struct {
 	// State
 	isCursorHovering bool
 	inputs           map[command]*inputData
+	isDebug          bool
 }
 
 func (g Game) quit(code int) {
