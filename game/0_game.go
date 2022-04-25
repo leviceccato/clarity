@@ -23,6 +23,7 @@ type Game struct {
 
 	// Settings
 	InputBindings map[command][]any
+	savePath      string
 
 	// State
 	isCursorHovering bool

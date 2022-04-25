@@ -9,8 +9,8 @@ import (
 )
 
 func main() {
-	// Allow setting debug mode with flags
 	isDebug := flag.Bool("debug", false, "Set debug mode")
+	savePath := flag.String("save-path", ".", "Set location for game saves")
 	flag.Parse()
 
 	// Create logger for application
@@ -23,6 +23,7 @@ func main() {
 		RenderHeight: 270,
 		Logger:       l,
 		IsDebug:      *isDebug,
+		SavePath:     *savePath,
 	})
 	if err != nil {
 		l.Error.Panicf("starting game: %s", err)
