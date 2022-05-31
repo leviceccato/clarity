@@ -50,8 +50,8 @@ Folder | Go Package | Description
 /wip | | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the asset package.
 /windows | ✅ | For building the project for Windows (`go run ./windows`).
 /macos | ✅ | For building the project for macOS (`go run ./macos`).
-/util | ✅ | Highly generic utility functions used across the project.
-/logger | ✅ | Simple logging implementation.
+/util | ✅ | Generic utility functions used across the project.
+/logger | ✅ | A custom logging implementation.
 
 Files are prefixed with `0_` to ensure they are displayed first when sorted alphabetically. This is helpful for packages with many files.
 
