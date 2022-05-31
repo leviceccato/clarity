@@ -13,11 +13,12 @@ import (
 )
 
 type buttonEntityOptions struct {
-	x, y, width, height, padding          float64
-	isCentered                            bool
-	text, image, animation, textTransform string
-	color                                 color.NRGBA
-	font                                  font.Face
+	x, y, width, height, padding float64
+	isCentered                   bool
+	text, image, animation       string
+	textTransform                textComponentTransform
+	color                        color.NRGBA
+	font                         font.Face
 }
 
 func newButtonEntity(g *Game, options *buttonEntityOptions) (*engine.Entity, error) {

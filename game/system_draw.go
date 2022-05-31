@@ -49,7 +49,7 @@ func newDrawSystem(g *Game) *engine.System {
 				x := line.X + text.Padding
 				y := (size.Height / 2) - float64((text.LineHeight*len(text.Lines))/2) + float64((i+1)*text.LineHeight)
 				content := line.Content
-				if text.TextTransform == "uppercase" {
+				if text.TextTransform == textComponentTransformUppercase {
 					content = strings.ToUpper(content)
 				}
 				ebitentext.Draw(screen, content, text.Font, int(position.X+x), int(position.Y+y), text.Color)

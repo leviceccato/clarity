@@ -6,6 +6,15 @@ import (
 	"golang.org/x/image/font"
 )
 
+type textComponentTransform int
+
+const (
+	textComponentTransformNone textComponentTransform = iota
+	textComponentTransformUppercase
+	textComponentTransformLowercase
+	textComponentTransformTitlecase
+)
+
 // Text component
 type textComponent struct {
 	Lines         []textLine
@@ -13,7 +22,7 @@ type textComponent struct {
 	LineHeight    int
 	Font          font.Face
 	IsCentered    bool
-	TextTransform string
+	TextTransform textComponentTransform
 	Padding       float64
 }
 
