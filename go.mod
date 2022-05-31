@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/hajimehoshi/ebiten/v2 v2.1.7
 	github.com/nicksnyder/go-i18n/v2 v2.1.2
-	github.com/tc-hib/winres v0.1.5
+	github.com/tc-hib/winres v0.1.6
 	golang.org/x/image v0.0.0-20210220032944-ac19c3e999fb
 	golang.org/x/text v0.3.3
 )

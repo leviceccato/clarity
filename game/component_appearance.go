@@ -1,11 +1,10 @@
-package component
+package game
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
 	"image"
-	_ "image/png"
 	"strings"
 
 	"github.com/leviceccato/clarity/asset"
@@ -13,16 +12,22 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-type AppearanceComponent struct {
+// Appearance component
+type appearanceComponent struct {
 	Image                      *ebiten.Image
 	Frame, Duration            int
 	Sequence, PreviousSequence string
 	Time                       float64
 	Frames                     []*image.Rectangle
-	Sequences                  map[string]*AppearanceSequence
+	Sequences                  map[string]*appearanceSequence
 }
 
-type AppearanceSequence struct {
+func (_ appearanceComponent) Name() string {
+	return "appearance"
+}
+
+// For use in appearance component
+type appearanceSequence struct {
 	From, To   int
 	ShouldLoop bool
 	Direction  string
@@ -30,9 +35,9 @@ type AppearanceSequence struct {
 
 // Load files, format the data and then create an Appearance component
 // Pass an empty string as the second param if an animation isn't required
-func NewAppearanceComponent(imagePath, animationPath string) (*AppearanceComponent, error) {
-	c := &AppearanceComponent{
-		Sequences: map[string]*AppearanceSequence{},
+func newAppearanceComponent(imagePath, animationPath string) (*appearanceComponent, error) {
+	c := &appearanceComponent{
+		Sequences: map[string]*appearanceSequence{},
 	}
 
 	// Load image
@@ -75,7 +80,7 @@ func NewAppearanceComponent(imagePath, animationPath string) (*AppearanceCompone
 		nameSections := strings.Split(t.Name, "_")
 		shouldLoop := nameSections[len(nameSections)-1] == "loop"
 		name := nameSections[0]
-		c.Sequences[name] = &AppearanceSequence{
+		c.Sequences[name] = &appearanceSequence{
 			From:       t.From,
 			To:         t.To,
 			ShouldLoop: shouldLoop,

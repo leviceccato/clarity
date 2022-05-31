@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
+
+	"github.com/leviceccato/clarity/util"
 )
 
 const infoTmpl = `
@@ -28,41 +29,28 @@ const infoTmpl = `
 func main() {
 
 	// Build executable
-	err := exec.Command("go", "build").Run()
-	if err != nil {
-		panic(fmt.Sprintf("building macos executable: %s", err))
-	}
+	util.Must(exec.Command("go", "build").Run())
 
+	// Create .app folder and subfolders
 	for _, folder := range []string{
 		"Clarity.app",
 		"Clarity.app/Contents",
 		"Clarity.app/Contents/MacOS",
 		"Clarity.app/Contents/Resources",
 	} {
-		err := os.Mkdir(folder, 0755)
-		if err != nil {
-			panic(fmt.Sprintf("creating %s folder: %s", folder, err))
-		}
-	}
-	err = os.WriteFile("Clarity.app/Contents/Info.plist", []byte(infoTmpl), 0777)
-	if err != nil {
-		panic(fmt.Sprintf("creating Info.plist: %s", err))
-	}
-	bin, err := os.ReadFile("clarity")
-	if err != nil {
-		panic(fmt.Sprintf("copying clarity binary: %s", err))
-	}
-	err = os.WriteFile("Clarity.app/Contents/MacOS/Clarity", bin, 0777)
-	if err != nil {
-		panic(fmt.Sprintf("pasting clarity binary: %s", err))
+		util.Must(os.Mkdir(folder, 0755))
 	}
 
+	// Create .plist from template
+	util.Must(os.WriteFile("Clarity.app/Contents/Info.plist", []byte(infoTmpl), 0777))
+
 	// Run macOS specific iconutil command to generate icons
-	err = exec.Command(
+	util.Must(exec.Command(
 		"iconutil", "-c", "icns", "-o",
 		"Clarity.app/Contents/Resources/icon.icns", "asset/icon.iconset",
-	).Run()
-	if err != nil {
-		panic(fmt.Sprintf("generating icons with iconutil: %s", err))
-	}
+	).Run())
+
+	// Copy binary into .app
+	bin := util.MustGet(os.ReadFile("clarity"))
+	util.Must(os.WriteFile("Clarity.app/Contents/MacOS/Clarity", bin, 0777))
 }

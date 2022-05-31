@@ -4,19 +4,21 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/leviceccato/clarity/util"
+
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
 )
 
+type localizerMap map[language.Tag]*i18n.Localizer
+
 type Translator struct {
-	Language   language.Tag
-	localizers map[language.Tag]*i18n.Localizer
+	Lang       language.Tag
+	localizers localizerMap
 }
 
 func NewTranslator() *Translator {
-	t := &Translator{}
-	t.localizers = map[language.Tag]*i18n.Localizer{}
-	return t
+	return &Translator{localizers: localizerMap{}}
 }
 
 // Add a new localizer, accepts a json file path and a language
@@ -36,8 +38,8 @@ func (t *Translator) AddLocalizer(path string, lang language.Tag) error {
 	return nil
 }
 
-func (t Translator) TransData(str string, data interface{}) (string, error) {
-	translation, err := t.localizers[t.Language].Localize(&i18n.LocalizeConfig{
+func (t Translator) Trans(str string, data any) (string, error) {
+	translation, err := t.localizers[t.Lang].Localize(&i18n.LocalizeConfig{
 		MessageID:    str,
 		TemplateData: data,
 	})
@@ -48,11 +50,6 @@ func (t Translator) TransData(str string, data interface{}) (string, error) {
 	return translation, nil
 }
 
-func (t Translator) Trans(str string) string {
-	translation, err := t.TransData(str, nil)
-	if err != nil {
-		panic(fmt.Sprintf("translating string '%s': %s", str, err))
-	}
-
-	return translation
+func (t Translator) MustTrans(str string, data any) string {
+	return util.MustGet(t.Trans(str, data))
 }
