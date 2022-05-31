@@ -49,6 +49,7 @@ func newDrawSystem(g *Game) *engine.System {
 				x := line.X + text.Padding
 				y := (size.Height / 2) - float64((text.LineHeight*len(text.Lines))/2) + float64((i+1)*text.LineHeight)
 
+				// Text transform
 				c := line.Content
 				switch text.TextTransform {
 				case textComponentTransformUppercase:
