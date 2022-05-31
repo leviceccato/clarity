@@ -3,6 +3,7 @@ package game
 import (
 	"fmt"
 	"image/color"
+	"strings"
 
 	"github.com/leviceccato/clarity/engine"
 
@@ -47,8 +48,11 @@ func newDrawSystem(g *Game) *engine.System {
 			for i, line := range text.Lines {
 				x := line.X + text.Padding
 				y := (size.Height / 2) - float64((text.LineHeight*len(text.Lines))/2) + float64((i+1)*text.LineHeight)
-
-				ebitentext.Draw(screen, line.Content, text.Font, int(position.X+x), int(position.Y+y), text.Color)
+				content := line.Content
+				if text.TextTransform == "uppercase" {
+					content = strings.ToUpper(content)
+				}
+				ebitentext.Draw(screen, content, text.Font, int(position.X+x), int(position.Y+y), text.Color)
 			}
 		}
 

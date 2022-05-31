@@ -8,12 +8,13 @@ import (
 
 // Text component
 type textComponent struct {
-	Lines      []textLine
-	Color      color.NRGBA
-	LineHeight int
-	Font       font.Face
-	IsCentered bool
-	Padding    float64
+	Lines         []textLine
+	Color         color.NRGBA
+	LineHeight    int
+	Font          font.Face
+	IsCentered    bool
+	TextTransform string
+	Padding       float64
 }
 
 func (_ textComponent) Name() string {

@@ -32,17 +32,18 @@ func newTitleWorld(g *Game) *engine.World {
 		buttonYSpacing := 5.0
 		buttonYStart := 120.0
 		startButton, err := newButtonEntity(g, &buttonEntityOptions{
-			x:          (float64(g.RenderWidth) / 2) - (buttonWidth / 2),
-			y:          buttonYStart,
-			width:      buttonWidth,
-			height:     buttonHeight,
-			padding:    10,
-			text:       g.translator.MustTrans("start", nil),
-			font:       g.fonts["lana_pixel"],
-			color:      g.colors["fg-title"],
-			image:      "sprite/title_button.png",
-			animation:  "sprite/title_button.json",
-			isCentered: true,
+			x:             (float64(g.RenderWidth) / 2) - (buttonWidth / 2),
+			y:             buttonYStart,
+			width:         buttonWidth,
+			height:        buttonHeight,
+			padding:       10,
+			text:          g.translator.MustTrans("start", nil),
+			textTransform: "uppercase",
+			font:          g.fonts["lana_pixel"],
+			color:         g.colors["fg-title"],
+			image:         "sprite/title_button.png",
+			animation:     "sprite/title_button.json",
+			isCentered:    true,
 		})
 		if err != nil {
 			return fmt.Errorf("creating title button entity: %w", err)
