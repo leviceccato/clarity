@@ -7,9 +7,10 @@ A list of complete and incomplete tasks to track the progress of the game.
 - Add debug mode support
 
 ### Doing
-- Refactor to decouple engine from game code
+- Ensure rendering happens in correct order (z index)
 
 ### Done (Most recent to oldest)
+- Refactor to decouple engine from game code
 - Structure Title world and add art assets
 - Fix translations
 - Show pointer cursor when hovering buttons
