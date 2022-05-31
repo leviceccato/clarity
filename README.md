@@ -37,7 +37,7 @@ go run ./macos
 
 ## Architecture
 
-The ECS portion of the game is managed in the engine package. The implementation is similar to that of most ECS's, there is a global Game struct responsible for containing game state and managing creation of other objects. Within this there are World's which act as containers for groups of System's and Entities. Systems are where all of the games logic is stored. Entities are simply a collection of Components and Components are purely buckets of data which the Systems will be run on. This package's functions are utilised by the game package where all of the Clarity-specific logic is contained and initialised.
+The ECS portion of the game is managed in the engine package. The implementation is similar to that of most ECS's, there is a global Game struct responsible for containing game state and managing creation of other objects. Within this there are World's which act as containers for groups of System's and Entities. Systems are where all of the games logic is stored. Entities are a collection of Components and Components are buckets of data which the Systems will be run on. This package's functions are utilised by the game package where all of the Clarity-specific logic is contained and initialised.
 
 ## Project structure
 
