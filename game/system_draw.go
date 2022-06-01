@@ -75,11 +75,13 @@ func newDrawSystem(g *Game) *engine.System {
 			}
 		}
 
-		ebitenutil.DebugPrint(screen, fmt.Sprintf(
-			"TPS: %0.2f\nFPS: %0.2f",
-			ebiten.CurrentTPS(),
-			ebiten.CurrentFPS(),
-		))
+		if g.isDebug {
+			ebitenutil.DebugPrint(screen, fmt.Sprintf(
+				"TPS: %0.2f\nFPS: %0.2f",
+				ebiten.CurrentTPS(),
+				ebiten.CurrentFPS(),
+			))
+		}
 	}
 
 	return s
