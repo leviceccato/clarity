@@ -20,6 +20,11 @@ Start the game:
 go run .
 ```
 
+Start the game in debug mode:
+```
+go run . -debug
+```
+
 Build to test:
 ```
 go build
