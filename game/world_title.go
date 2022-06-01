@@ -34,6 +34,7 @@ func newTitleWorld(g *Game) *engine.World {
 		startButton, err := newButtonEntity(g, &buttonEntityOptions{
 			x:             (float64(g.RenderWidth) / 2) - (buttonWidth / 2),
 			y:             buttonYStart,
+			z:             50,
 			width:         buttonWidth,
 			height:        buttonHeight,
 			padding:       10,
@@ -51,6 +52,7 @@ func newTitleWorld(g *Game) *engine.World {
 		exitButton, err := newButtonEntity(g, &buttonEntityOptions{
 			x:             (float64(g.RenderWidth) / 2) - (buttonWidth / 2),
 			y:             buttonYStart + buttonHeight + buttonYSpacing,
+			z:             50,
 			width:         buttonWidth,
 			height:        buttonHeight,
 			padding:       10,

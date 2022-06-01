@@ -14,6 +14,7 @@ import (
 
 type buttonEntityOptions struct {
 	x, y, width, height, padding float64
+	z                            int
 	isCentered                   bool
 	text, image, animation       string
 	textTransform                textComponentTransform
@@ -27,6 +28,7 @@ func newButtonEntity(g *Game, options *buttonEntityOptions) (*engine.Entity, err
 	e.AddComponent(&positionComponent{
 		X: options.x,
 		Y: options.y,
+		Z: options.z,
 	})
 
 	e.AddComponent(&sizeComponent{
