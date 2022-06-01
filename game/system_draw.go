@@ -28,7 +28,6 @@ func newDrawSystem(g *Game) *engine.System {
 		zSortedEntities := util.Map(s.EntityIds, func(id, _ int) *engine.Entity {
 			return g.GetEntity(id)
 		})
-
 		slices.SortFunc(zSortedEntities, func(a, b *engine.Entity) bool {
 			aPosition, _ := engine.GetComponent(a, &positionComponent{})
 			bPosition, _ := engine.GetComponent(b, &positionComponent{})
