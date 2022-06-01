@@ -33,3 +33,11 @@ func Unique[T comparable](aItems, bItems []T) []T {
 
 	return items
 }
+
+func Map[T any, M any](items []T, mapFunc func(T, int) M) []M {
+	mapped := make([]M, len(items))
+	for index, item := range items {
+		mapped[index] = mapFunc(item, index)
+	}
+	return mapped
+}
