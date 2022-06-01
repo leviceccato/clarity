@@ -6,10 +6,12 @@ import (
 	"strings"
 
 	"github.com/leviceccato/clarity/engine"
+	"github.com/leviceccato/clarity/util"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	ebitentext "github.com/hajimehoshi/ebiten/v2/text"
+	"golang.org/x/exp/slices"
 )
 
 func newDrawSystem(g *Game) *engine.System {
@@ -22,12 +24,22 @@ func newDrawSystem(g *Game) *engine.System {
 	s.Draw = func(screen *ebiten.Image) {
 		screen.Fill(color.NRGBA{0x00, 0x40, 0x80, 0xff})
 
-		for _, entityId := range s.EntityIds {
-			e := g.GetEntity(entityId)
+		// Sort entity ids by Z position
+		zSortedEntities := util.Map(s.EntityIds, func(id, _ int) *engine.Entity {
+			return g.GetEntity(id)
+		})
 
-			position, _ := engine.GetComponent(e, &positionComponent{})
+		slices.SortFunc(zSortedEntities, func(a, b *engine.Entity) bool {
+			aPosition, _ := engine.GetComponent(a, &positionComponent{})
+			bPosition, _ := engine.GetComponent(b, &positionComponent{})
+
+			return aPosition.Z < bPosition.Z
+		})
+
+		for _, e := range zSortedEntities {
 			appearance, _ := engine.GetComponent(e, &appearanceComponent{})
 			size, _ := engine.GetComponent(e, &sizeComponent{})
+			position, _ := engine.GetComponent(e, &positionComponent{})
 			text, hasText := engine.GetComponent(e, &textComponent{})
 
 			// Draw image
