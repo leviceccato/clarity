@@ -6,9 +6,10 @@ A list of complete and incomplete tasks to track the progress of the game.
 - Get world switching working
 
 ### Doing
-- Add button hover visuals
+- Finish click system (figure out way to serialise click component data)
 
 ### Done (Most recent to oldest)
+- Add button hover visuals
 - Add debug mode support
 - Ensure rendering happens in correct order (z index)
 - Refactor to decouple engine from game code
