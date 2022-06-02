@@ -10,26 +10,24 @@ func newPlayableSystem(g *Game) *engine.System {
 	})
 
 	s.Update = func() error {
-		// for _, entityId := range s.EntityIds {
-		// 	e := g.GetEntity(entityId)
-		// 	// if c[component.ControlUp] != nil {
-		// 	// 	e.Position.Y -= 3
-		// 	// }
-		// 	// if c[component.ControlLeft] != nil {
-		// 	// 	e.Position.X -= 3
-		// 	// }
-		// 	// if c[component.ControlRight] != nil {
-		// 	// 	e.Position.X += 3
-		// 	// }
-		// 	// if c[component.ControlDown] != nil {
-		// 	// 	e.Position.Y += 3
-		// 	// }
-		// 	// if c[component.ControlMenu] != nil {
-		// 	// 	s.AddEvent(activateWorldsEvent{
-		// 	// 		names: []string{"title"},
-		// 	// 	})
-		// 	// }
-		// }
+		for _, entityId := range s.EntityIds {
+			e := g.GetEntity(entityId)
+
+			position, _ := engine.GetComponent(e, &positionComponent{})
+
+			if g.inputs[commandMoveUp] != nil {
+				position.Y -= 3
+			}
+			if g.inputs[commandMoveLeft] != nil {
+				position.X -= 3
+			}
+			if g.inputs[commandMoveRight] != nil {
+				position.X += 3
+			}
+			if g.inputs[commandMoveDown] != nil {
+				position.Y += 3
+			}
+		}
 
 		return nil
 	}
