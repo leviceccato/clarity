@@ -9,6 +9,8 @@ import (
 func newPlayerEntity(g *Game) (*engine.Entity, error) {
 	e := g.NewEntity()
 
+	e.AddComponent(&playableComponent{})
+
 	e.AddComponent(&positionComponent{
 		X: 10,
 		Y: 10,
