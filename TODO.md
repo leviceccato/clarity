@@ -3,12 +3,12 @@ A list of complete and incomplete tasks to track the progress of the game.
 
 ### To Do (Lowest to highest priority)
 - Add systems and components for basic UI interactions
-- Get world switching working
 
 ### Doing
-- Add debug mode support
+- Get world switching working
 
 ### Done (Most recent to oldest)
+- Add debug mode support
 - Ensure rendering happens in correct order (z index)
 - Refactor to decouple engine from game code
 - Structure Title world and add art assets
