@@ -27,6 +27,9 @@ func newPlayableSystem(g *Game) *engine.System {
 			if g.inputs[commandMoveDown] != nil {
 				position.Y += 3
 			}
+			if g.inputs[commandToggleMenu] != nil {
+				g.quit(0)
+			}
 		}
 
 		return nil

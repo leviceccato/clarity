@@ -58,6 +58,7 @@ const (
 	commandMoveRight
 	commandMoveDown
 	commandMoveUp
+	commandToggleMenu
 )
 
 type inputData struct {
