@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/leviceccato/clarity/engine"
-	"github.com/leviceccato/clarity/util"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -25,9 +24,10 @@ func newDrawSystem(g *Game) *engine.System {
 		screen.Fill(color.NRGBA{0x00, 0x40, 0x80, 0xff})
 
 		// Sort entity ids by Z position
-		zSortedEntities := util.Map(s.EntityIds, func(id, _ int) *engine.Entity {
-			return g.GetEntity(id)
-		})
+		zSortedEntities := make([]*engine.Entity, 0, len(s.EntityIds))
+		for _, id := range s.EntityIds {
+			zSortedEntities = append(zSortedEntities, g.GetEntity(id))
+		}
 		slices.SortFunc(zSortedEntities, func(a, b *engine.Entity) bool {
 			aPosition, _ := engine.GetComponent(a, &positionComponent{})
 			bPosition, _ := engine.GetComponent(b, &positionComponent{})
