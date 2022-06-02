@@ -86,6 +86,7 @@ func CreateAndRun(options *Options) error {
 		commandMoveUp:     {ebiten.KeyW, ebiten.KeyArrowUp},
 		commandMoveDown:   {ebiten.KeyS, ebiten.KeyArrowDown},
 		commandToggleMenu: {ebiten.KeyEscape},
+		commandClick:      {ebiten.MouseButtonLeft},
 	}
 
 	// Init systems
@@ -105,7 +106,7 @@ func CreateAndRun(options *Options) error {
 	)
 
 	// Set title as active world
-	g.ActivateWorlds("start")
+	g.ActivateWorlds("title")
 
 	// Run the game
 	err = g.Run()
