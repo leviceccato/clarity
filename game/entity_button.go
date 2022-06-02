@@ -25,6 +25,8 @@ type buttonEntityOptions struct {
 func newButtonEntity(g *Game, options *buttonEntityOptions) (*engine.Entity, error) {
 	e := g.NewEntity()
 
+	e.AddComponent(&hoverableComponent{})
+
 	e.AddComponent(&positionComponent{
 		X: options.x,
 		Y: options.y,
