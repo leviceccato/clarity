@@ -138,6 +138,10 @@ func (g Game) UpdateSystems(w World) {
 	for _, systemName := range w.systemNames {
 		s := g.systems[systemName]
 
+		if s == nil {
+			panic(fmt.Sprintf("updating systems: unknown system: '%s'", systemName))
+		}
+
 		for _, e := range g.entities {
 			// A system w/o components should have no entities
 			if len(s.componentNames) == 0 {
