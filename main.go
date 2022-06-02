@@ -15,6 +15,7 @@ func main() {
 
 	// Create logger for application
 	l := logger.New(os.Stdout, os.Stderr)
+	l.Info.Printf("starting game")
 
 	// Start game
 	err := game.CreateAndRun(&game.Options{
