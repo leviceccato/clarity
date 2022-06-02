@@ -8,7 +8,6 @@ import (
 
 func newStartWorld(g *Game) *engine.World {
 	w := engine.NewWorld("start", []string{
-		"appearance",
 		"draw",
 		"animation",
 		"input",
