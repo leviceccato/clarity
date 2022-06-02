@@ -112,6 +112,10 @@ func (g *Game) ActivateWorlds(worldNames ...string) {
 	for _, worldName := range enteringWorlds {
 		w := g.worlds[worldName]
 
+		if w == nil {
+			panic(fmt.Sprintf("activating world: unknown world: '%s'", worldName))
+		}
+
 		if w.Enter != nil {
 			w.Enter()
 		}
