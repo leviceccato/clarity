@@ -1,5 +1,9 @@
 package util
 
+import (
+	"golang.org/x/exp/constraints"
+)
+
 // Enforce panic for functions where err should be nil (programmer error)
 func MustGet[T any](value T, err error) T {
 	Must(err)
@@ -40,4 +44,11 @@ func Map[T any, M any](items []T, mapFunc func(T, int) M) []M {
 		mapped = append(mapped, mapFunc(item, index))
 	}
 	return mapped
+}
+
+func IsWithinRect[T constraints.Ordered](x, y, areaX, areaY, areaWidth, areaHeight T) bool {
+	return x >= areaX &&
+		x <= areaX+areaWidth &&
+		y >= areaY &&
+		y <= areaY+areaHeight
 }
