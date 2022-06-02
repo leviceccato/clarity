@@ -2,6 +2,7 @@ package game
 
 import (
 	"github.com/leviceccato/clarity/engine"
+	"github.com/leviceccato/clarity/util"
 )
 
 func newHoverSystem(g *Game) *engine.System {
@@ -12,10 +13,10 @@ func newHoverSystem(g *Game) *engine.System {
 	})
 
 	s.Update = func() error {
+		cursorX, cursorY := engine.CursorPosition()
+
 		for _, entityId := range s.EntityIds {
 			e := g.GetEntity(entityId)
-
-			cursorX, cursorY := engine.CursorPosition()
 
 			position, _ := engine.GetComponent(e, &positionComponent{})
 			size, _ := engine.GetComponent(e, &sizeComponent{})
@@ -23,10 +24,11 @@ func newHoverSystem(g *Game) *engine.System {
 			appearance, hasAppearance := engine.GetComponent(e, &appearanceComponent{})
 
 			// Check if mouse is within x and y ranges
-			isHovered := cursorX >= position.X &&
-				cursorX <= position.X+size.Width &&
-				cursorY >= position.Y &&
-				cursorY <= position.Y+size.Height
+			isHovered := util.IsWithinRect(
+				cursorX, cursorY,
+				position.X, position.Y,
+				size.Width, size.Height,
+			)
 
 			// If no change, nothing to do
 			hasHoverChanged := isHovered != hoverable.IsHovered
