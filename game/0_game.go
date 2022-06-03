@@ -29,6 +29,7 @@ type Game struct {
 	isCursorHovering bool
 	inputs           map[command]*inputData
 	isDebug          bool
+	windowTitle      string
 }
 
 func (g Game) quit(code int) {
@@ -41,13 +42,19 @@ func (g *Game) setIsCursorHovering(to bool) {
 	g.isCursorHovering = to
 }
 
-func (g Game) setTitle(to string) {
+func (g *Game) setTitle(to string) {
 	title := to
 	if g.isDebug {
 		title = title + " - DEBUG"
 	}
 
 	ebiten.SetWindowTitle(title)
+	g.windowTitle = to
+}
+
+func (g *Game) toggleDebug() {
+	g.isDebug = !g.isDebug
+	g.setTitle(g.windowTitle)
 }
 
 type command int
@@ -60,6 +67,7 @@ const (
 	commandMoveUp
 	commandToggleMenu
 	commandClick
+	commandToggleDebug
 )
 
 type inputData struct {

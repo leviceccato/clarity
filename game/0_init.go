@@ -80,13 +80,14 @@ func CreateAndRun(options *Options) error {
 	// Set inputs
 	g.inputs = map[command]*inputData{}
 	g.InputBindings = map[command][]any{
-		commandJump:       {ebiten.KeySpace},
-		commandMoveLeft:   {ebiten.KeyA, ebiten.KeyArrowLeft},
-		commandMoveRight:  {ebiten.KeyD, ebiten.KeyArrowRight},
-		commandMoveUp:     {ebiten.KeyW, ebiten.KeyArrowUp},
-		commandMoveDown:   {ebiten.KeyS, ebiten.KeyArrowDown},
-		commandToggleMenu: {ebiten.KeyEscape},
-		commandClick:      {ebiten.MouseButtonLeft},
+		commandJump:        {ebiten.KeySpace},
+		commandMoveLeft:    {ebiten.KeyA, ebiten.KeyArrowLeft},
+		commandMoveRight:   {ebiten.KeyD, ebiten.KeyArrowRight},
+		commandMoveUp:      {ebiten.KeyW, ebiten.KeyArrowUp},
+		commandMoveDown:    {ebiten.KeyS, ebiten.KeyArrowDown},
+		commandToggleMenu:  {ebiten.KeyEscape},
+		commandClick:       {ebiten.MouseButtonLeft},
+		commandToggleDebug: {ebiten.KeyBackquote},
 	}
 
 	// Init systems
@@ -106,7 +107,7 @@ func CreateAndRun(options *Options) error {
 	)
 
 	// Set title as active world
-	g.ActivateWorlds("title")
+	g.ActivateWorlds("start")
 
 	// Run the game
 	err = g.Run()

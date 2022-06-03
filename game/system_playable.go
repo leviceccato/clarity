@@ -30,6 +30,9 @@ func newPlayableSystem(g *Game) *engine.System {
 			if g.inputs[commandToggleMenu] != nil {
 				g.quit(0)
 			}
+			if g.inputs[commandToggleDebug] != nil {
+				g.toggleDebug()
+			}
 		}
 
 		return nil
