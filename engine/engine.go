@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/leviceccato/clarity/util"
@@ -10,6 +11,8 @@ import (
 
 // 1/60th of a second in milliseconds. Ebiten ensures that the game is always run at 60 FPS.
 const Delta = (1.0 / 60) * 1000
+
+var CloseError = errors.New("window closed")
 
 // The main game struct that contains all worlds and systems
 type Game struct {
@@ -24,9 +27,6 @@ type Game struct {
 	// Globals
 	RenderWidth, RenderHeight int
 	IsWindowBeingClosed       bool
-
-	// Callbacks
-	OnWindowClose func() error
 }
 
 func NewGame() *Game {
@@ -39,6 +39,10 @@ func NewGame() *Game {
 
 func (g *Game) Run() error {
 	return ebiten.RunGame(g)
+}
+
+func (g *Game) Quit() {
+	g.IsWindowBeingClosed = true
 }
 
 // Entity IDs are unique to a Game
@@ -59,7 +63,11 @@ func (g Game) GetEntity(id int) *Entity {
 
 func (g Game) Update() error {
 	if ebiten.IsWindowBeingClosed() {
-		return g.OnWindowClose()
+		g.IsWindowBeingClosed = true
+	}
+
+	if g.IsWindowBeingClosed {
+		return CloseError
 	}
 
 	for _, worldName := range g.activeWorldNames {

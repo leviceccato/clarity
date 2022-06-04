@@ -1,7 +1,6 @@
 package game
 
 import (
-	"errors"
 	"image/color"
 
 	"github.com/leviceccato/clarity/asset"
@@ -30,12 +29,7 @@ type Game struct {
 	inputs           map[command]*inputData
 	isDebug          bool
 	windowTitle      string
-}
-
-var CloseError = errors.New("window closed")
-
-func (g *Game) quit() error {
-	return CloseError
+	shouldQuit       bool
 }
 
 func (g *Game) setIsCursorHovering(to bool) {

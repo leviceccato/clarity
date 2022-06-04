@@ -5,6 +5,7 @@ import (
 	"flag"
 	"os"
 
+	"github.com/leviceccato/clarity/engine"
 	"github.com/leviceccato/clarity/game"
 	"github.com/leviceccato/clarity/logger"
 )
@@ -27,7 +28,7 @@ func main() {
 		IsDebug:      *isDebug,
 		SavePath:     *savePath,
 	})
-	if errors.Is(err, game.CloseError) {
+	if errors.Is(err, engine.CloseError) {
 		l.Info.Printf("window closed")
 		return
 	}

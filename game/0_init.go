@@ -91,11 +91,6 @@ func CreateAndRun(options *Options) error {
 		commandToggleDebug: {ebiten.KeyBackquote},
 	})
 
-	// Init callbacks
-	g.OnWindowClose = func() error {
-		return CloseError
-	}
-
 	// Init systems
 	g.AddSystems(
 		newAnimationSystem(g),

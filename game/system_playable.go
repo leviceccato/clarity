@@ -28,7 +28,7 @@ func newPlayableSystem(g *Game) *engine.System {
 				position.Y += 3
 			}
 			if g.hasInput(commandToggleMenu) {
-				return g.quit()
+				g.Quit()
 			}
 			if g.isInputEnding(commandToggleDebug) {
 				g.toggleDebug()
