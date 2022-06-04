@@ -90,6 +90,11 @@ func CreateAndRun(options *Options) error {
 		commandToggleDebug: {ebiten.KeyBackquote},
 	}
 
+	// Init callbacks
+	g.OnWindowClose = func() {
+		g.logger.Info.Printf("quit with code: %v", g.exitCode)
+	}
+
 	// Init systems
 	g.AddSystems(
 		newAnimationSystem(g),

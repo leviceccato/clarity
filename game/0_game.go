@@ -30,11 +30,11 @@ type Game struct {
 	inputs           map[command]*inputData
 	isDebug          bool
 	windowTitle      string
+	exitCode         int
 }
 
 func (g Game) quit(code int) {
-	g.logger.Info.Printf("quit with code: %v", code)
-
+	g.exitCode = code
 	os.Exit(code)
 }
 
