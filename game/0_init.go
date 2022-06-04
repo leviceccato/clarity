@@ -99,6 +99,7 @@ func CreateAndRun(options *Options) error {
 		newHoverSystem(g),
 		newInputSystem(g),
 		newPlayableSystem(g),
+		newClickSystem(g),
 	)
 
 	// Init worlds

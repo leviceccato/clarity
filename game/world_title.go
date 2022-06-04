@@ -14,6 +14,7 @@ func newTitleWorld(g *Game) *engine.World {
 		"playable",
 		"hover",
 		"draw",
+		"click",
 	})
 
 	w.Enter = func() error {
