@@ -94,7 +94,7 @@ func CreateAndRun(options *Options) error {
 
 	// Init callbacks
 	g.OnWindowClose = func() error {
-		return fmt.Errorf("window closed")
+		return CloseError
 	}
 
 	// Init systems

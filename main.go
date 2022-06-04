@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"os"
 
@@ -26,7 +27,11 @@ func main() {
 		IsDebug:      *isDebug,
 		SavePath:     *savePath,
 	})
+	if errors.Is(err, game.CloseError) {
+		l.Info.Printf("window closed")
+		return
+	}
 	if err != nil {
-		l.Error.Panicf("starting game: %s", err)
+		l.Error.Panic(err)
 	}
 }
