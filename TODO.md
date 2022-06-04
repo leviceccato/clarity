@@ -4,9 +4,10 @@ A list of complete and incomplete tasks to track the progress of the game.
 ### To Do (Lowest to highest priority)
 - Add systems and components for basic UI interactions
 - Get world switching working
+- Finish click system (figure out way to serialise click component data)
 
 ### Doing
-- Finish click system (figure out way to serialise click component data)
+- Handle quit error gracefully instead of panicking
 
 ### Done (Most recent to oldest)
 - Add button hover visuals
