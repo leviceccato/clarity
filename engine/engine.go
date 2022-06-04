@@ -26,7 +26,7 @@ type Game struct {
 	IsWindowBeingClosed       bool
 
 	// Callbacks
-	OnWindowClose func()
+	OnWindowClose func() error
 }
 
 func NewGame() *Game {
@@ -59,7 +59,7 @@ func (g Game) GetEntity(id int) *Entity {
 
 func (g Game) Update() error {
 	if ebiten.IsWindowBeingClosed() {
-		g.OnWindowClose()
+		return g.OnWindowClose()
 	}
 
 	for _, worldName := range g.activeWorldNames {

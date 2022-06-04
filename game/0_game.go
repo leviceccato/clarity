@@ -1,8 +1,8 @@
 package game
 
 import (
+	"fmt"
 	"image/color"
-	"os"
 
 	"github.com/leviceccato/clarity/asset"
 	"github.com/leviceccato/clarity/engine"
@@ -30,12 +30,10 @@ type Game struct {
 	inputs           map[command]*inputData
 	isDebug          bool
 	windowTitle      string
-	exitCode         int
 }
 
-func (g Game) quit(code int) {
-	g.exitCode = code
-	os.Exit(code)
+func (g *Game) quit() error {
+	return fmt.Errorf("exiting game")
 }
 
 func (g *Game) setIsCursorHovering(to bool) {

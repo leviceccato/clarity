@@ -70,6 +70,7 @@ func CreateAndRun(options *Options) error {
 	g.RenderHeight = options.RenderHeight
 	ebiten.SetWindowSize(g.RenderWidth*2, g.RenderHeight*2)
 	ebiten.SetWindowResizable(true)
+	ebiten.SetWindowClosingHandled(true)
 	g.setTitle(options.Title)
 
 	// Set colours
@@ -91,8 +92,8 @@ func CreateAndRun(options *Options) error {
 	}
 
 	// Init callbacks
-	g.OnWindowClose = func() {
-		g.logger.Info.Printf("quit with code: %v", g.exitCode)
+	g.OnWindowClose = func() error {
+		return fmt.Errorf("window closed")
 	}
 
 	// Init systems
