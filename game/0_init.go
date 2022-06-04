@@ -80,8 +80,7 @@ func CreateAndRun(options *Options) error {
 	}
 
 	// Set inputs
-	g.inputs = map[command]*inputData{}
-	g.InputBindings = map[command][]any{
+	g.initInputs(map[command][]any{
 		commandJump:        {ebiten.KeySpace},
 		commandMoveLeft:    {ebiten.KeyA, ebiten.KeyArrowLeft},
 		commandMoveRight:   {ebiten.KeyD, ebiten.KeyArrowRight},
@@ -90,7 +89,7 @@ func CreateAndRun(options *Options) error {
 		commandToggleMenu:  {ebiten.KeyEscape},
 		commandClick:       {ebiten.MouseButtonLeft},
 		commandToggleDebug: {ebiten.KeyBackquote},
-	}
+	})
 
 	// Init callbacks
 	g.OnWindowClose = func() error {

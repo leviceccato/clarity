@@ -85,6 +85,11 @@ type inputData struct {
 	x, y float64
 }
 
+func (g *Game) initInputs(bindings map[command][]any) {
+	g.InputBindings = bindings
+	g.inputs = make(map[command]*inputData, len(bindings))
+}
+
 func (g *Game) setInput(cmd command, data *inputData) {
 	g.inputs[cmd] = data
 }
