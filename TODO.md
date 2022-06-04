@@ -5,6 +5,7 @@ A list of complete and incomplete tasks to track the progress of the game.
 - Add systems and components for basic UI interactions
 - Get world switching working
 - Finish click system (figure out way to serialise click component data)
+- Fix key/click events behaving weirdly when holding down input
 
 ### Doing
 - Handle quit error gracefully instead of panicking
