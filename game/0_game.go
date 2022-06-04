@@ -88,3 +88,27 @@ type inputData struct {
 func (g *Game) setInput(cmd command, data *inputData) {
 	g.inputs[cmd] = data
 }
+
+func (g Game) hasInput(cmd command) bool {
+	data := g.inputs[cmd]
+	if data == nil {
+		return false
+	}
+	return (data.progress == inputStart) || (data.progress == inputMiddle)
+}
+
+func (g Game) isInputStarting(cmd command) bool {
+	data := g.inputs[cmd]
+	if data == nil {
+		return false
+	}
+	return data.progress == inputStart
+}
+
+func (g Game) isInputEnding(cmd command) bool {
+	data := g.inputs[cmd]
+	if data == nil {
+		return false
+	}
+	return data.progress == inputEnd
+}

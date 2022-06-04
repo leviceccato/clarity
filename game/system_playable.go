@@ -15,23 +15,22 @@ func newPlayableSystem(g *Game) *engine.System {
 
 			position, _ := engine.GetComponent(e, &positionComponent{})
 
-			if g.inputs[commandMoveUp] != nil {
+			if g.hasInput(commandMoveUp) {
 				position.Y -= 3
 			}
-			if g.inputs[commandMoveLeft] != nil {
+			if g.hasInput(commandMoveLeft) {
 				position.X -= 3
 			}
-			if g.inputs[commandMoveRight] != nil {
+			if g.hasInput(commandMoveRight) {
 				position.X += 3
 			}
-			if g.inputs[commandMoveDown] != nil {
+			if g.hasInput(commandMoveDown) {
 				position.Y += 3
 			}
-			if g.inputs[commandToggleMenu] != nil {
+			if g.hasInput(commandToggleMenu) {
 				return g.quit()
 			}
-			toggleDebug := g.inputs[commandToggleDebug]
-			if (toggleDebug != nil) && !toggleDebug.isStart {
+			if g.isInputEnding(commandToggleDebug) {
 				g.toggleDebug()
 			}
 		}
