@@ -2,14 +2,9 @@ package game
 
 // Clickable component
 type clickableComponent struct {
-	Action clickableAction
+	action func()
 }
 
 func (_ clickableComponent) Name() string {
 	return "clickable"
-}
-
-type clickableAction struct {
-	name string
-	args []any
 }

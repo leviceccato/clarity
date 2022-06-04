@@ -45,6 +45,9 @@ func newTitleWorld(g *Game) *engine.World {
 			image:         "sprite/title_button.png",
 			animation:     "sprite/title_button.json",
 			isCentered:    true,
+			action: func() {
+				fmt.Println("it works!!!")
+			},
 		})
 		if err != nil {
 			return fmt.Errorf("creating title button entity: %w", err)
@@ -63,6 +66,9 @@ func newTitleWorld(g *Game) *engine.World {
 			image:         "sprite/title_button.png",
 			animation:     "sprite/title_button.json",
 			isCentered:    true,
+			action: func() {
+				g.Quit()
+			},
 		})
 		if err != nil {
 			return fmt.Errorf("creating title button entity: %w", err)

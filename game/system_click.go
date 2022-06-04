@@ -21,12 +21,16 @@ func newClickSystem(g *Game) *engine.System {
 			return nil
 		}
 
+		// Only respond on mouse up
+		if click.progress != inputEnd {
+			return nil
+		}
+
 		for _, entityId := range s.EntityIds {
 			e := g.GetEntity(entityId)
 
 			position, _ := engine.GetComponent(e, &positionComponent{})
 			size, _ := engine.GetComponent(e, &sizeComponent{})
-			// clickable, _ := engine.GetComponent(e, &clickableComponent{})
 
 			// Check if mouse is within x and y ranges
 			isClickedOn := util.IsWithinRect(
@@ -40,6 +44,8 @@ func newClickSystem(g *Game) *engine.System {
 				continue
 			}
 
+			clickable, _ := engine.GetComponent(e, &clickableComponent{})
+			clickable.action()
 		}
 
 		return nil

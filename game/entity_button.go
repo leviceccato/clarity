@@ -20,12 +20,15 @@ type buttonEntityOptions struct {
 	textTransform                textComponentTransform
 	color                        color.NRGBA
 	font                         font.Face
+	action                       func()
 }
 
 func newButtonEntity(g *Game, options *buttonEntityOptions) (*engine.Entity, error) {
 	e := g.NewEntity()
 
 	e.AddComponent(&hoverableComponent{})
+
+	e.AddComponent(&clickableComponent{action: options.action})
 
 	e.AddComponent(&positionComponent{
 		X: options.x,
