@@ -70,12 +70,17 @@ const (
 	commandToggleDebug
 )
 
-type inputData struct {
-	// Track beginning and end of input
-	isStart bool
+type inputProgress int
 
-	// After input ended, mark as expired so struct is deleted in next frame
-	shouldExpire bool
+const (
+	inputStart inputProgress = iota
+	inputMiddle
+	inputEnd
+)
+
+type inputData struct {
+	// Track start, middle and end of input
+	progress inputProgress
 
 	x, y float64
 }

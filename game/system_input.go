@@ -20,42 +20,49 @@ func newInputSystem(g *Game) *engine.System {
 					case ebiten.MouseButton:
 						if inpututil.IsMouseButtonJustPressed(i) {
 							g.setInput(cmd, &inputData{
-								isStart: true,
-								x:       x,
-								y:       y,
+								progress: inputStart,
+								x:        x,
+								y:        y,
 							})
 							return
 						}
 
 						if inpututil.IsMouseButtonJustReleased(i) {
 							g.setInput(cmd, &inputData{
-								isStart:      false,
-								shouldExpire: true,
-								x:            x,
-								y:            y,
+								progress: inputEnd,
+								x:        x,
+								y:        y,
 							})
 							return
 						}
 					case ebiten.Key:
 						if inpututil.IsKeyJustPressed(i) {
-							g.setInput(cmd, &inputData{isStart: true})
+							g.setInput(cmd, &inputData{progress: inputStart})
 							return
 						}
 
 						if inpututil.IsKeyJustReleased(i) {
 							g.setInput(cmd, &inputData{
-								isStart:      false,
-								shouldExpire: true,
+								progress: inputEnd,
 							})
 							return
 						}
 					}
+				}
 
-					data := g.inputs[cmd]
-					if data != nil && data.shouldExpire {
-						g.setInput(cmd, nil)
-						return
-					}
+				data := g.inputs[cmd]
+				if data == nil {
+					return
+				}
+
+				switch data.progress {
+				case inputStart:
+					newData := *data
+					newData.progress = inputMiddle
+
+					g.setInput(cmd, &newData)
+				case inputEnd:
+					g.setInput(cmd, nil)
 				}
 			}()
 		}
