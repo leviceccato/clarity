@@ -23,6 +23,7 @@ type Game struct {
 
 	// Globals
 	RenderWidth, RenderHeight int
+	IsWindowBeingClosed       bool
 }
 
 func NewGame() *Game {
@@ -53,14 +54,16 @@ func (g Game) GetEntity(id int) *Entity {
 	return g.entities[id]
 }
 
-func (g Game) Update() error {
+func (g *Game) Update() error {
+	g.IsWindowBeingClosed = ebiten.IsWindowBeingClosed()
+
 	for _, worldName := range g.activeWorldNames {
 		w, ok := g.worlds[worldName]
 		if !ok {
 			return fmt.Errorf("accessing unknown world '%s'", worldName)
 		}
 
-		err := w.update(g)
+		err := w.update(*g)
 		if err != nil {
 			return fmt.Errorf("updating game: %w", err)
 		}
