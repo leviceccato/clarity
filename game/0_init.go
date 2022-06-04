@@ -71,6 +71,7 @@ func CreateAndRun(options *Options) error {
 	ebiten.SetWindowSize(g.RenderWidth*2, g.RenderHeight*2)
 	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowClosingHandled(true)
+	ebiten.SetFPSMode(ebiten.FPSModeVsyncOffMaximum)
 	g.setTitle(options.Title)
 
 	// Set colours
