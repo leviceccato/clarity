@@ -109,7 +109,7 @@ func CreateAndRun(options *Options) error {
 	)
 
 	// Set title as active world
-	g.ActivateWorlds("start")
+	g.ActivateWorlds("title")
 
 	// Run the game
 	err = g.Run()
