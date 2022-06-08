@@ -28,10 +28,13 @@ func main() {
 		IsDebug:      *isDebug,
 		SavePath:     *savePath,
 	})
+
+	// Must return an error in update to close game
 	if errors.Is(err, engine.CloseError) {
 		l.Info.Printf("window closed")
 		return
 	}
+
 	if err != nil {
 		l.Error.Panic(err)
 	}
