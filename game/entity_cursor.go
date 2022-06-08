@@ -11,9 +11,10 @@ func newCursorEntity(g *Game) (*engine.Entity, error) {
 
 	e.AddComponent(&cursorComponent{})
 
+	x, y := engine.CursorPosition()
 	e.AddComponent(&positionComponent{
-		X: 10,
-		Y: 10,
+		X: x,
+		Y: y,
 		Z: 100,
 	})
 
