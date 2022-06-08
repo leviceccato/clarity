@@ -4,7 +4,7 @@
 
 # Clarity
 
-🌿 A 2D, story-driven, pixel art platformer. Written in [Go](https://golang.org) using [Ebiten](https://ebiten.org) with an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture.
+🌿 A 2D, story-driven, pixel art platformer. Written in [Go](https://golang.org) using [Ebitengine](https://ebiten.org) with an [ECS](https://en.wikipedia.org/wiki/Entity_component_system) architecture. This project is in it's very early stages, it currently serves as a proof of concept but will be expanded into a full game in the future.
 
 ## Requirements
 
