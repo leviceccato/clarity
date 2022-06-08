@@ -7,9 +7,9 @@ A list of complete and incomplete tasks to track the progress of the game.
 - Add walk/run animations
 
 ### Doing
-- Add cursor to start world
 
 ### Done (Most recent to oldest)
+- Add cursor to start world
 - Get world switching working
 - Add systems and components for basic UI interactions
 - Finish click system (figure out way to serialise click component data)

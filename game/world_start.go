@@ -8,6 +8,7 @@ import (
 
 func newStartWorld(g *Game) *engine.World {
 	w := engine.NewWorld("start", []string{
+		"cursor",
 		"draw",
 		"animation",
 		"input",
@@ -23,8 +24,14 @@ func newStartWorld(g *Game) *engine.World {
 		playerPosition.X = float64(g.RenderWidth) / 2
 		playerPosition.Y = float64(g.RenderHeight) / 2
 
+		cursor, err := newCursorEntity(g)
+		if err != nil {
+			return fmt.Errorf("creating cursor entity: %w", err)
+		}
+
 		g.AddEntities(w,
 			player,
+			cursor,
 		)
 
 		return nil
