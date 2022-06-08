@@ -120,7 +120,11 @@ func (g *Game) ActivateWorlds(worldNames ...string) {
 			if s.Exit != nil {
 				s.Exit()
 			}
+
+			s.clearEntityIds()
 		}
+
+		g.clearEntityIds(w)
 	}
 
 	g.activeWorldNames = worldNames
@@ -143,11 +147,13 @@ func (g *Game) ActivateWorlds(worldNames ...string) {
 				s.Enter()
 			}
 		}
+
+		g.updateSystems(w)
 	}
 }
 
 // Add entities to systems based on their components.
-func (g Game) UpdateSystems(w World) {
+func (g Game) updateSystems(w *World) {
 	// Assume entity to be suitable by default
 	hasComponents := true
 
@@ -200,15 +206,23 @@ func (g *Game) AddWorlds(worlds ...*World) {
 func (g *Game) AddEntities(w *World, entities ...*Entity) {
 	for _, e := range entities {
 		g.entities[e.Id] = e
+		w.entityIds = append(w.entityIds, e.Id)
+	}
+}
+
+func (g *Game) clearEntityIds(w *World) {
+	for _, id := range w.entityIds {
+		delete(g.entities, id)
 	}
 
-	g.UpdateSystems(*w)
+	w.entityIds = []int{}
 }
 
 type World struct {
 	name string
 
 	systemNames []string
+	entityIds   []int
 
 	Enter func() error
 	Exit  func()
@@ -218,6 +232,7 @@ func NewWorld(name string, systemNames []string) *World {
 	return &World{
 		name:        name,
 		systemNames: systemNames,
+		entityIds:   []int{},
 	}
 }
 
@@ -274,6 +289,10 @@ func NewSystem(name string, componentNames []string) *System {
 
 func (s *System) AddEntity(e *Entity) {
 	s.EntityIds = append(s.EntityIds, e.Id)
+}
+
+func (s *System) clearEntityIds() {
+	s.EntityIds = []int{}
 }
 
 type Entity struct {
