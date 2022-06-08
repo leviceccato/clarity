@@ -45,7 +45,9 @@ func newClickSystem(g *Game) *engine.System {
 			}
 
 			clickable, _ := engine.GetComponent(e, &clickableComponent{})
+
 			clickable.action()
+			break
 		}
 
 		return nil
