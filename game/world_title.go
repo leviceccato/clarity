@@ -47,7 +47,7 @@ func newTitleWorld(g *Game) *engine.World {
 			animation:     "sprite/title_button.json",
 			isCentered:    true,
 			action: func() {
-				fmt.Println("it works!!!")
+				g.ActivateWorlds("start")
 			},
 		})
 		if err != nil {
