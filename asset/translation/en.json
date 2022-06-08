@@ -1,4 +1,5 @@
 {
-    "start": "s t a r t",
-    "exit": "e x i t"
+    "start": "start",
+    "options": "options",
+    "exit": "exit"
 }

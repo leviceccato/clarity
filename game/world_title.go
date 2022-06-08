@@ -30,8 +30,9 @@ func newTitleWorld(g *Game) *engine.World {
 
 		buttonWidth := 74.0
 		buttonHeight := 30.0
-		buttonYSpacing := 5.0
-		buttonYStart := 120.0
+		buttonYSpacing := 1.0
+		buttonYStart := 107.0
+
 		startButton, err := newButtonEntity(g, &buttonEntityOptions{
 			x:             (float64(g.RenderWidth) / 2) - (buttonWidth / 2),
 			y:             buttonYStart,
@@ -53,9 +54,31 @@ func newTitleWorld(g *Game) *engine.World {
 		if err != nil {
 			return fmt.Errorf("creating title button entity: %w", err)
 		}
-		exitButton, err := newButtonEntity(g, &buttonEntityOptions{
+		optionsButton, err := newButtonEntity(g, &buttonEntityOptions{
 			x:             (float64(g.RenderWidth) / 2) - (buttonWidth / 2),
 			y:             buttonYStart + buttonHeight + buttonYSpacing,
+			z:             50,
+			width:         buttonWidth,
+			height:        buttonHeight,
+			padding:       10,
+			textTransform: textComponentTransformUppercase,
+			text:          g.translator.MustTrans("options", nil),
+			font:          g.fonts["lana_pixel"],
+			color:         g.colors["fg-title"],
+			image:         "sprite/title_button.png",
+			animation:     "sprite/title_button.json",
+			isCentered:    true,
+			action: func() {
+				fmt.Println("clicked options")
+			},
+		})
+		if err != nil {
+			return fmt.Errorf("creating title button entity: %w", err)
+		}
+
+		exitButton, err := newButtonEntity(g, &buttonEntityOptions{
+			x:             (float64(g.RenderWidth) / 2) - (buttonWidth / 2),
+			y:             buttonYStart + (2 * (buttonHeight + buttonYSpacing)),
 			z:             50,
 			width:         buttonWidth,
 			height:        buttonHeight,
@@ -78,6 +101,7 @@ func newTitleWorld(g *Game) *engine.World {
 		g.AddEntities(w,
 			background,
 			startButton,
+			optionsButton,
 			exitButton,
 			cursor,
 		)
