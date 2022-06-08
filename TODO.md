@@ -2,11 +2,15 @@
 A list of complete and incomplete tasks to track the progress of the game.
 
 ### To Do (Lowest to highest priority)
+- Add physics
+- Change animation based on direction/movement
+- Add walk/run animations
 
 ### Doing
-- Get world switching working
+- Add cursor to start world
 
 ### Done (Most recent to oldest)
+- Get world switching working
 - Add systems and components for basic UI interactions
 - Finish click system (figure out way to serialise click component data)
 - Fix key/click events behaving weirdly when holding down input
