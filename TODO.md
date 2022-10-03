@@ -7,7 +7,7 @@ A list of complete and incomplete tasks to track the progress of the game.
 - Add walk/run animations
 
 ### Doing
-- Add pause menu
+- Add pause menu (using assemblage)
 
 ### Done (Most recent to oldest)
 - Add cursor to start world
