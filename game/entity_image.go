@@ -6,13 +6,21 @@ import (
 	"github.com/leviceccato/clarity/engine"
 )
 
-func newImageEntity(g *Game, path string) (*engine.Entity, error) {
+type imageEntityOptions struct {
+	x, y float64
+	path string
+}
+
+func newImageEntity(g *Game, options *imageEntityOptions) (*engine.Entity, error) {
 	e := g.NewEntity()
 
-	e.AddComponent(&positionComponent{})
+	e.AddComponent(&positionComponent{
+		X: options.x,
+		Y: options.y,
+	})
 	e.AddComponent(&sizeComponent{})
 
-	imageAppearance, err := newAppearanceComponent(path, "")
+	imageAppearance, err := newAppearanceComponent(options.path, "")
 	if err != nil {
 		return e, fmt.Errorf("creating appearance component: %s", err)
 	}

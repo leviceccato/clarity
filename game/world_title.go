@@ -18,7 +18,7 @@ func newTitleWorld(g *Game) *engine.World {
 	})
 
 	w.Enter = func() error {
-		background, err := newImageEntity(g, "sprite/title_bg.png")
+		background, err := newImageEntity(g, &imageEntityOptions{path: "sprite/title_bg.png"})
 		if err != nil {
 			return fmt.Errorf("creating background entity: %w", err)
 		}
