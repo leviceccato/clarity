@@ -8,6 +8,7 @@ import (
 
 type imageEntityOptions struct {
 	x, y float64
+	z    int
 	path string
 }
 
@@ -17,6 +18,7 @@ func newImageEntity(g *Game, options *imageEntityOptions) (*engine.Entity, error
 	e.AddComponent(&positionComponent{
 		X: options.x,
 		Y: options.y,
+		Z: options.z,
 	})
 	e.AddComponent(&sizeComponent{})
 
