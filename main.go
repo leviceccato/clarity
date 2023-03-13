@@ -29,10 +29,6 @@ func main() {
 		SavePath:     *savePath,
 	})
 
-	if err == nil {
-		return
-	}
-
 	// Must return an error in update to close game
 	if errors.Is(err, engine.CloseError) {
 		l.Info.Printf("window closed")
