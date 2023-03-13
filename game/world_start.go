@@ -29,10 +29,15 @@ func newStartWorld(g *Game) *engine.World {
 			return fmt.Errorf("creating cursor entity: %w", err)
 		}
 
-		g.AddEntities(w,
-			player,
+		menu, err := newMenuAssemblage(g)
+		if err != nil {
+			return fmt.Errorf("creating menu assemblage: %w", err)
+		}
+
+		g.AddEntities(w, append([]*engine.Entity{
 			cursor,
-		)
+			player,
+		}, menu...)...)
 
 		return nil
 	}
