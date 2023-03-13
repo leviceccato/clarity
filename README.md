@@ -16,26 +16,31 @@
 All commands must be run from the root directory.
 
 Start the game:
+
 ```
 go run .
 ```
 
 Start the game in debug mode:
+
 ```
 go run . -debug
 ```
 
 Build to test:
+
 ```
 go build
 ```
 
 Build the executable with included icon for Windows:
+
 ```
 go run ./windows
 ```
 
 Build the executable into a `.app` for macOS:
+
 ```
 go run ./macos
 ```
@@ -46,17 +51,17 @@ The ECS portion of the game is managed in the engine package. The implementation
 
 ## Project structure
 
-Folder | Go Package | Description
---- | --- | ---
-/ | ✅ | The main package is contained in the root. It's purpose is to initialise the game and otherwise do as little as possible.
-/engine | ✅ | This where the ECS is implemented, it's purposefully decoupled from the game itself.
-/game | ✅ | This is where all of the Clarity-specific code resides, such Entity initilisation, System logic and Component definitions.
-/asset | ✅ | Contains built assets that are embedded into the final executable. This includes sprite, audio and translation files. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file.
-/wip | | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the asset package.
-/windows | ✅ | For building the project for Windows (`go run ./windows`).
-/macos | ✅ | For building the project for macOS (`go run ./macos`).
-/util | ✅ | Generic utility functions used across the project.
-/logger | ✅ | A custom logging implementation.
+| Folder   | Go Package | Description                                                                                                                                                                                                                                  |
+| -------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| /        | ✅         | The main package is contained in the root. It's purpose is to initialise the game and otherwise do as little as possible.                                                                                                                    |
+| /engine  | ✅         | This where the ECS is implemented, it's purposefully decoupled from the game itself.                                                                                                                                                         |
+| /game    | ✅         | This is where all of the Clarity-specific code resides, such Entity initilisation, System logic and Component definitions.                                                                                                                   |
+| /asset   | ✅         | Contains built assets that are embedded into the final executable. This includes sprite, audio and translation files. The `icon.iconset` folder is named as such so the macOS `iconutil` program can use it to generate an `icon.icns` file. |
+| /wip     |            | Contains all WIP files, such as for creating sprites. The subfolders should match corresponding folders in the asset package.                                                                                                                |
+| /windows | ✅         | For building the project for Windows (`go run ./windows`).                                                                                                                                                                                   |
+| /macos   | ✅         | For building the project for macOS (`go run ./macos`).                                                                                                                                                                                       |
+| /util    | ✅         | Generic utility functions used across the project.                                                                                                                                                                                           |
+| /logger  | ✅         | A custom logging implementation.                                                                                                                                                                                                             |
 
 Files are prefixed with `0_` to ensure they are displayed first when sorted alphabetically. This is helpful for packages with many files.
 
@@ -64,19 +69,19 @@ Files are prefixed with `0_` to ensure they are displayed first when sorted alph
 
 All sprites should be exported as `.png` files using Aseprite. Animated sprites or sprites with multiple states (e.g. hover) should be exported as spritesheets with an accompanying `.json` file. Here are the settings used:
 
-Setting | Value
---- | ---
-Sheet Type | By Rows
-Constraints | None
-Merge Duplicates | `false`
-Ignore Empty | `false`
-Layers | Visible Layers
-Borders | Default settings
-Output File | `true`
-JSON Data | `true` with same name as output file
-JSON Style | Array
-JSON Meta | Tags, Slices
-JSON File Name | {frame}
+| Setting          | Value                                |
+| ---------------- | ------------------------------------ |
+| Sheet Type       | By Rows                              |
+| Constraints      | None                                 |
+| Merge Duplicates | `false`                              |
+| Ignore Empty     | `false`                              |
+| Layers           | Visible Layers                       |
+| Borders          | Default settings                     |
+| Output File      | `true`                               |
+| JSON Data        | `true` with same name as output file |
+| JSON Style       | Array                                |
+| JSON Meta        | Tags, Slices                         |
+| JSON File Name   | {frame}                              |
 
 ## Creating icons for macOS
 
