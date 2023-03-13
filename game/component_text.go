@@ -26,7 +26,7 @@ type textComponent struct {
 	Padding       float64
 }
 
-func (_ textComponent) Name() string {
+func (textComponent) Name() string {
 	return "text"
 }
 

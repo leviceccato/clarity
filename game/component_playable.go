@@ -3,6 +3,6 @@ package game
 // Playable component
 type playableComponent struct{}
 
-func (_ playableComponent) Name() string {
+func (playableComponent) Name() string {
 	return "playable"
 }

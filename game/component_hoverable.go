@@ -5,6 +5,6 @@ type hoverableComponent struct {
 	IsHovered bool
 }
 
-func (_ hoverableComponent) Name() string {
+func (hoverableComponent) Name() string {
 	return "hoverable"
 }

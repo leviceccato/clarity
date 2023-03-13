@@ -5,6 +5,6 @@ type clickableComponent struct {
 	action func()
 }
 
-func (_ clickableComponent) Name() string {
+func (clickableComponent) Name() string {
 	return "clickable"
 }

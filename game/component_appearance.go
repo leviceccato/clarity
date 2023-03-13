@@ -22,7 +22,7 @@ type appearanceComponent struct {
 	Sequences                  map[string]*appearanceSequence
 }
 
-func (_ appearanceComponent) Name() string {
+func (appearanceComponent) Name() string {
 	return "appearance"
 }
 

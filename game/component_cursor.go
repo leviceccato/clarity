@@ -5,6 +5,6 @@ type cursorComponent struct {
 	isHovering bool
 }
 
-func (_ cursorComponent) Name() string {
+func (cursorComponent) Name() string {
 	return "cursor"
 }

@@ -6,6 +6,6 @@ type positionComponent struct {
 	Z    int
 }
 
-func (_ positionComponent) Name() string {
+func (positionComponent) Name() string {
 	return "position"
 }
