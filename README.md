@@ -63,7 +63,7 @@ The ECS portion of the game is managed in the engine package. The implementation
 | /util    | ✅         | Generic utility functions used across the project.                                                                                                                                                                                           |
 | /logger  | ✅         | A custom logging implementation.                                                                                                                                                                                                             |
 
-Files are prefixed with `0_` to ensure they are displayed first when sorted lexicographically. This is helpful for packages with many files.
+Files are prefixed with `0_` to ensure they are displayed first when sorted naturally. This is helpful for packages with many files.
 
 ## Exporting sprites
 
